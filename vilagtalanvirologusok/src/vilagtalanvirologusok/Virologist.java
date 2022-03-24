@@ -2,6 +2,9 @@ package vilagtalanvirologusok;
 
 import java.util.List;
 
+/**
+ *
+ */
 public class Virologist implements Steppable{
     public void Touch(Virologist v, Agent a){
         System.out.println("Virologist: Touch()");
@@ -34,6 +37,7 @@ public class Virologist implements Steppable{
         System.out.println("Virologist: RemoveAgent()");
     }
     public void Move(){
+
         System.out.println("Virologist: Move()");
     }
     public boolean UseMaterial(List<Material> m){
