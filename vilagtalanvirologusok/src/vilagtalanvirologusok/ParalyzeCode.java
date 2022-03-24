@@ -1,4 +1,7 @@
 package vilagtalanvirologusok;
 
-public class ParalyzeCode {
+public class ParalyzeCode extends GeneticCode{
+    public Agent Create(Virologist v){
+        return new Agent();
+    }
 }

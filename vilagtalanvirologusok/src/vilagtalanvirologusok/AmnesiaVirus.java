@@ -1,4 +1,4 @@
 package vilagtalanvirologusok;
 
-public class AmnesiaVirus {
+public class AmnesiaVirus extends Agent{
 }

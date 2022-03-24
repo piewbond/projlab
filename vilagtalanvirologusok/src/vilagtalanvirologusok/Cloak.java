@@ -1,4 +1,9 @@
 package vilagtalanvirologusok;
 
-public class Cloak {
+public class Cloak extends Equipment{
+    public boolean Resist(){
+        if (true)
+            return true;
+        return false;
+    }
 }

@@ -1,4 +1,4 @@
 package vilagtalanvirologusok;
 
-public class Street {
+public class Street extends Center{
 }

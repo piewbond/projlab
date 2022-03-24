@@ -1,4 +1,10 @@
 package vilagtalanvirologusok;
 
-public class Agent {
+public class Agent implements Steppable{
+    public void Step(){
+
+    }
+    public void Affect(Virologist v){
+
+    }
 }

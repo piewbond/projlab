@@ -1,4 +1,4 @@
 package vilagtalanvirologusok;
 
-public class ChoreaVirus {
+public class ChoreaVirus extends Agent{
 }

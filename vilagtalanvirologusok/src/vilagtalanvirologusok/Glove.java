@@ -1,4 +1,7 @@
 package vilagtalanvirologusok;
 
-public class Glove {
+public class Glove extends Equipment{
+    public void CastBack(Virologist v, Agent a){
+
+    }
 }

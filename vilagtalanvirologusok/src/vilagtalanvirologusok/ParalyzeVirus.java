@@ -1,4 +1,4 @@
 package vilagtalanvirologusok;
 
-public class ParalyzeVirus {
+public class ParalyzeVirus extends Agent{
 }

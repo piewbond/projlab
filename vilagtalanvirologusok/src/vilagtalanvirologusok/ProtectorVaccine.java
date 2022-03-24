@@ -1,4 +1,4 @@
 package vilagtalanvirologusok;
 
-public class ProtectorVaccine {
+public class ProtectorVaccine extends Agent{
 }

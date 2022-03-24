@@ -1,4 +1,7 @@
 package vilagtalanvirologusok;
 
-public class ProtectorCode {
+public class ProtectorCode extends GeneticCode{
+    public Agent Create(Virologist v){
+        return new Agent();
+    }
 }

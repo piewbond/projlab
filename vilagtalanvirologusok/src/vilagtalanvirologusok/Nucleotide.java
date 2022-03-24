@@ -1,4 +1,4 @@
 package vilagtalanvirologusok;
 
-public class Nucleotide {
+public class Nucleotide extends Material{
 }
