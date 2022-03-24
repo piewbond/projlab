@@ -1,5 +1,5 @@
 package vilagtalanvirologusok;
-
+//VÁLTOZTATÁS
 /**
  * Az ágensek megvalósításáért felelős absztrakt ősosztály, ebből származnak le a különböző ágens típusok.
  */
