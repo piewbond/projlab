@@ -8,7 +8,8 @@ package vilagtalanvirologusok;
 public class AmnesiaCode extends GeneticCode{
     /**
      * Az ágens létrehozásáért felelős metódus.
-     * Meghivja a useMaterial() függvényt az alapanyagokra, amennyiben rendelkezik a szükséges mennyiséggel, visszatér az ágenssel
+     * Meghivja a useMaterial() függvényt az alapanyagokra, amennyiben rendelkezik a szükséges mennyiséggel,
+     * visszatér az ágenssel.
      * @param v - A készitő virológus
      * @return
      */

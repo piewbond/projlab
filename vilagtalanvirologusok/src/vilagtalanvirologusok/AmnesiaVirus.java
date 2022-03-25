@@ -5,7 +5,8 @@ package vilagtalanvirologusok;
  */
 public class AmnesiaVirus extends Agent{
     /**
-     * Az osztály az őséhez tartozó virtuális függvényt tartalmazza: A hatása alatt lévő virológus elveszti az eddig megszerzett (megtanult) genetikai kódokat.
+     * Az osztály az őséhez tartozó virtuális függvényt tartalmazza: A hatása alatt lévő virológus elveszti az eddig
+     * megszerzett (megtanult) genetikai kódokat.
      * @param v - Virologus, akin kifejti a hatast
      */
     @Override
