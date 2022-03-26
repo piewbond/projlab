@@ -21,14 +21,7 @@ public class Skeleton {
         VirologistMoves(1);
     }
     public void VirologistMoves(int scenarionmb){
-        int callnmb = 1;
-        prt(callnmb,"Virologist","v","Move()","");
-        callnmb++;
-        prt(callnmb,"Street","s","GetNeighbours()","list<Neighbours> neighbours");
-        callnmb++;
-        prt(callnmb,"Street","s","RemoveVirologist()","");
-        callnmb++;
-        prt(callnmb,"Laboratory","lab","AddVirologist","");
+
     }
     public void VirologistCraftsAgent(int scenarionmb){
 
@@ -39,11 +32,20 @@ public class Skeleton {
     public void VirologistUseParalyzeVirus(int scenarionmb){
 
     }
-    public void VirologistUseChoreaVirus(int scenarionmb){
-
+    public void VirologistUseChoreaVirus(int scenarionmb)
+    {
+        
     }
-    public void VirologistUseAmnesiaVirus(int scenarionmb){
-
+    public void VirologistUseAmnesiaVirus(int scenarionmb)
+    {
+        int callnmb = 1;
+        prt(callnmb,"Virologist","v","Move()","");
+        callnmb++;
+        prt(callnmb,"Street","s","GetNeighbours()","list<Neighbours> neighbours");
+        callnmb++;
+        prt(callnmb,"Street","s","RemoveVirologist()","");
+        callnmb++;
+        prt(callnmb,"Laboratory","lab","AddVirologist","");
     }
     public void VirologistPicksUpMaterial(int scenarionmb){
 
@@ -66,8 +68,16 @@ public class Skeleton {
     public void VirologistEndsTurn(int scenarionmb){
 
     }
-    public void VirologistAffectedByChoreaVirus(int scenarionmb){
-
+    public void VirologistAffectedByChoreaVirus(int scenarionmb)
+    {
+        int callnmb = 1;
+        prt(callnmb,"Virologist","v","Move()","");
+        callnmb++;
+        prt(callnmb,"Street","s","GetNeighbours()","list<Neighbours> neighbours");
+        callnmb++;
+        prt(callnmb,"Street","s","RemoveVirologist()","");
+        callnmb++;
+        prt(callnmb,"Laboratory","lab","AddVirologist","");
     }
     public void prt(int callnumber, String classname, String objname, String funcname, String returnparam)
     {
