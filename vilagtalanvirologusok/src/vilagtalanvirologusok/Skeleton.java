@@ -23,51 +23,26 @@ public class Skeleton {
         String selected = scanner.nextLine();
 
         switch (selected) {
-            case "1":
-                VirologistMoves();
-                break;
-            case "2":
-                VirologistUseProtectorVaccine();
-                break;
-            case "3":
-                VirologistUseParalyzeVirus();
-                break;
-            case "4":
-                VirologistUseChoreaVirus();
-                break;
-            case "5":
-                VirologistUseAmnesiaVirus();
-                break;
-            case "6":
-                VirologistPicksUpMaterial();
-                break;
-            case "7":
-                VirologistUseGlove();
-                break;
-            case "8":
-                VirologistUseCloak();
-                break;
-            case "9":
-                VirologistLearnsGeneticCode();
-                break;
-            case "10":
-                VirologistPicksUpEquipment();
-                break;
-            case "11":
-                VirologistStealEquipment();
-                break;
-            case "12":
-                VirologistEndsTurn();
-                break;
-            case "13":
-                VirologistAffectedByChoreaVirus();
-                break;
-            default:
-                System.out.println("Enter a valid answer");
-                break;
-        };
+            case "0" -> VirologistMoves();
+            case "1" -> VirologistCraftsAgent();
+            case "2" -> VirologistUseProtectorVaccine();
+            case "3" -> VirologistUseParalyzeVirus();
+            case "4" -> VirologistUseChoreaVirus();
+            case "5" -> VirologistUseAmnesiaVirus();
+            case "6" -> VirologistPicksUpMaterial();
+            case "7" -> VirologistUseGlove();
+            case "8" -> VirologistUseCloak();
+            case "9" -> VirologistLearnsGeneticCode();
+            case "10" -> VirologistPicksUpEquipment();
+            case "11" -> VirologistStealEquipment();
+            case "12" -> VirologistEndsTurn();
+            case "13" -> VirologistAffectedByChoreaVirus();
+            default -> System.out.println("Enter a valid answer");
+        }
     }
-    public void VirologistMoves(){
+
+
+    public void VirologistMoves() {
         int callnmb = 1;
         prt(callnmb++,"Virologist","v","Move()","");
         prt(callnmb++,"Street","s","GetNeighbours()","list<Neighbours> neighbours");
@@ -76,11 +51,15 @@ public class Skeleton {
 
         this.continueProcess();
     }
-    public void VirologistCraftsAgent(){
+
+
+    public void VirologistCraftsAgent() {
 
         this.continueProcess();
     }
-    public void VirologistUseProtectorVaccine(){
+
+
+    public void VirologistUseProtectorVaccine() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Did the virologist craft this type of vaccine earlier? [y / n]"); // Opt on sequence diagram
         String ans = scanner.nextLine();
@@ -105,50 +84,69 @@ public class Skeleton {
 
         this.continueProcess();
     }
-    public void VirologistUseParalyzeVirus(){
+
+
+    public void VirologistUseParalyzeVirus() {
 
         this.continueProcess();
     }
-    public void VirologistUseChoreaVirus()
-    {
+
+
+    public void VirologistUseChoreaVirus() {
 
         this.continueProcess();
     }
-    public void VirologistUseAmnesiaVirus()
-    {
+
+
+    public void VirologistUseAmnesiaVirus() {
 
         this.continueProcess();
     }
-    public void VirologistPicksUpMaterial(){
+
+
+    public void VirologistPicksUpMaterial() {
 
         this.continueProcess();
     }
-    public void VirologistUseGlove(){
+
+
+    public void VirologistUseGlove() {
 
         this.continueProcess();
     }
-    public void VirologistUseCloak(){
+
+
+    public void VirologistUseCloak() {
 
         this.continueProcess();
     }
-    public void VirologistLearnsGeneticCode(){
+
+
+    public void VirologistLearnsGeneticCode() {
 
         this.continueProcess();
     }
-    public void VirologistPicksUpEquipment(){
+
+
+    public void VirologistPicksUpEquipment() {
 
         this.continueProcess();
     }
-    public void VirologistStealEquipment(){
+
+
+    public void VirologistStealEquipment() {
 
         this.continueProcess();
     }
-    public void VirologistEndsTurn(){
+
+
+    public void VirologistEndsTurn() {
 
         this.continueProcess();
     }
-    public void VirologistAffectedByChoreaVirus()
-    {
+
+
+    public void VirologistAffectedByChoreaVirus() {
         int callnmb = 1;
         prt(callnmb++,"Virologist","v","Step()","");
         prt(callnmb++,"ChoreaVirus","c","Affect()","");
@@ -156,8 +154,9 @@ public class Skeleton {
 
         this.continueProcess();
     }
-    public void prt(int callnumber, String classname, String objname, String funcname, String returnparam)
-    {
+
+
+    public void prt(int callnumber, String classname, String objname, String funcname, String returnparam) {
         System.out.println(callnumber+".fgv hívás "+classname+"-osztály "+objname+"-objektum "+funcname+"-fgv név "+returnparam+" visszatérési érték");
     }
 
@@ -170,10 +169,8 @@ public class Skeleton {
         if (ans.equals("y")) {
             this.SkeletonMenu();
         }
-        else
-        {
+        else {
             System.exit(0);
         }
     }
-
 }
