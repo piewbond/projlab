@@ -25,30 +25,46 @@ public class Skeleton {
         switch (selected) {
             case "1":
                 VirologistMoves();
+                break;
             case "2":
                 VirologistUseProtectorVaccine();
+                break;
             case "3":
                 VirologistUseParalyzeVirus();
+                break;
             case "4":
                 VirologistUseChoreaVirus();
+                break;
             case "5":
                 VirologistUseAmnesiaVirus();
+                break;
             case "6":
                 VirologistPicksUpMaterial();
+                break;
             case "7":
                 VirologistUseGlove();
+                break;
             case "8":
                 VirologistUseCloak();
+                break;
             case "9":
                 VirologistLearnsGeneticCode();
+                break;
             case "10":
                 VirologistPicksUpEquipment();
+                break;
             case "11":
                 VirologistStealEquipment();
+                break;
             case "12":
                 VirologistEndsTurn();
+                break;
             case "13":
                 VirologistAffectedByChoreaVirus();
+                break;
+            default:
+                System.out.println("Enter a valid answer");
+                break;
         };
     }
     public void VirologistMoves(){
@@ -74,13 +90,16 @@ public class Skeleton {
                 int callnmb = 1;
                 prt(callnmb++, "Virologist", "v", "ApplyVaccine()", "");
                 prt(callnmb++, "Virologist", "v", "ApplyAgent()", "");
+                break;
 
             case "n": // Virologist hasn't crafted agent
                 int callnum = 1;
                 prt(callnum, "Virologist", "v", "ApplyVaccine()", "");
+                break;
 
             default:
                 System.out.println("Enter a valid answer");
+                break;
 
         };
 
@@ -157,8 +176,4 @@ public class Skeleton {
         }
     }
 
-    public static void skeletonMain(String[] args) {
-        Skeleton skeleton = new Skeleton();
-        skeleton.SkeletonMenu();
-    }
 }
