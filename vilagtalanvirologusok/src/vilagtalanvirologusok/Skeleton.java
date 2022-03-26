@@ -30,6 +30,25 @@ public class Skeleton {
             case "3":
                 VirologistUseParalyzeVirus();
             case "4":
+                VirologistUseChoreaVirus();
+            case "5":
+                VirologistUseAmnesiaVirus();
+            case "6":
+                VirologistPicksUpMaterial();
+            case "7":
+                VirologistUseGlove();
+            case "8":
+                VirologistUseCloak();
+            case "9":
+                VirologistLearnsGeneticCode();
+            case "10":
+                VirologistPicksUpEquipment();
+            case "11":
+                VirologistStealEquipment();
+            case "12":
+                VirologistEndsTurn();
+            case "13":
+                VirologistAffectedByChoreaVirus();
         };
     }
     public void VirologistMoves(){
