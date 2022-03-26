@@ -44,16 +44,14 @@ public class Skeleton {
                 prt(callnmb++, "Virologist", "v", "ApplyAgent()", "");
 
             case "n": // Virologist hasn't crafted agent
-                System.out.println("Virolgist has not crafted vaccine");
+                // System.out.println("Virolgist has not crafted vaccine");
+                int callnum = 1;
+                prt(callnum, "Virologist", "v", "ApplyVaccine()", "");
 
             default:
                 System.out.println("Enter a valid answer");
 
         };
-
-
-
-
 
     }
     public void VirologistUseParalyzeVirus(int scenarionmb){
