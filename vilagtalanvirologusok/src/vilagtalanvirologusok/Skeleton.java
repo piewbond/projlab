@@ -1,5 +1,7 @@
 package vilagtalanvirologusok;
 
+import java.util.Scanner;
+
 public class Skeleton {
     public void SkeletonMenu() {
         System.out.println("[0]Virologist moves\n" +
@@ -30,15 +32,22 @@ public class Skeleton {
     public void VirologistCraftsAgent(int scenarionmb){
 
     }
-    public void VirologistUseProtectorVaccine(int scenarionmb){
-        switch (scenarionmb) {
-            case 1: // Virologist crafted agent
+    public void VirologistUseProtectorVaccine(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Did the virologist craft this type of vaccine earlier? [y / n]"); // Opt on sequence diagram
+        String ans = scanner.nextLine();
+
+        switch (ans) {
+            case "y": // Virologist crafted agent
                 int callnmb = 1;
                 prt(callnmb++, "Virologist", "v", "ApplyVaccine()", "");
                 prt(callnmb++, "Virologist", "v", "ApplyAgent()", "");
 
-            case 2: // Virologist hasn't crafted agent
+            case "n": // Virologist hasn't crafted agent
                 System.out.println("Virolgist has not crafted vaccine");
+
+            default:
+                System.out.println("Enter a valid answer");
 
         };
 
