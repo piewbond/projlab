@@ -57,9 +57,12 @@ public class Skeleton {
         prt(callnmb++,"Street","s","GetNeighbours()","list<Neighbours> neighbours");
         prt(callnmb++,"Street","s","RemoveVirologist()","");
         prt(callnmb++,"Laboratory","lab","AddVirologist","");
-    }
-    public void VirologistCraftsAgent(int scenarionmb){
 
+        this.continueProcess();
+    }
+    public void VirologistCraftsAgent(){
+
+        this.continueProcess();
     }
     public void VirologistUseProtectorVaccine(){
         Scanner scanner = new Scanner(System.in);
@@ -81,38 +84,49 @@ public class Skeleton {
 
         };
 
+        this.continueProcess();
     }
     public void VirologistUseParalyzeVirus(){
 
+        this.continueProcess();
     }
     public void VirologistUseChoreaVirus()
     {
 
+        this.continueProcess();
     }
     public void VirologistUseAmnesiaVirus()
     {
 
+        this.continueProcess();
     }
     public void VirologistPicksUpMaterial(){
 
+        this.continueProcess();
     }
     public void VirologistUseGlove(){
 
+        this.continueProcess();
     }
     public void VirologistUseCloak(){
 
+        this.continueProcess();
     }
     public void VirologistLearnsGeneticCode(){
 
+        this.continueProcess();
     }
     public void VirologistPicksUpEquipment(){
 
+        this.continueProcess();
     }
     public void VirologistStealEquipment(){
 
+        this.continueProcess();
     }
     public void VirologistEndsTurn(){
 
+        this.continueProcess();
     }
     public void VirologistAffectedByChoreaVirus()
     {
@@ -120,6 +134,8 @@ public class Skeleton {
         prt(callnmb++,"Virologist","v","Step()","");
         prt(callnmb++,"ChoreaVirus","c","Affect()","");
         prt(callnmb++,"Virologist","v","Move()","");
+
+        this.continueProcess();
     }
     public void prt(int callnumber, String classname, String objname, String funcname, String returnparam)
     {
@@ -127,12 +143,22 @@ public class Skeleton {
     }
 
 
+    public void continueProcess() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Do you want to continue? [y / n]");
+        String ans = scanner.nextLine();
 
-    public static void Main(String[] args) {
-        Skeleton skeleton = new Skeleton();
-        for(;;)
-        {
-            skeleton.SkeletonMenu(); //TODO
+        if (ans.equals("y")) {
+            this.SkeletonMenu();
         }
+        else
+        {
+            System.exit(0);
+        }
+    }
+
+    public static void skeletonMain(String[] args) {
+        Skeleton skeleton = new Skeleton();
+        skeleton.SkeletonMenu();
     }
 }
