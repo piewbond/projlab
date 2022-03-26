@@ -8,12 +8,10 @@ package vilagtalanvirologusok;
 public class ParalyzeCode extends GeneticCode{
     /**
      * Az ágens létrehozásáért felelős metódus.
-     * Meghivja a useMaterial() függvényt az alapanyagokra, amennyiben rendelkezik a szükséges mennyiséggel, visszatér az ágenssel
+     * Meghivja a useMaterial() függvényt az alapanyagokra, amennyiben rendelkezik a szükséges mennyiséggel
      * @param v - A készitő virológus.
-     * @return
      */
-    public Agent Create(Virologist v){
+    public void Create(Virologist v){
         System.out.println("Amnesia: Create()");
-        return new Agent();
     }
 }
