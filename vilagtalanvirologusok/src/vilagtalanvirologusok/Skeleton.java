@@ -1,5 +1,7 @@
 package vilagtalanvirologusok;
 
+import java.util.Scanner;
+
 public class Skeleton {
     public void SkeletonMenu() {
         System.out.println("[0]Virologist moves\n" +
@@ -21,31 +23,44 @@ public class Skeleton {
         VirologistMoves(1);
     }
     public void VirologistMoves(int scenarionmb){
-
+        int callnmb = 1;
+        prt(callnmb++,"Virologist","v","Move()","");
+        prt(callnmb++,"Street","s","GetNeighbours()","list<Neighbours> neighbours");
+        prt(callnmb++,"Street","s","RemoveVirologist()","");
+        prt(callnmb++,"Laboratory","lab","AddVirologist","");
     }
     public void VirologistCraftsAgent(int scenarionmb){
 
     }
-    public void VirologistUseProtectorVaccine(int scenarionmb){
+    public void VirologistUseProtectorVaccine(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Did the virologist craft this type of vaccine earlier? [y / n]"); // Opt on sequence diagram
+        String ans = scanner.nextLine();
+
+        switch (ans) {
+            case "y": // Virologist crafted agent
+                int callnmb = 1;
+                prt(callnmb++, "Virologist", "v", "ApplyVaccine()", "");
+                prt(callnmb++, "Virologist", "v", "ApplyAgent()", "");
+
+            case "n": // Virologist hasn't crafted agent
+                int callnum = 1;
+                prt(callnum, "Virologist", "v", "ApplyVaccine()", "");
+
+            default:
+                System.out.println("Enter a valid answer");
+
+        };
 
     }
     public void VirologistUseParalyzeVirus(int scenarionmb){
 
     }
-    public void VirologistUseChoreaVirus(int scenarionmb)
-    {
-        
+    public void VirologistUseChoreaVirus(int scenarionmb){
+
     }
-    public void VirologistUseAmnesiaVirus(int scenarionmb)
-    {
-        int callnmb = 1;
-        prt(callnmb,"Virologist","v","Move()","");
-        callnmb++;
-        prt(callnmb,"Street","s","GetNeighbours()","list<Neighbours> neighbours");
-        callnmb++;
-        prt(callnmb,"Street","s","RemoveVirologist()","");
-        callnmb++;
-        prt(callnmb,"Laboratory","lab","AddVirologist","");
+    public void VirologistUseAmnesiaVirus(int scenarionmb){
+
     }
     public void VirologistPicksUpMaterial(int scenarionmb){
 
@@ -68,16 +83,8 @@ public class Skeleton {
     public void VirologistEndsTurn(int scenarionmb){
 
     }
-    public void VirologistAffectedByChoreaVirus(int scenarionmb)
-    {
-        int callnmb = 1;
-        prt(callnmb,"Virologist","v","Move()","");
-        callnmb++;
-        prt(callnmb,"Street","s","GetNeighbours()","list<Neighbours> neighbours");
-        callnmb++;
-        prt(callnmb,"Street","s","RemoveVirologist()","");
-        callnmb++;
-        prt(callnmb,"Laboratory","lab","AddVirologist","");
+    public void VirologistAffectedByChoreaVirus(int scenarionmb){
+
     }
     public void prt(int callnumber, String classname, String objname, String funcname, String returnparam)
     {
