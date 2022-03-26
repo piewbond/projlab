@@ -90,4 +90,14 @@ public class Skeleton {
     {
         System.out.println(callnumber+".fgv hívás "+classname+"-osztály "+objname+"-objektum "+funcname+"-fgv név "+returnparam+" visszatérési érték");
     }
+
+
+
+    public static void Main(String[] args) {
+        Skeleton skeleton = new Skeleton();
+        for(;;)
+        {
+            skeleton.SkeletonMenu(); //TODO
+        }
+    }
 }
