@@ -56,10 +56,12 @@ public class Skeleton {
     public void VirologistUseParalyzeVirus(int scenarionmb){
 
     }
-    public void VirologistUseChoreaVirus(int scenarionmb){
+    public void VirologistUseChoreaVirus()
+    {
 
     }
-    public void VirologistUseAmnesiaVirus(int scenarionmb){
+    public void VirologistUseAmnesiaVirus()
+    {
 
     }
     public void VirologistPicksUpMaterial(int scenarionmb){
@@ -83,8 +85,12 @@ public class Skeleton {
     public void VirologistEndsTurn(int scenarionmb){
 
     }
-    public void VirologistAffectedByChoreaVirus(int scenarionmb){
-
+    public void VirologistAffectedByChoreaVirus()
+    {
+        int callnmb = 1;
+        prt(callnmb++,"Virologist","v","Step()","");
+        prt(callnmb++,"ChoreaVirus","c","Affect()","");
+        prt(callnmb++,"Virologist","v","Move()","");
     }
     public void prt(int callnumber, String classname, String objname, String funcname, String returnparam)
     {
