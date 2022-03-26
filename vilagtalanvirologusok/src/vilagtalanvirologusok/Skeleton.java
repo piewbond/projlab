@@ -22,18 +22,29 @@ public class Skeleton {
     }
     public void VirologistMoves(int scenarionmb){
         int callnmb = 1;
-        prt(callnmb,"Virologist","v","Move()","");
-        callnmb++;
-        prt(callnmb,"Street","s","GetNeighbours()","list<Neighbours> neighbours");
-        callnmb++;
-        prt(callnmb,"Street","s","RemoveVirologist()","");
-        callnmb++;
-        prt(callnmb,"Laboratory","lab","AddVirologist","");
+        prt(callnmb++,"Virologist","v","Move()","");
+        prt(callnmb++,"Street","s","GetNeighbours()","list<Neighbours> neighbours");
+        prt(callnmb++,"Street","s","RemoveVirologist()","");
+        prt(callnmb++,"Laboratory","lab","AddVirologist","");
     }
     public void VirologistCraftsAgent(int scenarionmb){
 
     }
     public void VirologistUseProtectorVaccine(int scenarionmb){
+        switch (scenarionmb) {
+            case 1: // Virologist crafted agent
+                int callnmb = 1;
+                prt(callnmb++, "Virologist", "v", "ApplyVaccine()", "");
+                prt(callnmb++, "Virologist", "v", "ApplyAgent()", "");
+
+            case 2: // Virologist hasn't crafted agent
+                System.out.println("Virolgist has not crafted vaccine");
+
+        };
+
+
+
+
 
     }
     public void VirologistUseParalyzeVirus(int scenarionmb){
