@@ -5,20 +5,22 @@ import java.util.Scanner;
 public class Skeleton {
     public void SkeletonMenu() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("[0]Virologist moves\n" +
-                "[1]  Virologist crafts agent\n" +
-                "[2]  Virologist use protector vaccine\n" +
-                "[3]  Virologist use paralyze virus\n" +
-                "[4]  Virologist use chorea virus\n" +
-                "[5]  Virologist use amnesia virus\n" +
-                "[6]  Virologist picks up material\n" +
-                "[7]  Virologist use glove\n" +
-                "[8]  Virologist use cloak\n" +
-                "[9]  Virologist learns genetic code\n" +
-                "[10] Virologist picks up equipment\n" +
-                "[11] Virologist steal equipment\n" +
-                "[12] Virologist ends turn\n" +
-                "[13] Virologist affected by chorea virus\n");
+        System.out.println("""
+                [0]Virologist moves
+                [1]  Virologist crafts agent
+                [2]  Virologist use protector vaccine
+                [3]  Virologist use paralyze virus
+                [4]  Virologist use chorea virus
+                [5]  Virologist use amnesia virus
+                [6]  Virologist picks up material
+                [7]  Virologist use glove
+                [8]  Virologist use cloak
+                [9]  Virologist learns genetic code
+                [10] Virologist picks up equipment
+                [11] Virologist steal equipment
+                [12] Virologist ends turn
+                [13] Virologist affected by chorea virus
+                """);
 
         String selected = scanner.nextLine();
 
@@ -47,7 +49,7 @@ public class Skeleton {
         prt(callnmb++,"Virologist","v","Move()","");
         prt(callnmb++,"Street","s","GetNeighbours()","list<Neighbours> neighbours");
         prt(callnmb++,"Street","s","RemoveVirologist()","");
-        prt(callnmb++,"Laboratory","lab","AddVirologist","");
+        prt(callnmb,"Laboratory","lab","AddVirologist","");
 
         this.continueProcess();
     }
@@ -71,63 +73,63 @@ public class Skeleton {
                 "[3] Craft Amnesia Virus ");
         ans = scanner.nextLine();
         switch (ans) {
-            case "0":
-                prt(callnmb++,"ChoreaCode","c","Create(v)","");
+            case "0" -> {
+                prt(callnmb++, "ChoreaCode", "c", "Create(v)", "");
                 if (nucleo >= 1 && amino >= 1) {
-                    prt(callnmb++,"Virologist","v","UseMaterial(m)","true");
-                    for (int i=0; i<2; i++)
-                    prt(callnmb++,"Virologist","v","RemoveMaterial(m)","");
+                    prt(callnmb++, "Virologist", "v", "UseMaterial(m)", "true");
+                    for (int i = 0; i < 2; i++)
+                        prt(callnmb++, "Virologist", "v", "RemoveMaterial(m)", "");
 
-                    prt(callnmb++,"ChoreaVirus","a","<<create>>","");
-                    prt(callnmb++,"Turnable","t","AddSteppable(s)","");
-                    prt(callnmb++,"Virologist","v","CraftAgent(a)","");
-                } else  {
-                    prt(callnmb++,"Virologist","v","UseMaterial(m)","false");
+                    prt(callnmb++, "ChoreaVirus", "a", "<<create>>", "");
+                    prt(callnmb++, "Turnable", "t", "AddSteppable(s)", "");
+                    prt(callnmb, "Virologist", "v", "CraftAgent(a)", "");
+                } else {
+                    prt(callnmb, "Virologist", "v", "UseMaterial(m)", "false");
                 }
-                break;
-            case "1":
-                prt(callnmb++,"ParalyzeCode","c","Create(v)","");
+            }
+            case "1" -> {
+                prt(callnmb++, "ParalyzeCode", "c", "Create(v)", "");
                 if (nucleo >= 1 && amino >= 1) {
-                    prt(callnmb++,"Virologist","v","UseMaterial(m)","true");
-                    for (int i=0; i<6; i++)
-                    prt(callnmb++,"Virologist","v","RemoveMaterial(m)","");
+                    prt(callnmb++, "Virologist", "v", "UseMaterial(m)", "true");
+                    for (int i = 0; i < 6; i++)
+                        prt(callnmb++, "Virologist", "v", "RemoveMaterial(m)", "");
 
-                    prt(callnmb++,"ParalyzeVirus","a","<<create>>","");
-                    prt(callnmb++,"Turnable","t","AddSteppable(s)","");
-                    prt(callnmb++,"Virologist","v","CraftAgent(a)","");
-                } else  {
-                    prt(callnmb++,"Virologist","v","UseMaterial(m)","false");
+                    prt(callnmb++, "ParalyzeVirus", "a", "<<create>>", "");
+                    prt(callnmb++, "Turnable", "t", "AddSteppable(s)", "");
+                    prt(callnmb, "Virologist", "v", "CraftAgent(a)", "");
+                } else {
+                    prt(callnmb, "Virologist", "v", "UseMaterial(m)", "false");
                 }
-                break;
-            case "2":
-                prt(callnmb++,"ProtectorCode","c","Create(v)","");
+            }
+            case "2" -> {
+                prt(callnmb++, "ProtectorCode", "c", "Create(v)", "");
                 if (nucleo >= 1 && amino >= 1) {
-                    prt(callnmb++,"Virologist","v","UseMaterial(m)","true");
+                    prt(callnmb++, "Virologist", "v", "UseMaterial(m)", "true");
 
-                    for (int i=0; i<2; i++)
-                    prt(callnmb++,"Virologist","v","RemoveMaterial(m)","");
+                    for (int i = 0; i < 2; i++)
+                        prt(callnmb++, "Virologist", "v", "RemoveMaterial(m)", "");
 
-                    prt(callnmb++,"ProtectorVaccine","a","<<create>>","");
-                    prt(callnmb++,"Turnable","t","AddSteppable(s)","");
-                    prt(callnmb++,"Virologist","v","CraftAgent(a)","");
-                } else  {
-                    prt(callnmb++,"Virologist","v","UseMaterial(m)","false");
+                    prt(callnmb++, "ProtectorVaccine", "a", "<<create>>", "");
+                    prt(callnmb++, "Turnable", "t", "AddSteppable(s)", "");
+                    prt(callnmb, "Virologist", "v", "CraftAgent(a)", "");
+                } else {
+                    prt(callnmb, "Virologist", "v", "UseMaterial(m)", "false");
                 }
-                break;
-            case "3":
-                prt(callnmb++,"AmnesiaCode","c","Create(v)","");
+            }
+            case "3" -> {
+                prt(callnmb++, "AmnesiaCode", "c", "Create(v)", "");
                 if (nucleo >= 1 && amino >= 1) {
-                    prt(callnmb++,"Virologist","v","UseMaterial(m)","true");
-                    for (int i=0; i<10; i++)
-                    prt(callnmb++,"Virologist","v","RemoveMaterial(m)","");
+                    prt(callnmb++, "Virologist", "v", "UseMaterial(m)", "true");
+                    for (int i = 0; i < 10; i++)
+                        prt(callnmb++, "Virologist", "v", "RemoveMaterial(m)", "");
 
-                    prt(callnmb++,"AmnesiaVirus","a","<<create>>","");
-                    prt(callnmb++,"Turnable","t","AddSteppable(s)","");
-                    prt(callnmb++,"Virologist","v","CraftAgent(a)","");
-                } else  {
-                    prt(callnmb++,"Virologist","v","UseMaterial(m)","false");
+                    prt(callnmb++, "AmnesiaVirus", "a", "<<create>>", "");
+                    prt(callnmb++, "Turnable", "t", "AddSteppable(s)", "");
+                    prt(callnmb, "Virologist", "v", "CraftAgent(a)", "");
+                } else {
+                    prt(callnmb, "Virologist", "v", "UseMaterial(m)", "false");
                 }
-                break;
+            }
         }
         this.continueProcess();
     }
@@ -139,22 +141,17 @@ public class Skeleton {
         String ans = scanner.nextLine();
 
         switch (ans) {
-            case "y": // Virologist crafted agent
+            case "y" -> { // Virologist crafted agent
                 int callnmb = 1;
                 prt(callnmb++, "Virologist", "v", "ApplyVaccine()", "");
-                prt(callnmb++, "Virologist", "v", "ApplyAgent()", "");
-                break;
-
-            case "n": // Virologist hasn't crafted agent
+                prt(callnmb, "Virologist", "v", "ApplyAgent()", "");
+            }
+            case "n" -> { // Virologist hasn't crafted agent
                 int callnum = 1;
                 prt(callnum, "Virologist", "v", "ApplyVaccine()", "");
-                break;
-
-            default:
-                System.out.println("Enter a valid answer");
-                break;
-
-        };
+            }
+            default -> System.out.println("Enter a valid answer");
+        }
 
         this.continueProcess();
     }
@@ -207,7 +204,7 @@ public class Skeleton {
             prt(cn++,"Cloak","c","Resist","false");
             prt(cn++,"Virologist","v","Apply agent","");
         }
-        prt(cn++,"Cloak","c","Resist","");
+        prt(cn,"Cloak","c","Resist","");
         this.continueProcess();
     }
 
@@ -218,7 +215,7 @@ public class Skeleton {
         prt(cn++,"Street","s","GetNeighbours","Neighbours");
         prt(cn++,"Street","s","RemoveVirologist","");
         prt(cn++,"Laboratory","l","AddVirologst","");
-        prt(cn++,"Virologist","v","LearnGeneticCode","");
+        prt(cn,"Virologist","v","LearnGeneticCode","");
         this.continueProcess();
     }
 
@@ -237,12 +234,12 @@ public class Skeleton {
         String input = sc.nextLine();
         if(input.equals("y"))
         {
-            prt(cn++,"Virologist","v","PickUpEquipment","false");
+            prt(cn,"Virologist","v","PickUpEquipment","false");
         }
         else if(input.equals("n"))
         {
             prt(cn++,"Virologist","v","PickUpEquipment","true");
-            prt(cn++,"Shelter","st","RemoveEquipment","");
+            prt(cn,"Shelter","st","RemoveEquipment","");
         }
         this.continueProcess();
     }
@@ -263,8 +260,8 @@ public class Skeleton {
         prt(callnmb++,"Turnable","t","EndTurn()","");
         prt(callnmb++,"Turnable","t","StepAllSteppable()","");
         prt(callnmb++,"Game","g","CheckEndGame()","");
-        if (ans.equals("y"));
-            prt(callnmb++,"Game","g","EndGame()","");
+        if (ans.equals("y"))
+            prt(callnmb,"Game","g","EndGame()","");
 
         this.continueProcess();
     }
@@ -274,7 +271,7 @@ public class Skeleton {
         int callnmb = 1;
         prt(callnmb++,"Virologist","v","Step()","");
         prt(callnmb++,"ChoreaVirus","c","Affect()","");
-        prt(callnmb++,"Virologist","v","Move()","");
+        prt(callnmb,"Virologist","v","Move()","");
 
         this.continueProcess();
     }
