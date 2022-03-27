@@ -148,7 +148,7 @@ public class Skeleton {
             }
             case "n" -> { // Virologist hasn't crafted agent
                 int callnum = 1;
-                prt(callnum, "Virologist", "v", "ApplyVaccine()", "");
+                prt(callnum, "Virologist", "v", "ApplyVaccine()", "false");
             }
             default -> System.out.println("Enter a valid answer");
         }
@@ -170,7 +170,7 @@ public class Skeleton {
                 prt(callnmb, "Virologist", "v2", "ApplyAgent()", "");
             }
             case "n" -> {
-                prt(1, "Virologist", "v1", "Touch()", "");
+                prt(1, "Virologist", "v1", "Touch()", "false");
             }
             default -> System.out.println("Enter a valid answer");
         }
