@@ -163,13 +163,51 @@ public class Skeleton {
     }
 
 
-    public void VirologistUseChoreaVirus() {
+    public void VirologistUseChoreaVirus()
+    {
+        System.out.println("Rendelkezik- e a virológus Chorea vírussal? y/n?");
+        Scanner scanner = new Scanner(System.in);
+        String answer = scanner.nextLine();
+
+        switch (answer)
+        {
+            case "y" ->
+            {
+                int callnmb = 1;
+                prt(callnmb++,"Virologist","v1","Touch()","");
+                prt(callnmb++,"Virologist","v2","GetTouched()","");
+                prt(callnmb,"Virologist","v1","RemoveAgent()","");
+            }
+            case "n" ->
+            {
+            }
+            default -> System.out.println("Kérem a választ, y/n?");
+        }
 
         this.continueProcess();
     }
 
 
-    public void VirologistUseAmnesiaVirus() {
+    public void VirologistUseAmnesiaVirus()
+    {
+        System.out.println("Rendelkezik- e a virológus Amnesia vírussal? y/n?");
+        Scanner scanner = new Scanner(System.in);
+        String answer = scanner.nextLine();
+
+        switch (answer)
+        {
+            case "y" ->
+            {
+                 int callnmb = 1;
+                 prt(callnmb++,"Virologist","v1","Touch()","");
+                 prt(callnmb++,"Virologist","v2","GetTouched()","");
+                 prt(callnmb,"Virologist","v1","RemoveAgent()","");
+            }
+            case "n" ->
+            {
+            }
+            default -> System.out.println("Kérem a választ, y/n?");
+        }
 
         this.continueProcess();
     }
