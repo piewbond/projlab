@@ -196,7 +196,7 @@ public class Skeleton {
             case "n" ->
             {
                 int callnum = 1;
-                prt(callnum,"Virologist","v1","Touch()","");
+                prt(callnum,"Virologist","v1","Touch()","false");
             }
             default -> System.out.println("Enter a valid answer");
         }
@@ -223,7 +223,7 @@ public class Skeleton {
             case "n" ->
             {
                 int callnum = 1;
-                prt(callnum++,"Virologist","v1","Touch()","");
+                prt(callnum,"Virologist","v1","Touch()","false");
             }
             default -> System.out.println("Enter a valid answer");
         }
