@@ -165,7 +165,7 @@ public class Skeleton {
 
     public void VirologistUseChoreaVirus()
     {
-        System.out.println("Rendelkezik- e a virológus Chorea vírussal? y/n?");
+        System.out.println("Did the virologist craft this type of vaccine earlier? [y / n]");
         Scanner scanner = new Scanner(System.in);
         String answer = scanner.nextLine();
 
@@ -176,12 +176,14 @@ public class Skeleton {
                 int callnmb = 1;
                 prt(callnmb++,"Virologist","v1","Touch()","");
                 prt(callnmb++,"Virologist","v2","GetTouched()","");
-                prt(callnmb,"Virologist","v1","RemoveAgent()","");
+                prt(callnmb,"Virologist","v1","ApplyAgent()","");
             }
             case "n" ->
             {
+                int callnum = 1;
+                prt(callnum++,"Virologist","v1","Touch()","");
             }
-            default -> System.out.println("Kérem a választ, y/n?");
+            default -> System.out.println("Enter a valid answer");
         }
 
         this.continueProcess();
@@ -190,7 +192,7 @@ public class Skeleton {
 
     public void VirologistUseAmnesiaVirus()
     {
-        System.out.println("Rendelkezik- e a virológus Amnesia vírussal? y/n?");
+        System.out.println("Did the virologist craft this type of vaccine earlier? [y / n]");
         Scanner scanner = new Scanner(System.in);
         String answer = scanner.nextLine();
 
@@ -201,12 +203,14 @@ public class Skeleton {
                  int callnmb = 1;
                  prt(callnmb++,"Virologist","v1","Touch()","");
                  prt(callnmb++,"Virologist","v2","GetTouched()","");
-                 prt(callnmb,"Virologist","v1","RemoveAgent()","");
+                 prt(callnmb,"Virologist","v1","ApplyAgent()","");
             }
             case "n" ->
             {
+                int callnum = 1;
+                prt(callnum++,"Virologist","v1","Touch()","");
             }
-            default -> System.out.println("Kérem a választ, y/n?");
+            default -> System.out.println("Enter a valid answer");
         }
 
         this.continueProcess();
