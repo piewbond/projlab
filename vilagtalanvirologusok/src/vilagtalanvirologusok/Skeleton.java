@@ -46,10 +46,10 @@ public class Skeleton {
 
     public void VirologistMoves() {
         int callnmb = 1;
-        prt(callnmb++,"Virologist","v","Move()","");
-        prt(callnmb++,"Street","s","GetNeighbours()","list<Neighbours> neighbours");
-        prt(callnmb++,"Street","s","RemoveVirologist()","");
-        prt(callnmb,"Laboratory","lab","AddVirologist","");
+        prt(callnmb++, "Virologist", "v", "Move()", "");
+        prt(callnmb++, "Street", "s", "GetNeighbours()", "list<Neighbours> neighbours");
+        prt(callnmb++, "Street", "s", "RemoveVirologist()", "");
+        prt(callnmb, "Laboratory", "lab", "AddVirologist", "");
 
         this.continueProcess();
     }
@@ -178,25 +178,21 @@ public class Skeleton {
     }
 
 
-    public void VirologistUseChoreaVirus()
-    {
+    public void VirologistUseChoreaVirus() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Did the virologist craft this type of agent earlier? [y / n]");
         String answer = scanner.nextLine();
 
-        switch (answer)
-        {
-            case "y" ->
-            {
+        switch (answer) {
+            case "y" -> {
                 int callnmb = 1;
-                prt(callnmb++,"Virologist","v1","Touch()","");
-                prt(callnmb++,"Virologist","v2","GetTouched()","");
-                prt(callnmb,"Virologist","v2","ApplyAgent()","");
+                prt(callnmb++, "Virologist", "v1", "Touch()", "");
+                prt(callnmb++, "Virologist", "v2", "GetTouched()", "");
+                prt(callnmb, "Virologist", "v2", "ApplyAgent()", "");
             }
-            case "n" ->
-            {
+            case "n" -> {
                 int callnum = 1;
-                prt(callnum,"Virologist","v1","Touch()","false");
+                prt(callnum, "Virologist", "v1", "Touch()", "false");
             }
             default -> System.out.println("Enter a valid answer");
         }
@@ -205,25 +201,21 @@ public class Skeleton {
     }
 
 
-    public void VirologistUseAmnesiaVirus()
-    {
+    public void VirologistUseAmnesiaVirus() {
         System.out.println("Did the virologist craft this type of vaccine earlier? [y / n]");
         Scanner scanner = new Scanner(System.in);
         String answer = scanner.nextLine();
 
-        switch (answer)
-        {
-            case "y" ->
-            {
-                 int callnmb = 1;
-                 prt(callnmb++,"Virologist","v1","Touch()","");
-                 prt(callnmb++,"Virologist","v2","GetTouched()","");
-                 prt(callnmb,"Virologist","v1","ApplyAgent()","");
+        switch (answer) {
+            case "y" -> {
+                int callnmb = 1;
+                prt(callnmb++, "Virologist", "v1", "Touch()", "");
+                prt(callnmb++, "Virologist", "v2", "GetTouched()", "");
+                prt(callnmb, "Virologist", "v1", "ApplyAgent()", "");
             }
-            case "n" ->
-            {
+            case "n" -> {
                 int callnum = 1;
-                prt(callnum,"Virologist","v1","Touch()","false");
+                prt(callnum, "Virologist", "v1", "Touch()", "false");
             }
             default -> System.out.println("Enter a valid answer");
         }
@@ -234,69 +226,114 @@ public class Skeleton {
 
     public void VirologistPicksUpMaterial() {
 
+        int cn = 1;
+        prt(cn++, "Virologist", "v", "Move", "");
+        prt(cn++, "Street", "s", "GetNeighbours", "Neighbours");
+        prt(cn++, "Street", "s", "RemoveVirologist", "");
+        prt(cn++, "Storage", "s", "AddVirologist", "");
+        System.out.println("Is the virologist's inventory full?");
+        Scanner scanner = new Scanner(System.in);
+        String ans1 = scanner.nextLine();
+        switch (ans1)
+        {
+            case "y" ->
+                    {
+                        System.out.println("Does the virologist has a bag?");
+                        String ans2 = scanner.nextLine();
+                        switch(ans2)
+                        {
+                            case "y" ->
+                                    {
+                                        System.out.println("Is the bag full?");
+                                        String ans3 = scanner.nextLine();
+                                        if(ans3.equals("y"))
+                                        {
+                                            prt(cn++, "Virologist", "v", "PickupMaterial", "false");
+                                            prt(cn++, "Bag", "b","AddMaterial","false");
+
+                                        }
+                                        else if (ans3.equals("n"))
+                                        {
+                                            prt(cn++, "Virologist", "v", "PickupMaterial", "true");
+                                            prt(cn++, "Bag", "b", "AddMaterial", "true");
+                                            prt(cn++, "Stroga", "s", "RemoveMaterial","");
+                                        }
+                                    }
+                            case "n" ->
+                                    {
+                                        prt(cn++, "Virologist", "v", "PickupMaterial", "false");
+                                    }
+                        }
+                    }
+            case "n" ->
+                    {
+                        prt(cn++, "Virologist", "v", "PickupMaterial", "true");
+                        prt(cn++, "Stroga", "s", "RemoveMaterial","");
+                    }
+        }
         this.continueProcess();
     }
 
 
     public void VirologistUseGlove() {
 
+        int cn = 1;
+        prt(cn++, "Virologist", "v1", "Touch", "");
+        prt(cn++, "Virologist", "v", "GetTouched", "");
+        prt(cn++, "Glove", "g", "CastBack", "");
+        prt(cn++, "Virologist", "v1", "GetTouched", "");
+        prt(cn++, "Glove", "g", "DecreaseDurability", "");
         this.continueProcess();
     }
 
 
     public void VirologistUseCloak() {
-        int cn=1;
-        prt(cn++,"Virologist","v1","Touch","");
-        prt(cn++,"Virologist","v","GetTouched","");
+        int cn = 1;
+        prt(cn++, "Virologist", "v1", "Touch", "");
+        prt(cn++, "Virologist", "v", "GetTouched", "");
         System.out.println("Kivédi e az ágenst a köpeny? y/n?");
         Scanner sc = new Scanner(System.in);
-        String input=sc.nextLine();
-        if(input.equals("y"))
-        {
-            prt(cn++,"Cloak","c","Resist","true");
-            prt(cn++,"Cloak","c","DecreaseDurability","");
+        String input = sc.nextLine();
+        if (input.equals("y")) {
+            prt(cn++, "Cloak", "c", "Resist", "true");
+            prt(cn++, "Cloak", "c", "DecreaseDurability", "");
+        } else if (input.equals("n")) {
+            prt(cn++, "Cloak", "c", "Resist", "false");
+            prt(cn++, "Virologist", "v", "Apply agent", "");
         }
-        else if(input.equals("n"))
-        {
-            prt(cn++,"Cloak","c","Resist","false");
-            prt(cn++,"Virologist","v","Apply agent","");
-        }
-        prt(cn,"Cloak","c","Resist","");
+        prt(cn, "Cloak", "c", "Resist", "");
         this.continueProcess();
     }
 
 
     public void VirologistLearnsGeneticCode() {
-        int cn=1;
-        prt(cn++,"Virologist","v","Move","");
-        prt(cn++,"Street","s","GetNeighbours","Neighbours");
-        prt(cn++,"Street","s","RemoveVirologist","");
-        prt(cn++,"Laboratory","l","AddVirologst","");
-        prt(cn,"Virologist","v","LearnGeneticCode","");
+        int cn = 1;
+        prt(cn++, "Virologist", "v", "Move", "");
+        prt(cn++, "Street", "s", "GetNeighbours", "Neighbours");
+        prt(cn++, "Street", "s", "RemoveVirologist", "");
+        prt(cn++, "Laboratory", "l", "AddVirologst", "");
+        prt(cn, "Virologist", "v", "LearnGeneticCode", "");
         this.continueProcess();
     }
 
 
     public void VirologistPicksUpEquipment() {
-        int cn=1;
-        prt(cn++,"Virologist","v","Move","");
-        prt(cn++,"Street","st","GetNeighbours","Neighbours");
-        prt(cn++,"Street","st","RemoveVirologist","");
-        prt(cn++,"Shelter","sh","AddVirologist","");
+        int cn = 1;
+        prt(cn++, "Virologist", "v", "Move", "");
+        prt(cn++, "Street", "st", "GetNeighbours", "Neighbours");
+        prt(cn++, "Street", "st", "RemoveVirologist", "");
+        prt(cn++, "Shelter", "sh", "AddVirologist", "");
 
         System.out.println("Van-e mar olyan felszerelese, amit fel akar venni? y/n?");
         Scanner sc = new Scanner(System.in);
 
 
         String input = sc.nextLine();
-        if(input.equals("y"))
-        {
-            prt(cn,"Virologist","v","PickUpEquipment","false");
-        }
-        else if(input.equals("n"))
-        {
-            prt(cn++,"Virologist","v","PickUpEquipment","true");
-            prt(cn,"Shelter","st","RemoveEquipment","");
+        if (input.equals("y")) {
+            prt(cn, "Virologist", "v", "PickUpEquipment", "false");
+        } else if (input.equals("n")) {
+            prt(cn++, "Virologist", "v", "PickUpEquipment", "true");
+            prt(cn, "Shelter", "st", "RemoveEquipment", "");
         }
         this.continueProcess();
     }
@@ -304,8 +341,28 @@ public class Skeleton {
 
     public void VirologistStealEquipment() {
 
+        int cn = 1;
+        System.out.println("Is the other virologist paralyzed?");
+        Scanner scanner = new Scanner(System.in);
+        String ans = scanner.nextLine();
+        switch(ans)
+        {
+            case "y" ->
+                    {
+                        prt(cn++, "Virologist", "v1", "StealEquipment", "");
+                        prt(cn++, "Virologist", "v2", "GetEquipments", "Equipments");
+                        prt(cn++, "Virologist", "v2", "RemoveEquipment", "");
+                        prt(cn++, "Virologist", "v1", "PickupEquipment", "");
+                    }
+            case "n" ->
+                    {
+                        break;
+                    }
+        }
+
         this.continueProcess();
     }
+
 
 
     public void VirologistEndsTurn() {
