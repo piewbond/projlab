@@ -6,7 +6,7 @@ public class Skeleton {
     public void SkeletonMenu() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("""
-                [0]Virologist moves
+                [0]  Virologist moves
                 [1]  Virologist crafts agent
                 [2]  Virologist use protector vaccine
                 [3]  Virologist use paralyze virus
@@ -158,15 +158,30 @@ public class Skeleton {
 
 
     public void VirologistUseParalyzeVirus() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Did the virologist craft this type of agent earlier? [y / n]");
+        String ans = scanner.nextLine();
 
+        switch (ans) {
+            case "y" -> {
+                int callnmb = 1;
+                prt(callnmb++, "Virologist", "v1", "Touch()", "");
+                prt(callnmb++, "Virologist", "v2", "GetTouched()", "");
+                prt(callnmb, "Virologist", "v2", "ApplyAgent()", "");
+            }
+            case "n" -> {
+                prt(1, "Virologist", "v1", "Touch()", "");
+            }
+            default -> System.out.println("Enter a valid answer");
+        }
         this.continueProcess();
     }
 
 
     public void VirologistUseChoreaVirus()
     {
-        System.out.println("Did the virologist craft this type of vaccine earlier? [y / n]");
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Did the virologist craft this type of agent earlier? [y / n]");
         String answer = scanner.nextLine();
 
         switch (answer)
@@ -176,12 +191,12 @@ public class Skeleton {
                 int callnmb = 1;
                 prt(callnmb++,"Virologist","v1","Touch()","");
                 prt(callnmb++,"Virologist","v2","GetTouched()","");
-                prt(callnmb,"Virologist","v1","ApplyAgent()","");
+                prt(callnmb,"Virologist","v2","ApplyAgent()","");
             }
             case "n" ->
             {
                 int callnum = 1;
-                prt(callnum++,"Virologist","v1","Touch()","");
+                prt(callnum,"Virologist","v1","Touch()","");
             }
             default -> System.out.println("Enter a valid answer");
         }
