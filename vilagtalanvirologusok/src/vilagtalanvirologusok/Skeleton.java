@@ -309,7 +309,8 @@ public class Skeleton {
     }
 
 
-    public void VirologistAffectedByChoreaVirus() {
+    public void VirologistAffectedByChoreaVirus()
+    {
         int callnmb = 1;
         prt(callnmb++,"Virologist","v","Step()","");
         prt(callnmb++,"ChoreaVirus","c","Affect()","");
