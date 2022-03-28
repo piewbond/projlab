@@ -5,41 +5,39 @@ import java.util.Scanner;
 public class Skeleton {
     public void SkeletonMenu() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("""
-                [0]  Virologist moves
-                [1]  Virologist crafts agent
-                [2]  Virologist use protector vaccine
-                [3]  Virologist use paralyze virus
-                [4]  Virologist use chorea virus
-                [5]  Virologist use amnesia virus
-                [6]  Virologist picks up material
-                [7]  Virologist use glove
-                [8]  Virologist use cloak
-                [9]  Virologist learns genetic code
-                [10] Virologist picks up equipment
-                [11] Virologist steal equipment
-                [12] Virologist ends turn
-                [13] Virologist affected by chorea virus
-                """);
+        System.out.println("[0]Virologist moves\n" +
+                "[1]  Virologist crafts agent\n" +
+                "[2]  Virologist use protector vaccine\n" +
+                "[3]  Virologist use paralyze virus\n" +
+                "[4]  Virologist use chorea virus\n" +
+                "[5]  Virologist use amnesia virus\n" +
+                "[6]  Virologist picks up material\n" +
+                "[7]  Virologist use glove\n" +
+                "[8]  Virologist use cloak\n" +
+                "[9]  Virologist learns genetic code\n" +
+                "[10] Virologist picks up equipment\n" +
+                "[11] Virologist steal equipment\n" +
+                "[12] Virologist ends turn\n" +
+                "[13] Virologist affected by chorea virus\n");
 
         String selected = scanner.nextLine();
 
         switch (selected) {
-            case "0" -> VirologistMoves();
-            case "1" -> VirologistCraftsAgent();
-            case "2" -> VirologistUseProtectorVaccine();
-            case "3" -> VirologistUseParalyzeVirus();
-            case "4" -> VirologistUseChoreaVirus();
-            case "5" -> VirologistUseAmnesiaVirus();
-            case "6" -> VirologistPicksUpMaterial();
-            case "7" -> VirologistUseGlove();
-            case "8" -> VirologistUseCloak();
-            case "9" -> VirologistLearnsGeneticCode();
-            case "10" -> VirologistPicksUpEquipment();
-            case "11" -> VirologistStealEquipment();
-            case "12" -> VirologistEndsTurn();
-            case "13" -> VirologistAffectedByChoreaVirus();
-            default -> System.out.println("Enter a valid answer");
+            case "0" : VirologistMoves();
+            case "1" : VirologistCraftsAgent();
+            case "2" :  VirologistUseProtectorVaccine();
+            case "3" :  VirologistUseParalyzeVirus();
+            case "4" : VirologistUseChoreaVirus();
+            case "5" : VirologistUseAmnesiaVirus();
+            case "6" : VirologistPicksUpMaterial();
+            case "7" : VirologistUseGlove();
+            case "8" : VirologistUseCloak();
+            case "9" : VirologistLearnsGeneticCode();
+            case "10" : VirologistPicksUpEquipment();
+            case "11" : VirologistStealEquipment();
+            case "12" : VirologistEndsTurn();
+            case "13" : VirologistAffectedByChoreaVirus();
+            default : System.out.println("Enter a valid answer");
         }
     }
 
@@ -73,7 +71,7 @@ public class Skeleton {
                 "[3] Craft Amnesia Virus ");
         ans = scanner.nextLine();
         switch (ans) {
-            case "0" -> {
+            case "0" : {
                 prt(callnmb++, "ChoreaCode", "c", "Create(v)", "");
                 if (nucleo >= 1 && amino >= 1) {
                     prt(callnmb++, "Virologist", "v", "UseMaterial(m)", "true");
@@ -87,7 +85,7 @@ public class Skeleton {
                     prt(callnmb, "Virologist", "v", "UseMaterial(m)", "false");
                 }
             }
-            case "1" -> {
+            case "1" : {
                 prt(callnmb++, "ParalyzeCode", "c", "Create(v)", "");
                 if (nucleo >= 1 && amino >= 1) {
                     prt(callnmb++, "Virologist", "v", "UseMaterial(m)", "true");
@@ -101,7 +99,7 @@ public class Skeleton {
                     prt(callnmb, "Virologist", "v", "UseMaterial(m)", "false");
                 }
             }
-            case "2" -> {
+            case "2" : {
                 prt(callnmb++, "ProtectorCode", "c", "Create(v)", "");
                 if (nucleo >= 1 && amino >= 1) {
                     prt(callnmb++, "Virologist", "v", "UseMaterial(m)", "true");
@@ -116,7 +114,7 @@ public class Skeleton {
                     prt(callnmb, "Virologist", "v", "UseMaterial(m)", "false");
                 }
             }
-            case "3" -> {
+            case "3" : {
                 prt(callnmb++, "AmnesiaCode", "c", "Create(v)", "");
                 if (nucleo >= 1 && amino >= 1) {
                     prt(callnmb++, "Virologist", "v", "UseMaterial(m)", "true");
@@ -141,16 +139,16 @@ public class Skeleton {
         String ans = scanner.nextLine();
 
         switch (ans) {
-            case "y" -> { // Virologist crafted agent
+            case "y" : { // Virologist crafted agent
                 int callnmb = 1;
                 prt(callnmb++, "Virologist", "v", "ApplyVaccine()", "");
                 prt(callnmb, "Virologist", "v", "ApplyAgent()", "");
             }
-            case "n" -> { // Virologist hasn't crafted agent
+            case "n" : { // Virologist hasn't crafted agent
                 int callnum = 1;
                 prt(callnum, "Virologist", "v", "ApplyVaccine()", "false");
             }
-            default -> System.out.println("Enter a valid answer");
+            default : System.out.println("Enter a valid answer");
         }
 
         this.continueProcess();
@@ -163,16 +161,16 @@ public class Skeleton {
         String ans = scanner.nextLine();
 
         switch (ans) {
-            case "y" -> {
+            case "y" : {
                 int callnmb = 1;
                 prt(callnmb++, "Virologist", "v1", "Touch()", "");
                 prt(callnmb++, "Virologist", "v2", "GetTouched()", "");
                 prt(callnmb, "Virologist", "v2", "ApplyAgent()", "");
             }
-            case "n" -> {
+            case "n" : {
                 prt(1, "Virologist", "v1", "Touch()", "false");
             }
-            default -> System.out.println("Enter a valid answer");
+            default : System.out.println("Enter a valid answer");
         }
         this.continueProcess();
     }
@@ -184,17 +182,17 @@ public class Skeleton {
         String answer = scanner.nextLine();
 
         switch (answer) {
-            case "y" -> {
+            case "y" : {
                 int callnmb = 1;
                 prt(callnmb++, "Virologist", "v1", "Touch()", "");
                 prt(callnmb++, "Virologist", "v2", "GetTouched()", "");
                 prt(callnmb, "Virologist", "v2", "ApplyAgent()", "");
             }
-            case "n" -> {
+            case "n" : {
                 int callnum = 1;
-                prt(callnum, "Virologist", "v1", "Touch()", "false");
+                prt(callnum, "Virologist", "v1", "Touch()", "");
             }
-            default -> System.out.println("Enter a valid answer");
+            default : System.out.println("Enter a valid answer");
         }
 
         this.continueProcess();
@@ -207,17 +205,17 @@ public class Skeleton {
         String answer = scanner.nextLine();
 
         switch (answer) {
-            case "y" -> {
+            case "y" : {
                 int callnmb = 1;
                 prt(callnmb++, "Virologist", "v1", "Touch()", "");
                 prt(callnmb++, "Virologist", "v2", "GetTouched()", "");
                 prt(callnmb, "Virologist", "v1", "ApplyAgent()", "");
             }
-            case "n" -> {
+            case "n" : {
                 int callnum = 1;
-                prt(callnum, "Virologist", "v1", "Touch()", "false");
+                prt(callnum, "Virologist", "v1", "Touch()", "");
             }
-            default -> System.out.println("Enter a valid answer");
+            default : System.out.println("Enter a valid answer");
         }
 
         this.continueProcess();
@@ -236,39 +234,39 @@ public class Skeleton {
         String ans1 = scanner.nextLine();
         switch (ans1)
         {
-            case "y" ->
+            case "y" :
                     {
                         System.out.println("Does the virologist has a bag?");
                         String ans2 = scanner.nextLine();
                         switch(ans2)
                         {
-                            case "y" ->
+                            case "y" :
                                     {
                                         System.out.println("Is the bag full?");
                                         String ans3 = scanner.nextLine();
                                         if(ans3.equals("y"))
                                         {
                                             prt(cn++, "Virologist", "v", "PickupMaterial", "false");
-                                            prt(cn++, "Bag", "b","AddMaterial","false");
+                                            prt(cn, "Bag", "b","AddMaterial","false");
 
                                         }
                                         else if (ans3.equals("n"))
                                         {
                                             prt(cn++, "Virologist", "v", "PickupMaterial", "true");
                                             prt(cn++, "Bag", "b", "AddMaterial", "true");
-                                            prt(cn++, "Stroga", "s", "RemoveMaterial","");
+                                            prt(cn, "Stroga", "s", "RemoveMaterial","");
                                         }
                                     }
-                            case "n" ->
+                            case "n" :
                                     {
-                                        prt(cn++, "Virologist", "v", "PickupMaterial", "false");
+                                        prt(cn, "Virologist", "v", "PickupMaterial", "false");
                                     }
                         }
                     }
-            case "n" ->
+            case "n" :
                     {
                         prt(cn++, "Virologist", "v", "PickupMaterial", "true");
-                        prt(cn++, "Stroga", "s", "RemoveMaterial","");
+                        prt(cn, "Stroga", "s", "RemoveMaterial","");
                     }
         }
         this.continueProcess();
@@ -282,7 +280,7 @@ public class Skeleton {
         prt(cn++, "Virologist", "v", "GetTouched", "");
         prt(cn++, "Glove", "g", "CastBack", "");
         prt(cn++, "Virologist", "v1", "GetTouched", "");
-        prt(cn++, "Glove", "g", "DecreaseDurability", "");
+        prt(cn, "Glove", "g", "DecreaseDurability", "");
         this.continueProcess();
     }
 
@@ -291,7 +289,7 @@ public class Skeleton {
         int cn = 1;
         prt(cn++, "Virologist", "v1", "Touch", "");
         prt(cn++, "Virologist", "v", "GetTouched", "");
-        System.out.println("Kivédi e az ágenst a köpeny? y/n?");
+        System.out.println("Does the cloak resist the agent? y/n?");
         Scanner sc = new Scanner(System.in);
         String input = sc.nextLine();
         if (input.equals("y")) {
@@ -324,7 +322,7 @@ public class Skeleton {
         prt(cn++, "Street", "st", "RemoveVirologist", "");
         prt(cn++, "Shelter", "sh", "AddVirologist", "");
 
-        System.out.println("Van-e mar olyan felszerelese, amit fel akar venni? y/n?");
+        System.out.println("Does the virologist already have the equipment? y/n?");
         Scanner sc = new Scanner(System.in);
 
 
@@ -347,14 +345,14 @@ public class Skeleton {
         String ans = scanner.nextLine();
         switch(ans)
         {
-            case "y" ->
+            case "y" :
                     {
                         prt(cn++, "Virologist", "v1", "StealEquipment", "");
                         prt(cn++, "Virologist", "v2", "GetEquipments", "Equipments");
                         prt(cn++, "Virologist", "v2", "RemoveEquipment", "");
-                        prt(cn++, "Virologist", "v1", "PickupEquipment", "");
+                        prt(cn, "Virologist", "v1", "PickupEquipment", "");
                     }
-            case "n" ->
+            case "n" :
                     {
                         break;
                     }
