@@ -4,13 +4,36 @@ package vilagtalanvirologusok;
  * A játékban szereplő kesztyűt valósítja meg, ha egy kesztyűvel rendelkező virológusra kennek rá egy ágenst akkor,
  * az ágenst visszakeni a másik virológusra.
  */
-public class Glove extends Equipment{
+public class Glove extends Equipment implements Visitable{
     /**
      * Amennyiben a virológuson van kesztyű, akkor az ágenst visszakeni a másik virológusra, akitől a virus származik.
-     * @param v - Virológus, aki
-     * @param a - Ágens, amit visszaken.
+     *  - Virológus, aki
+     *   - Ágens, amit visszaken.
      */
-    public void CastBack(Virologist v, Agent a){
-        System.out.println("Glove: CastBack()");
+
+    Glove()
+    {
+        durability=3;
+    }
+    public void CastBack(Virologist v, Agent a)
+    {
+        if (durability>0)
+        {
+            v.ApplyAgent(a);
+            DecreaseDurability();
+        }
+    }
+
+    @Override
+    public boolean accept(Visitor visitor, Material m)
+    {
+        return false;
+    }
+
+    @Override
+    public boolean accept(Visitor visitor, Virologist v, Agent a)
+    {
+        visitor.visit(this,v,a);
+        return true;
     }
 }

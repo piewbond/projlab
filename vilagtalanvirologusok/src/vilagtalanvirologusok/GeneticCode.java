@@ -6,11 +6,23 @@ package vilagtalanvirologusok;
  * elkészíthető ágenst.
  * Amennyiben egy virológus megszerzett 4 genetikai kódot nyert.
  */
-public class GeneticCode {
+public abstract class GeneticCode {
     /**
      * Az ágens létrehozásáért felelős metódus.
      * Meghivja a useMaterial() függvényt az alapanyagokra, amennyiben rendelkezik a szükséges mennyiséggel,
      * akkor hozzáadja a virológus tárolójához és igazzal tér vissza.
      */
-    public void Create(){}
+    protected int nucleotideCost;
+    protected int aminoAcidCost;
+
+
+    public abstract void Create(Virologist virologist);
+
+
+
+
+
+
+
+
 }

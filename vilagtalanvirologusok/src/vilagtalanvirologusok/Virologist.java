@@ -1,19 +1,54 @@
 package vilagtalanvirologusok;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * A játékos és a számítógép által irányított karakterek ősosztálya,
  * amik a pályán mozognak és genetikai kódokat gyűjtenek.
  */
 public class Virologist implements Steppable{
+
+    private boolean dead;
+    private ArrayList<Material> materials;
+    private Set<GeneticCode> geneticCodes;
+    private ArrayList<Equipment> equipments;
+    private ArrayList<Agent> activeAgents;
+    private ArrayList<Agent> knownAgents;
+
+    Virologist()
+    {
+        dead=false;
+        materials = new ArrayList<Material>();
+        geneticCodes = new HashSet<GeneticCode>();
+        equipments = new ArrayList<Equipment>();
+        activeAgents = new ArrayList<Agent>();
+        knownAgents = new ArrayList<Agent>();
+
+    }
+
+
+
+
+
+
+
+    public void Kill(Virologist virologist)
+    {
+        EquipmentVisitor equipmentVisitor = new EquipmentVisitor();
+        for (Equipment e : equipments)
+        {
+            e.accept(equipmentVisitor,virologist);
+        }
+    }
+
     /**
      * A megérintést valósítja meg a játékban. Az adott virológus GetTouched() függvényét valósítja meg.
      * @param v - Megérintett virológus.
      * @param a - Ágens, amellyel megérintik.
      */
-    public void Touch(Virologist v, Agent a){
-        System.out.println("Virologist: Touch()");
+    public void Touch(Virologist v, Agent a)
+    {
+        v.GetTouched(this,a);
     }
 
     /**
@@ -21,15 +56,33 @@ public class Virologist implements Steppable{
      *  ha nincs olyan felszerelése vagy a virológusra ható ágens ami ezt megakadályozza.
      * @param a - Ágens, amellyel megérintik a Virológust.
      */
-    public void GetTouched(Agent a){
-        System.out.println("Virologist: GetTouched()");
+    public void GetTouched(Virologist v,Agent a){
+
+        EquipmentVisitor equipmentVisitor = new EquipmentVisitor();
+        //le kell csekkolni van e protector vaccine
+        for (Agent agent : activeAgents)
+        {
+
+        }
+
+        for (Equipment e : equipments)
+        {
+            if(e.accept(equipmentVisitor,v,a))
+            {
+                break;
+            }
+        }
+
+
     }
 
     /**
      * Megvalósítja a Steppable interfészt.
      */
     public void Step(){
-        System.out.println("Virologist: Step()");
+
+
+        RemoveAgent();
     }
 
     /**
@@ -38,8 +91,9 @@ public class Virologist implements Steppable{
      * győzelemhez és egy új ágens elkészítését teszi lehetővé.
      * @param g - Genetik kód, amit a virológus megtanulhat.
      */
-    public void LearnGeneticCode(GeneticCode g){
-        System.out.println("Virologist: LearnGeneticCode()");
+    public void LearnGeneticCode(GeneticCode g)
+    {
+        geneticCodes.add(g);
     }
 
     /**
@@ -47,49 +101,91 @@ public class Virologist implements Steppable{
      *  akkor ennek a metódusnak a segítségével tudja elvenni valamelyik felszerelését tőle.
      * @param v - Virológus, akitől el lehet lopni a felszerelését.
      */
-    public void StealEquipment(Virologist v){
-        System.out.println("Virologist: StealEquipment()");
+    public void StealEquipment(Virologist v)
+    {
+       v.RemoveEquipment(this);
+    }
+
+
+    public ArrayList<Equipment> getEquipments()
+    {
+        return equipments;
     }
 
     /**
      *  Hozzáad egy tárgyat a virológushoz ha korábban nem rendelkezett azzal.
-     * @param m - A felvehető tárgy.
+     * @param  - A felvehető tárgy.
      */
-    public void PickupEquipment(Material m){
-        System.out.println("Virologist: PickupEquipment()");
+    public void PickupEquipment(Equipment e)
+    {
+        if(equipments.size()<3)
+        {
+            equipments.add(e);
+        }
+
     }
+
+    public void DropEquipment(Equipment e)
+    {
+        equipments.remove(e);
+    }
+
 
     /**
      * Ez a metódus távolítja el a virológus egyik felszerelését, amit elvesznek tőle.
-     * @param m - Eltávolítandó felszerelés.
+     * @param  - Eltávolítandó felszerelés.
      */
-    public void RemoveEquipment(Material m){
-        System.out.println("Virologist: RemoveEquipment()");
+    public void RemoveEquipment(Virologist virologist)
+
+    {
+        //csekkolni hogy le van e bénulva
+        for (Agent agent:activeAgents)
+        {
+
+            if()
+            {
+                int n = new Random().nextInt(equipments.size());
+                Equipment eq = equipments.get(n);
+                virologist.PickupEquipment(eq);
+            }
+
+        }
     }
 
     /**
      * Megfelelő mennyiségű ágens felhasználásával létrehoz egy ágenst.
      * Meghivja a UseMaterial() függvényt, ami ellenőrzi, hogy rendelkezésre
      * áll-e megfelelő mennyiségű material, majd meghívja a removeMaterialt() megfelelő mennyiségre.
-     * @param a - Ágens amivel létrehoz egy másikat.
+     * @param  - Ágens amivel létrehoz egy másikat.
      */
-    public void CraftAgent(Agent a){
-        System.out.println("Virologist: CraftAgent()");
+    public void CraftAgent(GeneticCode geneticCode)
+    {
+        geneticCode.Create(this);
+
     }
 
     /**
      * Saját magára keni fel a virológus a kiválasztott ágenst.
      * @param a - Ágens amit magára ken.
      */
-    public void ApplyAgent(Agent a){
-        System.out.println("Virologist: ApplyAgent()");
+    public void ApplyAgent(Agent a)
+    {
+        activeAgents.add(a);
     }
 
     /**
      * A step() metódus meghívására kitöröl minden olyan ágenst aminek a lifetimeja 0.
      */
-    public void RemoveAgent(){
-        System.out.println("Virologist: RemoveAgent()");
+    public void RemoveAgent()
+    {
+        for (int i=0;i<activeAgents.size();i++)
+        {
+            if (activeAgents.get(i).getLifetime()==0)
+            {
+                activeAgents.remove(i);
+                i--;
+            }
+        }
     }
 
     /**
@@ -99,7 +195,7 @@ public class Virologist implements Steppable{
      * AddVirologist(v: Virologist) a mezőre amire lépni szeretne.
      */
     public void Move(){
-
+        //attól függ hogy van megcsinálva végül a map
         System.out.println("Virologist: Move()");
     }
 
@@ -109,10 +205,21 @@ public class Virologist implements Steppable{
      * @return
      */
     public boolean UseMaterial(List<Material> m){
-        System.out.println("Virologist: UseMaterial()");
-        if (true)
+
+        if(materials.containsAll(m))
+        {
+            for (Material material: m)
+            {
+                this.RemoveMaterial(material);
+            }
             return true;
-        return false;
+        }
+        else
+        {
+            return false;
+        }
+
+
     }
 
     /**
@@ -121,18 +228,58 @@ public class Virologist implements Steppable{
      * @return - Van hely a Virológusnál és feltudja venni vagy sem.
      */
     public boolean PickupMaterial(Material m){
-        System.out.println("Virologist: PickupMaterial()");
-        if (true)
+
+        EquipmentVisitor equipmentVisitor = new EquipmentVisitor();
+
+
+        if(materials.size()<10)
+        {
+            materials.add(m);
             return true;
-        return false;
+        }
+        else
+        {
+            boolean success=false;
+            for (Equipment e: equipments)
+            {
+               success= e.accept(equipmentVisitor,m);
+               if(success)
+               {
+                   return true;
+               }
+            }
+            return false;
+
+        }
+
     }
 
     /**
      * Adott anyagot töröl.
      * @param m - Törölni kívánt anyag.
      */
-    public void RemoveMaterial(Material m){
-        System.out.println("Virologist: RemoveMaterial()");
+    public void RemoveMaterial(Material m)
+    {
+        materials.remove(m);
+    }
+
+    public void Die()
+    {
+        dead=true;
+    }
+
+    public void learnAgent(Agent agent)
+    {
+        knownAgents.add(agent);
+    }
+
+    public void LearnAgent(Agent a)
+    {
+        knownAgents.add(a);
+    }
+    public ArrayList<Agent> getActiveAgents()
+    {
+        return activeAgents;
     }
 
 

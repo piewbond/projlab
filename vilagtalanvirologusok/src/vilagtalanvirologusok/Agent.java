@@ -8,6 +8,8 @@ public class Agent implements Steppable{
      * Csökkenti az adott ágens élettartamát.
      * Megvalósítja a Steppable interfészt.
      */
+    private int lifetime;
+
     public void Step(){}
 
     /**\
@@ -15,4 +17,8 @@ public class Agent implements Steppable{
      * @param v - Virologus, akin kifejti a hatast
      */
     public void Affect(Virologist v){}
+    public int getLifetime()
+    {
+        return lifetime;
+    }
 }

@@ -1,5 +1,7 @@
 package vilagtalanvirologusok;
 
+import java.util.ArrayList;
+
 /**
  * Az egyik genetikai kód osztálya.
  * Az amnézia ágens létrehozása a felelőssége.
@@ -9,9 +11,32 @@ public class AmnesiaCode extends GeneticCode{
     /**
      * Az ágens létrehozásáért felelős metódus.
      * Meghivja a useMaterial() függvényt az alapanyagokra, amennyiben rendelkezik a szükséges mennyiséggel,
-     * @param v - A készitő virológus
+     *  - A készitő virológus
      */
+
+    public AmnesiaCode()
+    {
+        nucleotideCost=5;
+        aminoAcidCost=5;
+    }
     public void Create(Virologist v){
-        System.out.println("AmnesiaCode: Create()");
+
+        ArrayList<Material> costs = new ArrayList<Material>();
+        for (int i=0;i<5;i++)
+        {
+            Nucleotide n = new Nucleotide();
+            costs.add(n);
+        }
+        for (int i=0;i<5;i++)
+        {
+            Aminoacid n = new Aminoacid();
+            costs.add(n);
+        }
+        if(v.UseMaterial(costs))
+        {
+            AmnesiaVirus virus = new AmnesiaVirus();
+            // applyagent helyett az a fgv legyen meghívva amelyik a tanultakba rakja bele
+            v.learnAgent(virus);
+        }
     }
 }
