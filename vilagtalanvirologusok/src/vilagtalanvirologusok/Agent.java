@@ -9,6 +9,7 @@ public class Agent implements Steppable{
      * Megvalósítja a Steppable interfészt.
      */
     private int lifetime;
+    private String name;
 
     public void Step(){}
 
@@ -20,5 +21,13 @@ public class Agent implements Steppable{
     public int getLifetime()
     {
         return lifetime;
+    }
+    public String getName() { return name; }
+
+    public String toString() {
+        return this.getName() +
+                "\n\tType: " + this.getClass().getName() +
+                "\n\tLocation: " + /*this.getLocation() + */
+                "\n\tLifetime: " + this.getLifetime() + "\n\n";
     }
 }

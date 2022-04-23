@@ -34,12 +34,11 @@ public class Center {
         return name;
     }
 
-    public String getType() { return "Center"; }
 
 
     public String toString(String virologists, String entities) {
         return this.getName() +
-                "\n\tType: " + this.getType() +
+                "\n\tType: " + this.getClass().getName() +
                 "\n\tConnections: " + this.GetNeighbours().toString() +
                 "\n\tVirologists: " + virologists +
                 "\n\tEntities: " + entities + "\n\n";

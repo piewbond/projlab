@@ -11,8 +11,4 @@ public class Laboratory extends Center{
         System.out.println("Laboratory: SpawnGeneticCode()");
     }
 
-    @Override
-    public String getType() {
-        return "Laboratory";
-    }
 }

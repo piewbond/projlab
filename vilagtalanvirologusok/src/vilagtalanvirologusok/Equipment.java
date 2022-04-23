@@ -8,6 +8,7 @@ public abstract class Equipment implements Visitable{
      * A játékban szereplő felszerelések absztrakt ősosztálya. Ezekből származnak le a különféle felszerelések.
      */
 
+    private String name;
     protected int durability;
     public int getDurability()
     {
@@ -23,5 +24,14 @@ public abstract class Equipment implements Visitable{
 
 
     public abstract boolean accept(Visitor visitor, Virologist v, Agent a);
+
+    public String getName() { return name; }
+
+    public String toString() {
+        return this.getName() +
+                "\n\tType: " + this.getClass().getName() +
+                "\n\tLocation: " + /* this.getLocation() + */
+                "\n\tDurability: " + this.getDurability() + "\n\n";
+    }
 
 }

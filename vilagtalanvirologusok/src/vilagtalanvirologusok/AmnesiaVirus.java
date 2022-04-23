@@ -19,4 +19,6 @@ public class AmnesiaVirus extends Agent{
         v.setActiveAgents(this);
         System.out.println("AmnesiaVirus: Affect()");
     }
+
+
 }
