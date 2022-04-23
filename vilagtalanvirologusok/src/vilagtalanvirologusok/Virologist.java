@@ -14,8 +14,9 @@ public class Virologist implements Steppable{
     private ArrayList<Equipment> equipments;
     private ArrayList<Agent> activeAgents;
     private ArrayList<Agent> knownAgents;
+    private String name;
 
-    Virologist()
+    Virologist(String name)
     {
         dead=false;
         materials = new ArrayList<Material>();
@@ -23,7 +24,7 @@ public class Virologist implements Steppable{
         equipments = new ArrayList<Equipment>();
         activeAgents = new ArrayList<Agent>();
         knownAgents = new ArrayList<Agent>();
-
+        this.name = name;
     }
 
 
@@ -280,6 +281,19 @@ public class Virologist implements Steppable{
     public ArrayList<Agent> getActiveAgents()
     {
         return activeAgents;
+    }
+    public ArrayList<Material> getMaterials() { return materials; }
+    public String getName() { return name; }
+
+
+    @Override
+    public String toString() {
+        return this.getName() + "\n\tPosition: " /*+ this.getPos()*/ +
+                "\n\tActivity: " +
+                "\n\tInfected: " +
+                "\n\tEquipments: " + this.getEquipments().toString() +
+                "\n\tAgents: " + this.getActiveAgents().toString() +
+                "\n\tMaterials: " + this.getMaterials().toString();
     }
 
 
