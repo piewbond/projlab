@@ -13,4 +13,6 @@ public class AmnesiaVirus extends Agent{
     public void Affect(Virologist v) {
         System.out.println("AmnesiaVirus: Affect()");
     }
+
+
 }

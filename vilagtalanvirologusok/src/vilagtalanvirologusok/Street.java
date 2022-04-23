@@ -5,8 +5,5 @@ package vilagtalanvirologusok;
  */
 public class Street extends Center{
 
-    @Override
-    public String getType() {
-        return "Street";
-    }
+
 }
