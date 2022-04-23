@@ -34,4 +34,9 @@ public class Turnable {
     public void StepAllSteppable(){
         System.out.println("Turnable: StepAllSteppable()");
     }
+
+    public Turnable getTurnable()
+    {
+        return this;
+    }
 }

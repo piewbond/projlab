@@ -13,6 +13,7 @@ public class ChoreaVirus extends Agent{
     @Override
     public void Affect(Virologist v)
     {
+        v.setActiveAgents(this);
         System.out.println("ChoreaVirus: Affect()");
     }
 }

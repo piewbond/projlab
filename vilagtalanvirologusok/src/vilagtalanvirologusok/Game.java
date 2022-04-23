@@ -5,10 +5,12 @@ package vilagtalanvirologusok;
  * A körök végén ellenőrzi, hogy van-e olyan virológus aki megtanulta az összes genetikai kódot.
  */
 public class Game {
+    public Turnable turnable;
     /**
      *  Inicializálja a játék kezdéséhez szükséges objektumokat.
      */
-    public void StartGame(){
+    public void StartGame()
+    {
         System.out.println("Game: StartGame()");
     }
 

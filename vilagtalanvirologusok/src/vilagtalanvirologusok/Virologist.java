@@ -9,6 +9,8 @@ import java.util.*;
 public class Virologist implements Steppable{
 
     private boolean dead;
+    private Center location;
+    private Turnable turnable;
     private ArrayList<Material> materials;
     private Set<GeneticCode> geneticCodes;
     private ArrayList<Equipment> equipments;
@@ -111,6 +113,26 @@ public class Virologist implements Steppable{
     public ArrayList<Equipment> getEquipments()
     {
         return equipments;
+    }
+
+    public Set<GeneticCode> getGeneticCode()
+    {
+        return geneticCodes;
+    }
+
+    public void setGeneticCodes(Set<GeneticCode> gc)
+    {
+        this.geneticCodes = gc;
+    }
+
+    public void setActiveAgents(Agent a)
+    {
+        this.activeAgents.add(a);
+    }
+
+    public Turnable getTurnable()
+    {
+        return this.turnable;
     }
 
     /**

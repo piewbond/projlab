@@ -11,7 +11,10 @@ public class ParalyzeVirus extends Agent{
      * @param v - Virologus, akin kifejti a hatást.
      */
     @Override
-    public void Affect(Virologist v) {
+    public void Affect(Virologist v)
+    {
+        v.setActiveAgents(this);
+        v.getTurnable().EndTurn();
         System.out.println("ParalyzeVirus: Affect()");
     }
 }
