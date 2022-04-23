@@ -5,5 +5,7 @@ package vilagtalanvirologusok;
  */
 public class Street extends Center{
 
-
+    public Street(int x, int y){
+        super(x,y);
+    }
 }

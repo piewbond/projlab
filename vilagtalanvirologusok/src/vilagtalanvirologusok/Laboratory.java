@@ -1,14 +1,56 @@
 package vilagtalanvirologusok;
 
+import java.util.Random;
+
 /**
  *A Laboratórium helyiséget valósítja meg, a virológusok itt olvashatják le a győzelemhez szükséges genetikai kódokat.
  */
 public class Laboratory extends Center{
+    private boolean contiguous;
+    private GeneticCode gn;
+    public Laboratory(int x, int y) {
+        super(x, y);
+        Random r = new Random();
+        if (r.nextInt(100) > 80) {
+            contiguous = true;
+        } else {
+            contiguous = false;
+        }
+    }
     /**
      * Genetikai kódot generál a laboratóriumba.
      */
     public void SpawnGeneticCode(){
-        System.out.println("Laboratory: SpawnGeneticCode()");
+        //System.out.println("Laboratory: SpawnGeneticCode()");
+        Random r = new Random();
+        switch (r.nextInt(4)) {
+            case 0:
+                gn = new AmnesiaCode();
+                break;
+            case 1:
+                gn = new ProtectorCode();
+                break;
+            case 2:
+                gn = new ChoreaCode();
+                break;
+            case 3:
+                gn = new ParalyzeCode();
+                break;
+        }
+
+    }
+    public void AddVirologist(Virologist v) {
+        virologists.add(v);
+        if (contiguous == true) 
+            Infect();
+        
+    }
+
+    public void Infect(){
+        for (Virologist v: virologists
+             ) {
+            v.GetTouched(v,new BearVirus());
+        }
     }
 
 }

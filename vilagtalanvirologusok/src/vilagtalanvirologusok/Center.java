@@ -9,12 +9,25 @@ import java.util.List;
 public class Center {
 
     private String name; // koordinatabol
+    private int cordx;
+    private int cordy;
+    List<Center> neighbours;
+    List<Virologist> virologists;
+
+   public Center(int x,int y) {
+       cordx = x;
+       cordy = y;
+       virologists = new ArrayList<Virologist>();
+       neighbours = new ArrayList<Center>();
+   }
+
     /**
      * Új virológust ad hozzá a helyhez.
      * @param v - Az új virológus.
      */
     public void AddVirologist(Virologist v){
-        System.out.println("Center: AddVirologist()");
+        //System.out.println("Center: AddVirologist()");
+        virologists.add(v);
     }
 
     /**
@@ -23,18 +36,20 @@ public class Center {
      */
     public void RemoveVirologist(Virologist v){
         System.out.println("Center: RemoveVirologist()");
+        virologists.remove(v);
     }
+
+    /**
+     * @return szomszedos mezok listaja
+     */
     public List<Center> GetNeighbours(){
         System.out.println("Center: GetNeighbours()");
-        List<Center> l = new ArrayList<Center>();
-        return l;
+        return neighbours;
     }
 
     public String getName() {
         return name;
     }
-
-
 
     public String toString(String virologists, String entities) {
         return this.getName() +
