@@ -47,31 +47,35 @@ public class Game {
     public void parse(String cmd) {
         String[] parsed = cmd.split("");
 
-        switch(parsed[0])
-        {
-            case "start":
-            case "createMap":
-            case "removeVirologist":
-            case "addVirologist":
-            case "addEntity":
-            case "learnGC":
-            case "pickupMaterial":
-            case "removeMaterial":
-            case "pickupEquipment":
-            case "removeEquipment":
-            case "touch":
-            case "load":
-            case "move":
-            case "craftAgent":
-            case "useAgent":
-            case "useEquipment":
-            case "steal":
-            case "nextTurn":
-            case "save":
-            case "list":
-            case "setActive":
-            case "rand":
-        };
+        if (argCount(parsed)) {
+            switch (parsed[0]) {
+                case "start":
+                case "createMap":
+                case "removeVirologist":
+                case "addVirologist":
+                    Virologist v = new Virologist(parsed[1]);   // TODO position
+                    break;
+                case "addEntity":
+                case "learnGC":
+                case "pickupMaterial":
+                case "removeMaterial":
+                case "pickupEquipment":
+                case "removeEquipment":
+                case "touch":
+                case "load":
+                case "move":
+                case "craftAgent":
+                case "useAgent":
+                case "useEquipment":
+                case "steal":
+                case "nextTurn":
+                case "save":
+                case "list":
+                case "setActive":
+                case "rand":
+            }
+            ;
+        }
     }
 
 
@@ -80,26 +84,26 @@ public class Game {
         {
             case "start": 				if (cmd.length == 1) {return true;}
             case "createMap":			if (cmd.length == 1) {return true;}
-            case "removeVirologist":	if (cmd.length == 1) {return true;}
-            case "addVirologist":		if (cmd.length == 1) {return true;}
-            case "addEntity":			if (cmd.length == 1) {return true;}
-            case "learnGC":				if (cmd.length == 1) {return true;}
-            case "pickupMaterial":		if (cmd.length == 1) {return true;}
-            case "removeMaterial":		if (cmd.length == 1) {return true;}
-            case "pickupEquipment":		if (cmd.length == 1) {return true;}
-            case "removeEquipment":		if (cmd.length == 1) {return true;}
+            case "removeVirologist":	if (cmd.length == 2) {return true;}
+            case "addVirologist":		if (cmd.length == 3) {return true;}
+            case "addEntity":			if (cmd.length == 3) {return true;}
+            case "learnGC":				if (cmd.length == 2) {return true;}
+            case "pickupMaterial":		if (cmd.length == 3) {return true;}
+            case "removeMaterial":		if (cmd.length == 3) {return true;}
+            case "pickupEquipment":		if (cmd.length == 3) {return true;}
+            case "removeEquipment":		if (cmd.length == 3) {return true;}
             case "touch":				if (cmd.length == 1) {return true;}
-            case "load":				if (cmd.length == 1) {return true;}
-            case "move":				if (cmd.length == 1) {return true;}
-            case "craftAgent":			if (cmd.length == 1) {return true;}
-            case "useAgent":			if (cmd.length == 1) {return true;}
-            case "useEquipment":		if (cmd.length == 1) {return true;}
-            case "steal":				if (cmd.length == 1) {return true;}
+            case "load":				if (cmd.length == 2) {return true;}
+            case "move":				if (cmd.length == 3) {return true;}
+            case "craftAgent":			if (cmd.length == 3) {return true;}
+            case "useAgent":			if (cmd.length == 3) {return true;}
+            case "useEquipment":		if (cmd.length == 4) {return true;}
+            case "steal":				if (cmd.length == 4) {return true;}
             case "nextTurn":			if (cmd.length == 1) {return true;}
-            case "save":				if (cmd.length == 1) {return true;}
-            case "list":				if (cmd.length == 1) {return true;}
-            case "setActive":			if (cmd.length == 1) {return true;}
-            case "rand":				if (cmd.length == 1) {return true;}
+            case "save":				if (cmd.length == 2) {return true;}
+            case "list":				if (cmd.length == 2) {return true;}
+            case "setActive":			if (cmd.length == 2) {return true;}
+            case "rand":				if (cmd.length == 2) {return true;}
         };
         return false;
     }
