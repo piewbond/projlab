@@ -14,7 +14,7 @@ public class Agent implements Steppable{
 
     /**\
      * Az ágensek hatását fejti ki a virológuson.
-     * @param v - Virologus, akin kifejti a hatast
+     * @param v - Virológus, akin kifejti a hatást
      */
     public void Affect(Virologist v){}
     public int getLifetime()
