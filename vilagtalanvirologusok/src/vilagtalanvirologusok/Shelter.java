@@ -18,4 +18,9 @@ public class Shelter extends Center{
     public void RemoveEquipment(Equipment e){
         System.out.println("Shelter: RemoveEquipment()");
     }
+
+    @Override
+    public String getType() {
+        return "Shelter";
+    }
 }

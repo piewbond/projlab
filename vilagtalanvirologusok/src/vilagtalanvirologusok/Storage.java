@@ -18,4 +18,9 @@ public class Storage extends Center {
     public void RemoveMaterial(Material m){
         System.out.println("Storage: RemoveMaterial()");
     }
+
+    @Override
+    public String getType() {
+        return "Storage";
+    }
 }

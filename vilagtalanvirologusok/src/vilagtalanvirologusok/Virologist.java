@@ -293,7 +293,7 @@ public class Virologist implements Steppable{
                 "\n\tInfected: " +
                 "\n\tEquipments: " + this.getEquipments().toString() +
                 "\n\tAgents: " + this.getActiveAgents().toString() +
-                "\n\tMaterials: " + this.getMaterials().toString();
+                "\n\tMaterials: " + this.getMaterials().toString() + "\n\n";
     }
 
 

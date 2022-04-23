@@ -7,6 +7,8 @@ import java.util.List;
  * A pálya (felépülő gráf) struktúrájában a csúcsokat reprezentálja, ezeken tudnak a virológusok lépkedni.
  */
 public class Center {
+
+    private String name; // koordinatabol
     /**
      * Új virológust ad hozzá a helyhez.
      * @param v - Az új virológus.
@@ -26,5 +28,20 @@ public class Center {
         System.out.println("Center: GetNeighbours()");
         List<Center> l = new ArrayList<Center>();
         return l;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getType() { return "Center"; }
+
+
+    public String toString(String virologists, String entities) {
+        return this.getName() +
+                "\n\tType: " + this.getType() +
+                "\n\tConnections: " + this.GetNeighbours().toString() +
+                "\n\tVirologists: " + virologists +
+                "\n\tEntities: " + entities + "\n\n";
     }
 }
