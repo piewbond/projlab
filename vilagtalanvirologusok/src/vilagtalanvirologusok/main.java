@@ -1,6 +1,5 @@
 package vilagtalanvirologusok;
 
-
 import java.util.Scanner;
 
 public class main {
@@ -46,7 +45,6 @@ public class main {
 			case "list":
 			case "setActive":
 			case "rand":
-
 		};
 	}
 
