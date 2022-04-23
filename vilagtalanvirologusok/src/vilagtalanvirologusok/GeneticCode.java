@@ -12,6 +12,7 @@ public abstract class GeneticCode {
      * Meghivja a useMaterial() függvényt az alapanyagokra, amennyiben rendelkezik a szükséges mennyiséggel,
      * akkor hozzáadja a virológus tárolójához és igazzal tér vissza.
      */
+    private String name;
     protected int nucleotideCost;
     protected int aminoAcidCost;
 
@@ -19,9 +20,13 @@ public abstract class GeneticCode {
     public abstract void Create(Virologist virologist);
 
 
+    public String getName() { return name; }
 
-
-
+    public String toString() {
+        return this.getName() +
+                "\n\tType: " + this.getClass().getName() +
+                "\n\tLocation: " /* + this.getLocation() */ + "\n\n";
+    }
 
 
 
