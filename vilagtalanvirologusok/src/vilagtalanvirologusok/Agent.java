@@ -10,7 +10,7 @@ public class Agent implements Steppable{
      */
     private int lifetime;
     private String name;
-
+    private boolean random;
     public void Step(){}
 
     /**\
@@ -31,5 +31,8 @@ public class Agent implements Steppable{
                 "\n\tType: " + this.getClass().getName() +
                 "\n\tLocation: " + /*this.getLocation() + */
                 "\n\tLifetime: " + this.getLifetime() + "\n\n";
+    }
+    public void setRandom(boolean r){
+        random = r;
     }
 }

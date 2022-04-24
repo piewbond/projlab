@@ -20,11 +20,15 @@ public class Storage extends Center {
      */
     public void SpawnMaterial(){
         //System.out.println("Storage: SpawnMaterial()");
-        Random r = new Random();
-        if(r.nextInt(2) == 0 ) {
+        if (random == true) {
+            Random r = new Random();
+            if (r.nextInt(2) == 0) {
+                materials.add(new Aminoacid());
+            } else {
+                materials.add(new Nucleotide());
+            }
+        }else   {
             materials.add(new Aminoacid());
-        } else {
-            materials.add(new Nucleotide());
         }
     }
 

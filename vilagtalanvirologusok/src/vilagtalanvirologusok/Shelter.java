@@ -44,6 +44,19 @@ public class Shelter extends Center{
                 break;
         }
     }
+    public void AddVirologist(Virologist v) {
+        //System.out.println("Center: AddVirologist()");
+        virologists.add(v);
+        if (random == true) {
+            Random r = new Random();
+            Equipment temp = equipments.get(r.nextInt(equipments.size()));
+            v.PickupEquipment(temp);
+            equipments.remove(temp);
+        } else {
+            v.PickupEquipment(equipments.get(0));
+            equipments.remove(equipments.get(0));
+        }
+    }
 
     /**
      @ -16,7 +51,8 @@ public class Shelter extends Center{
