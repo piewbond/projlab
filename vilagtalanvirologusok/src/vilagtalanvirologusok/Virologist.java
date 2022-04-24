@@ -179,7 +179,7 @@ public class Virologist implements Steppable{
         for (Agent agent:activeAgents)
         {
 
-            if()
+            if(true)
             {
                 int n = new Random().nextInt(equipments.size());
                 Equipment eq = equipments.get(n);

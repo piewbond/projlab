@@ -36,4 +36,9 @@ public class Glove extends Equipment implements Visitable{
         visitor.visit(this,v,a);
         return true;
     }
+
+    @Override
+    public void accept(Visitor visitor, Virologist v) {
+
+    }
 }

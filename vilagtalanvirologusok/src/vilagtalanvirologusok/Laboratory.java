@@ -53,4 +53,8 @@ public class Laboratory extends Center{
         }
     }
 
+    public GeneticCode getGC() {
+        return this.gn;
+    }
+
 }

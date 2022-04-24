@@ -48,4 +48,9 @@ public class Cloak extends Equipment implements Visitable{
         return visitor.visit(this,v,a);
 
     }
+
+    @Override
+    public void accept(Visitor visitor, Virologist v) {
+
+    }
 }
