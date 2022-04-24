@@ -28,10 +28,10 @@ public class Map {
             /**
              * bekeri a file eleleresi utvonalat majd megprobalja beolvasni
              */
-            System.out.println("Please type the map file's path( C:\\ ): ");
+            System.out.println("Please type the map file's path( C:\\map1.txt ): ");
             Scanner scanner = new Scanner(System.in);
             String inputString = scanner.nextLine();
-            File file = new File(inputString + "\\map1.txt");
+            File file = new File(inputString);
 
             /**
              * letrehoz egy seged tombot ami a kapcsolatok fogja abrazolni a grafban
