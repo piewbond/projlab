@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -65,7 +66,6 @@ public class Game {
             }
 
             parsecmd(command);
-            printState();
         }
         System.exit(0);
 
@@ -155,6 +155,7 @@ public class Game {
                 default:
                     System.out.println("Wrong command");
             };
+            printState();
 
         }
         else {
@@ -266,8 +267,10 @@ public class Game {
 
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         DocumentBuilder db = dbf.newDocumentBuilder();
-        Document doc = db.parse(file);
+        Document doc = db.newDocument();
 
+        Element root = doc.createElement("virologists");
+        doc.appendChild(root);
 
     }
 
