@@ -12,6 +12,9 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.*;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 /**
  * A játékot kezeli. A játék indításakor létrehozza a pályát.
@@ -51,7 +54,7 @@ public class Game {
     }
 
 
-    public void readCommands() throws ParserConfigurationException, IOException, SAXException {
+    public void readCommands() throws ParserConfigurationException, IOException, SAXException, TransformerException {
         for(;;) {
             Scanner scanner = new Scanner(System.in);
             String command = scanner.nextLine();
@@ -71,7 +74,7 @@ public class Game {
 
     }
 
-    public void parsecmd(String cmd) throws ParserConfigurationException, IOException, SAXException {
+    public void parsecmd(String cmd) throws ParserConfigurationException, IOException, SAXException, TransformerException {
         String[] parsed = cmd.split(" ");
 
         if (argCount(parsed)) {
@@ -159,7 +162,7 @@ public class Game {
 
         }
         else {
-            System.out.println("Wrong argument count");
+            System.out.println("Wrong command");
         }
     }
 
@@ -262,7 +265,7 @@ public class Game {
     }
 
 
-    public void writeXML(String fileName) throws ParserConfigurationException, IOException, SAXException {
+    public void writeXML(String fileName) throws ParserConfigurationException, IOException, SAXException, TransformerException {
         File file = new File(fileName);
 
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -271,6 +274,23 @@ public class Game {
 
         Element root = doc.createElement("virologists");
         doc.appendChild(root);
+
+        for (Virologist v : virologists) {
+            Element virologist = doc.createElement(v.getName());
+            root.appendChild(virologist);
+            virologist.setAttribute("name", v.getName());
+            virologist.setAttribute("equipments", v.getEquipments().toString());
+            virologist.setAttribute("agents", v.getActiveAgents().toString());
+            virologist.setAttribute("materials", v.getMaterials().toString());
+        }
+
+
+        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        Transformer transformer = transformerFactory.newTransformer();
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+        DOMSource source = new DOMSource(doc);
+        StreamResult result = new StreamResult(System.out);
+        transformer.transform(source, result);
 
     }
 
