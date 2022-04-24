@@ -325,7 +325,6 @@ public class Virologist implements Steppable{
         knownAgents.add(a);
     }
 
-    public Center toCenter(String loc) {return null;} // TODO
 
     public ArrayList<Agent> getActiveAgents()
     {
@@ -333,13 +332,14 @@ public class Virologist implements Steppable{
     }
     public ArrayList<Material> getMaterials() { return materials; }
     public String getName() { return name; }
-    public String getPos() {return location.toString();}
+    public String getPos() {return location.getName();}
+    public boolean infected() { return false; } // TODO
 
     @Override
     public String toString() {
         return this.getName() + "\n\tPosition: " + this.getPos() +
                 "\n\tActivity: " +
-                "\n\tInfected: " +
+                "\n\tInfected: " + this.infected() +
                 "\n\tEquipments: " + this.getEquipments().toString() +
                 "\n\tAgents: " + this.getActiveAgents().toString() +
                 "\n\tMaterials: " + this.getMaterials().toString() + "\n\n";

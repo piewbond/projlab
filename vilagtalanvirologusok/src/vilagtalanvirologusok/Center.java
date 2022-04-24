@@ -19,6 +19,7 @@ public class Center {
         cordy = y;
         virologists = new ArrayList<Virologist>();
         neighbours = new ArrayList<Center>();
+        name = cordx + ":" + cordy;
     }
 
     /**
