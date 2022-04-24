@@ -98,20 +98,6 @@ public class Game {
                     Virologist v = new Virologist(parsed[1], map.getCenter(parsed[2]));   // TODO position
                     virologists.add(v);
                     break;
-                case "addEntity":
-                    if (parsed[1].equals("Agent")) {
-                        agents.add(new Agent());
-                    }
-                    if (parsed[1].equals("Material")) {
-                        materials.add(new Material());
-                    }
-                    if (parsed[1].equals("Equipment")) {
-                        // equipments.add(new Equipment());
-                    }
-                    else {
-                        System.out.println("Wrong argument after addEntity");
-                    }
-                    break;
                 case "learnGC":
                     Virologist learner = findVirologist(parsed[1]);
                     Laboratory loc = (Laboratory) learner.getLocation();
@@ -200,9 +186,6 @@ public class Game {
                 if (cmd.length == 2) {return true;}
                 break;
             case "addVirologist":
-                if (cmd.length == 3) {return true;}
-                break;
-            case "addEntity":
                 if (cmd.length == 3) {return true;}
                 break;
             case "learnGC":
