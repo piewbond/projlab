@@ -28,6 +28,12 @@ public class Storage extends Center {
         }
     }
 
+    public void AddVirologist(Virologist v) {
+        //System.out.println("Center: AddVirologist()");
+        virologists.add(v);
+        v.PickupMaterial(materials.get(0));
+        RemoveMaterial(materials.get(0));
+    }
     /**
      * Kitorol egy kapott anyagot
      * @param m torlendo anyag
