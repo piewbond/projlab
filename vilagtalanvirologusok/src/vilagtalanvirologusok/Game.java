@@ -1,5 +1,6 @@
 package vilagtalanvirologusok;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -7,6 +8,8 @@ import java.util.Scanner;
  * A körök végén ellenőrzi, hogy van-e olyan virológus aki megtanulta az összes genetikai kódot.
  */
 public class Game {
+    private Virologist activeVirologist = null;
+    private ArrayList<Virologist> virologists;
     public Turnable turnable;
     /**
      *  Inicializálja a játék kezdéséhez szükséges objektumokat.
@@ -55,7 +58,8 @@ public class Game {
                 case "createMap":
                 case "removeVirologist":
                 case "addVirologist":
-                    Virologist v = new Virologist(parsed[1]);   // TODO position
+                    Virologist v = new Virologist(parsed[1], parsed[2]);   // TODO position
+                    virologists.add(v);
                     break;
                 case "addEntity":
                 case "learnGC":
@@ -74,6 +78,7 @@ public class Game {
                 case "save":
                 case "list":
                 case "setActive":
+                    this.activeVirologist = findVirologist(parsed[1]);
                 case "rand":
             }
             ;
@@ -108,5 +113,19 @@ public class Game {
             case "rand":				if (cmd.length == 2) {return true;}
         };
         return false;
+    }
+
+    public void printState() {
+
+    }
+
+    public Virologist findVirologist(String name) {
+        Virologist res = null;
+        for (int i = 0; i < virologists.size(); i++) {
+            if (virologists.get(i).getName().equals(name)) {
+                res = virologists.get(i);
+            }
+        }
+        return res;
     }
 }
