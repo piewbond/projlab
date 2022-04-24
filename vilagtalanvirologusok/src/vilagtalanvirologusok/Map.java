@@ -73,7 +73,7 @@ public class Map {
             while(scanner.hasNextLine()) {
                 line = scanner.nextLine();
                 String[] str = line.split(" ");
-                for (int j=0 ; j<7; j++)
+                for (int j=0 ; j<str.length; j++)
                     neigh[k][j] = Integer.parseInt(str[j]);
 
                 k++;
