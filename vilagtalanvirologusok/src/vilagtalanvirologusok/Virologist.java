@@ -18,7 +18,7 @@ public class Virologist implements Steppable{
     private ArrayList<Agent> knownAgents;
     private String name;
 
-    Virologist(String name)
+    Virologist(String name, String location)
     {
         dead=false;
         materials = new ArrayList<Material>();
@@ -27,6 +27,7 @@ public class Virologist implements Steppable{
         activeAgents = new ArrayList<Agent>();
         knownAgents = new ArrayList<Agent>();
         this.name = name;
+        this.location = this.toCenter(location);
     }
 
 
@@ -300,6 +301,9 @@ public class Virologist implements Steppable{
     {
         knownAgents.add(a);
     }
+
+    public Center toCenter(String loc) {return null;} // TODO
+
     public ArrayList<Agent> getActiveAgents()
     {
         return activeAgents;
