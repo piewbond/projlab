@@ -136,6 +136,7 @@ public class Game {
                     writeXML(parsed[1]);
                     break;
                 case "list":
+                    System.out.println("Listing...");
                     break;
                 case "setActive":
                     this.activeVirologist = map.findVirologist(parsed[1]);
@@ -209,7 +210,7 @@ public class Game {
                 if (cmd.length == 2) {return true;}
                 break;
             case "list":
-                if (cmd.length == 2) {return true;}
+                if (cmd.length == 1) {return true;}
                 break;
             case "setActive":
                 if (cmd.length == 2) {return true;}
@@ -251,6 +252,7 @@ public class Game {
     public void writeXML(String fileName) throws ParserConfigurationException, IOException, SAXException, TransformerException {
         File file = new File(fileName);
 
+        
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         DocumentBuilder db = dbf.newDocumentBuilder();
         Document doc = db.newDocument();
@@ -277,6 +279,8 @@ public class Game {
         DOMSource source = new DOMSource(doc);
         StreamResult result = new StreamResult(new FileOutputStream(fileName));
         transformer.transform(source, result);
+
+
 
     }
 
