@@ -9,6 +9,7 @@ public class Shelter extends Center{
     private List<Equipment> equipments;
     private int cordx;
     private int cordy;
+    private boolean random;
     /**
      *  Letrehozza a sheltert es random maximum haromnszor letrehozza a benne levo itemeket
      *  minden esetben random sorsolja hogy melyik itemet helyezi el
@@ -51,10 +52,10 @@ public class Shelter extends Center{
             Random r = new Random();
             Equipment temp = equipments.get(r.nextInt(equipments.size()));
             v.PickupEquipment(temp);
-            equipments.remove(temp);
+            RemoveEquipment(equipments.get(0));
         } else {
             v.PickupEquipment(equipments.get(0));
-            equipments.remove(equipments.get(0));
+            RemoveEquipment(equipments.get(0));
         }
     }
 

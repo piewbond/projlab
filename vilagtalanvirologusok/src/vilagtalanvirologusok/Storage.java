@@ -6,7 +6,7 @@ import java.util.Random;
  * A játékban szereplő raktárakat reprezentálja, ezeken a helyszíneken tudnak a virológusok anyagokat gyűjteni.
  */
 public class Storage extends Center {
-
+    private boolean random;
     private List<Material> materials;
 
     public Storage(int x, int y) {
