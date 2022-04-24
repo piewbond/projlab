@@ -34,15 +34,6 @@ public class Map {
             File file = new File(inputString);
 
             /**
-             * letrehoz egy seged tombot ami a kapcsolatok fogja abrazolni a grafban
-             * minden elemet -1re allitja
-             */
-            int[][] neigh = new int[centernmb][7];
-            for (int i= 0;i<centernmb;i++) {
-                for (int j = 0; j<7;j++)
-                    neigh[i][j] = -1;
-            }
-            /**
              * eloszor beolvassa az elso sort es letrehozza a locationokat az alapjan
              */
             scanner = new Scanner(file);
@@ -67,15 +58,24 @@ public class Map {
                 centernmb++;
             }
             /**
+             * letrehoz egy seged tombot ami a kapcsolatok fogja abrazolni a grafban
+             * minden elemet -1re allitja
+             */
+            int[][] neigh = new int[centernmb][7];
+            for (int i= 0;i<centernmb;i++) {
+                for (int j = 0; j<7;j++)
+                    neigh[i][j] = -1;
+            }
+            /**
              * vegig megy es beolvas minden centerhez a hozzatartozo szomszedokat
              */
             int k = 0;
             while(scanner.hasNextLine()) {
-
                 line = scanner.nextLine();
                 String[] str = line.split(" ");
                 for (int j=0 ; j<7; j++)
                     neigh[k][j] = Integer.parseInt(str[j]);
+
                 k++;
             }
 
