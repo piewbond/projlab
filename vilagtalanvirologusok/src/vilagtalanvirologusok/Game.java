@@ -43,6 +43,12 @@ public class Game {
             if (command.equals("exit")) {
                 break;
             }
+
+            // auto active virologist detection
+            if (activeVirologist == null && virologists.size() > 0) {
+                activeVirologist = virologists.get(0);
+            }
+
             parse(command);
         }
         System.exit(0);
@@ -55,26 +61,58 @@ public class Game {
         if (argCount(parsed)) {
             switch (parsed[0]) {
                 case "start":
+                    System.out.println("Game started\n");
                 case "createMap":
                 case "removeVirologist":
+                    Virologist remove = findVirologist(parsed[1]);
+                    virologists.remove(remove);
+                    break;
                 case "addVirologist":
                     Virologist v = new Virologist(parsed[1], parsed[2]);   // TODO position
                     virologists.add(v);
                     break;
                 case "addEntity":
                 case "learnGC":
+                    Virologist learner = findVirologist(parsed[1]);
+                    Laboratory loc = (Laboratory) learner.getLocation();
+                    GeneticCode gc = loc.getGC();
+                    findVirologist(parsed[1]).LearnGeneticCode(gc);
+                    break;
                 case "pickupMaterial":
+                    findVirologist(parsed[1]).PickupMaterial(null); // TODO material
+                    break;
                 case "removeMaterial":
+                    findVirologist(parsed[1]).RemoveMaterial(null);
+                    break;
                 case "pickupEquipment":
+                    findVirologist(parsed[1]).PickupEquipment(null);
+                    break;
                 case "removeEquipment":
+                    findVirologist(parsed[1]).RemoveEquipment(null);
+                    break;
                 case "touch":
+                    findVirologist(parsed[1]).Touch(findVirologist(parsed[2]), null);
+                    break;
                 case "load":
                 case "move":
+                    findVirologist(parsed[1]).Move();
+                    break;
                 case "craftAgent":
+                    GeneticCode geneticCode = (GeneticCode) findVirologist(parsed[1]).getGeneticCode();
+                    findVirologist(parsed[1]).CraftAgent(geneticCode);
+                    break;
                 case "useAgent":
+                    findVirologist(parsed[1]); // TODO
+                    break;
                 case "useEquipment":
+                    findVirologist(parsed[1]);
+                    break;
                 case "steal":
+                    findVirologist(parsed[1]).StealEquipment(findVirologist(parsed[2]));
+                    break;
                 case "nextTurn":
+                    this.turnable.EndTurn();
+                    break;
                 case "save":
                 case "list":
                 case "setActive":
