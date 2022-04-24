@@ -333,7 +333,7 @@ public class Virologist implements Steppable{
     public ArrayList<Material> getMaterials() { return materials; }
     public String getName() { return name; }
     public String getPos() {return location.getName();}
-    public boolean infected() { return false; } // TODO
+    public boolean infected() { return false; } // TODO visitor 
 
     @Override
     public String toString() {

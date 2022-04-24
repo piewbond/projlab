@@ -17,6 +17,7 @@ import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+
 /**
  * A játékot kezeli. A játék indításakor létrehozza a pályát.
  * A körök végén ellenőrzi, hogy van-e olyan virológus aki megtanulta az összes genetikai kódot.
@@ -96,6 +97,7 @@ public class Game {
                     break;
                 case "addVirologist":
                     Virologist v = new Virologist(parsed[1], map.getCenter(parsed[2]));   // TODO position
+                    map.getCenter(parsed[2]).AddVirologist(v);
                     virologists.add(v);
                     break;
                 case "learnGC":
@@ -251,20 +253,18 @@ public class Game {
         DocumentBuilder db = dbf.newDocumentBuilder();
         Document doc = db.newDocument();
 
-        Element root = doc.createElement("virologists");
+        Element root = doc.createElement("centers");
         doc.appendChild(root);
 
-        for (Virologist v : virologists) {
-            Element virologist = doc.createElement(v.getName());
-            root.appendChild(virologist);
-            virologist.setAttribute("name", v.getName());
-            virologist.setAttribute("equipments", v.getEquipments().toString());
-            virologist.setAttribute("agents", v.getActiveAgents().toString());
-            virologist.setAttribute("materials", v.getMaterials().toString());
+        int index = 0;
+        for (Center center : map.centers) {
+            Element c = doc.createElement("Center" + index);
+            root.appendChild(c);
+            c.setAttribute("position", center.getName());
+            c.setAttribute("virologists", center.getVirologists().toString());
+            c.setAttribute("neighbours", center.GetNeighbours().toString());
+            index++;
         }
-
-        Element entities = doc.createElement("entities");
-        doc.appendChild(entities);
 
 
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
