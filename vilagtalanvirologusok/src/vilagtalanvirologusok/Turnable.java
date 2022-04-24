@@ -17,7 +17,9 @@ public class Turnable {
     public void EndTurn(){
         //System.out.println("Turnable: EndTurn()");
         StepAllSteppable();
-
+        /**
+         * kovetkezo virologusra leptetes TODO
+         */
     }
 
     /**
@@ -47,10 +49,5 @@ public class Turnable {
              ) {
             s.Step();
         }
-    }
-
-    public Turnable getTurnable()
-    {
-        return this;
     }
 }
