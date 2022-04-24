@@ -92,7 +92,7 @@ public class Game {
                     map.GenerateGraph();
                     break;
                 case "removeVirologist":
-                    Virologist remove = findVirologist(parsed[1]);
+                    Virologist remove = map.findVirologist(parsed[1]);
                     virologists.remove(remove);
                     break;
                 case "addVirologist":
@@ -101,32 +101,32 @@ public class Game {
                     virologists.add(v);
                     break;
                 case "learnGC":
-                    Virologist learner = findVirologist(parsed[1]);
+                    Virologist learner = map.findVirologist(parsed[1]);
                     Laboratory loc = (Laboratory) learner.getLocation();
                     GeneticCode gc = loc.getGC();
-                    findVirologist(parsed[1]).LearnGeneticCode(gc);
+                    map.findVirologist(parsed[1]).LearnGeneticCode(gc);
                     break;
                 case "touch":
-                    findVirologist(parsed[1]).Touch(findVirologist(parsed[2]), null);
+                    map.findVirologist(parsed[1]).Touch(map.findVirologist(parsed[2]), null);
                     break;
                 case "load":
                     readXML(parsed[1]);
                     break;
                 case "move":
-                    findVirologist(parsed[1]).Move();
+                    map.findVirologist(parsed[1]).Move();
                     break;
                 case "craftAgent":
-                    GeneticCode geneticCode = (GeneticCode) findVirologist(parsed[1]).getGeneticCode();
-                    findVirologist(parsed[1]).CraftAgent(geneticCode);
+                    GeneticCode geneticCode = (GeneticCode) map.findVirologist(parsed[1]).getGeneticCode();
+                    map.findVirologist(parsed[1]).CraftAgent(geneticCode);
                     break;
                 case "useAgent":
-                    findVirologist(parsed[1]); // TODO
+                    map.findVirologist(parsed[1]); // TODO
                     break;
                 case "useEquipment":
-                    findVirologist(parsed[1]);
+                    map.findVirologist(parsed[1]);
                     break;
                 case "steal":
-                    findVirologist(parsed[1]).StealEquipment(findVirologist(parsed[2]));
+                    map.findVirologist(parsed[1]).StealEquipment(map.findVirologist(parsed[2]));
                     break;
                 case "nextTurn":
                     this.turnable.EndTurn();
@@ -138,7 +138,7 @@ public class Game {
                 case "list":
                     break;
                 case "setActive":
-                    this.activeVirologist = findVirologist(parsed[1]);
+                    this.activeVirologist = map.findVirologist(parsed[1]);
                     break;
                 case "rand":
                     if (parsed[1].equals("on")) {
@@ -235,6 +235,7 @@ public class Game {
         }
     }
 
+    /*
     public Virologist findVirologist(String name) {
         Virologist res = null;
         for (Virologist virologist : virologists) {
@@ -244,6 +245,7 @@ public class Game {
         }
         return res;
     }
+     */
 
 
     public void writeXML(String fileName) throws ParserConfigurationException, IOException, SAXException, TransformerException {

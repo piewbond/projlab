@@ -97,4 +97,17 @@ public class Map {
     public Center getCenter(String coord) {
         return centers.get(Integer.parseInt(coord));
     }
+
+    public Virologist findVirologist(String name) {
+        Virologist res = null;
+
+        for (Center center : centers) {
+            for (Virologist virologist : center.virologists) {
+                if (virologist.getName().equals(name)) {
+                    res = virologist;
+                }
+            }
+        }
+        return res;
+    }
 }
