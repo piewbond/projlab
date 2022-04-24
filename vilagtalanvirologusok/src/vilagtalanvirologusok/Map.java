@@ -93,4 +93,8 @@ public class Map {
             e.printStackTrace();
         }
     }
+
+    public Center getCenter(String coord) {
+        return centers.get(Integer.parseInt(coord));
+    }
 }

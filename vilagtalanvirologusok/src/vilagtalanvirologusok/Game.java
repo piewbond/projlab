@@ -27,6 +27,7 @@ public class Game {
     private boolean random = true;
     private int turnCount = 1;
     public Turnable turnable = new Turnable();
+    Map map = new Map();
     /**
      *  Inicializálja a játék kezdéséhez szükséges objektumokat.
      */
@@ -84,13 +85,14 @@ public class Game {
                     System.out.println("Game started\n");
                     break;
                 case "createMap":
+                    map.GenerateGraph();
                     break;
                 case "removeVirologist":
                     Virologist remove = findVirologist(parsed[1]);
                     virologists.remove(remove);
                     break;
                 case "addVirologist":
-                    Virologist v = new Virologist(parsed[1], parsed[2]);   // TODO position
+                    Virologist v = new Virologist(parsed[1], map.getCenter(parsed[2]));   // TODO position
                     virologists.add(v);
                     break;
                 case "addEntity":
@@ -284,6 +286,9 @@ public class Game {
             virologist.setAttribute("agents", v.getActiveAgents().toString());
             virologist.setAttribute("materials", v.getMaterials().toString());
         }
+
+        Element entities = doc.createElement("entities");
+        doc.appendChild(entities);
 
 
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
