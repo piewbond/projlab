@@ -1,6 +1,7 @@
 package vilagtalanvirologusok;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -287,9 +288,11 @@ public class Game {
 
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
+
         transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+
         DOMSource source = new DOMSource(doc);
-        StreamResult result = new StreamResult(System.out);
+        StreamResult result = new StreamResult(new FileOutputStream(fileName));
         transformer.transform(source, result);
 
     }
