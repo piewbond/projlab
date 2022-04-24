@@ -21,7 +21,7 @@ public class Game {
     private ArrayList<Virologist> virologists = new ArrayList<Virologist>();
     private boolean random = true;
     private int turnCount = 1;
-    public Turnable turnable;
+    public Turnable turnable = new Turnable();
     /**
      *  Inicializálja a játék kezdéséhez szükséges objektumokat.
      */
