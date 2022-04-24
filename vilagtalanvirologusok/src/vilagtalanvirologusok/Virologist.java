@@ -333,11 +333,11 @@ public class Virologist implements Steppable{
     }
     public ArrayList<Material> getMaterials() { return materials; }
     public String getName() { return name; }
-
+    public String getPos() {return location.toString();}
 
     @Override
     public String toString() {
-        return this.getName() + "\n\tPosition: " /*+ this.getPos()*/ +
+        return this.getName() + "\n\tPosition: " + this.getPos() +
                 "\n\tActivity: " +
                 "\n\tInfected: " +
                 "\n\tEquipments: " + this.getEquipments().toString() +

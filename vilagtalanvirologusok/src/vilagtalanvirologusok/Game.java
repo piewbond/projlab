@@ -104,18 +104,6 @@ public class Game {
                     GeneticCode gc = loc.getGC();
                     findVirologist(parsed[1]).LearnGeneticCode(gc);
                     break;
-                case "pickupMaterial":
-                    findVirologist(parsed[1]).PickupMaterial(null); // TODO material
-                    break;
-                case "removeMaterial":
-                    findVirologist(parsed[1]).RemoveMaterial(null);
-                    break;
-                case "pickupEquipment":
-                    findVirologist(parsed[1]).PickupEquipment(null);
-                    break;
-                case "removeEquipment":
-                    findVirologist(parsed[1]).RemoveEquipment(null);
-                    break;
                 case "touch":
                     findVirologist(parsed[1]).Touch(findVirologist(parsed[2]), null);
                     break;
@@ -190,18 +178,6 @@ public class Game {
                 break;
             case "learnGC":
                 if (cmd.length == 2) {return true;}
-                break;
-            case "pickupMaterial":
-                if (cmd.length == 3) {return true;}
-                break;
-            case "removeMaterial":
-                if (cmd.length == 3) {return true;}
-                break;
-            case "pickupEquipment":
-                if (cmd.length == 3) {return true;}
-                break;
-            case "removeEquipment":
-                if (cmd.length == 3) {return true;}
                 break;
             case "touch":
                 if (cmd.length == 1) {return true;}
