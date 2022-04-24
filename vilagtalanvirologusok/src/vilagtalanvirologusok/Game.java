@@ -24,6 +24,9 @@ import javax.xml.transform.stream.StreamResult;
 public class Game {
     private Virologist activeVirologist = null;
     private ArrayList<Virologist> virologists = new ArrayList<Virologist>();
+    private ArrayList<Material> materials = new ArrayList<Material>();
+    private ArrayList<Equipment> equipments = new ArrayList<Equipment>();
+    private ArrayList<Agent> agents = new ArrayList<Agent>();
     private boolean random = true;
     private int turnCount = 1;
     public Turnable turnable = new Turnable();
@@ -96,6 +99,19 @@ public class Game {
                     virologists.add(v);
                     break;
                 case "addEntity":
+                    if (parsed[1].equals("Agent")) {
+                        agents.add(new Agent());
+                    }
+                    if (parsed[1].equals("Material")) {
+                        materials.add(new Material());
+                    }
+                    if (parsed[1].equals("Equipment")) {
+                        // equipments.add(new Equipment());
+                    }
+                    else {
+                        System.out.println("Wrong argument after addEntity");
+                    }
+                    break;
                 case "learnGC":
                     Virologist learner = findVirologist(parsed[1]);
                     Laboratory loc = (Laboratory) learner.getLocation();
@@ -144,6 +160,7 @@ public class Game {
                     writeXML(parsed[1]);
                     break;
                 case "list":
+                    break;
                 case "setActive":
                     this.activeVirologist = findVirologist(parsed[1]);
                     break;
