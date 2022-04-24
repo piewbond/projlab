@@ -135,6 +135,11 @@ public class Virologist implements Steppable{
         return this.turnable;
     }
 
+    public Center getLocation()
+    {
+        return this.location;
+    }
+
     /**
      *  Hozzáad egy tárgyat a virológushoz ha korábban nem rendelkezett azzal.
      * @param  - A felvehető tárgy.

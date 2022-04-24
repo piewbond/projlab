@@ -37,4 +37,9 @@ public class Storage extends Center {
         materials.remove(m);
     }
 
+    public List<Material> getMaterial()
+    {
+        return this.materials;
+    }
+
 }

@@ -1,6 +1,8 @@
 package vilagtalanvirologusok;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 /**
  * Azt a vírust valósítja meg amelyet felkenve egy virológusra, az 3 körig elveszti az irányítást a karaktere felett és
@@ -15,17 +17,15 @@ public class ChoreaVirus extends Agent{
     @Override
     public void Affect(Virologist v)
     {
-        ArrayList<Agent> tmp = new ArrayList<Agent>();
-        tmp = v.getActiveAgents();
-        for(Agent a : tmp)
-        {
-            if(a.getName() == "ProtectorVaccine")
-            {
-                return;
-            }
-        }
-        //TODO
-        v.setActiveAgents(this);
+        Center location = v.getLocation();
+        Center nextlocation;
+        List<Center> neighbours = v.getLocation().GetNeighbours();
+        int size = neighbours.size();
+        Random r = new Random();
+        int random = r.nextInt((size) + 1);
+        location.RemoveVirologist(v);
+        nextlocation = neighbours.get(random);
+        nextlocation.AddVirologist(v);
         System.out.println("ChoreaVirus: Affect()");
     }
 }

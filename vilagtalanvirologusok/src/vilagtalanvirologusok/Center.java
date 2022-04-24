@@ -14,27 +14,29 @@ public class Center {
     List<Center> neighbours;
     List<Virologist> virologists;
 
-   public Center(int x,int y) {
-       cordx = x;
-       cordy = y;
-       virologists = new ArrayList<Virologist>();
-       neighbours = new ArrayList<Center>();
-   }
+    public Center(int x, int y) {
+        cordx = x;
+        cordy = y;
+        virologists = new ArrayList<Virologist>();
+        neighbours = new ArrayList<Center>();
+    }
 
     /**
      * Új virológust ad hozzá a helyhez.
+     *
      * @param v - Az új virológus.
      */
-    public void AddVirologist(Virologist v){
+    public void AddVirologist(Virologist v) {
         //System.out.println("Center: AddVirologist()");
         virologists.add(v);
     }
 
     /**
      * Eltávolít egy virológust a helyről.
+     *
      * @param v - Eltávolítandó virológus.
      */
-    public void RemoveVirologist(Virologist v){
+    public void RemoveVirologist(Virologist v) {
         System.out.println("Center: RemoveVirologist()");
         virologists.remove(v);
     }
@@ -42,9 +44,14 @@ public class Center {
     /**
      * @return szomszedos mezok listaja
      */
-    public List<Center> GetNeighbours(){
+    public List<Center> GetNeighbours() {
         System.out.println("Center: GetNeighbours()");
         return neighbours;
+    }
+
+    public List<Virologist> getVirologists()
+    {
+        return this.virologists;
     }
 
     public String getName() {

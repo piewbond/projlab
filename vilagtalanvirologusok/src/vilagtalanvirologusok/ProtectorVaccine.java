@@ -11,16 +11,10 @@ public class ProtectorVaccine extends Agent{
     @Override
     public void Affect(Virologist v)
     {
-        ArrayList<Agent> tmp = new ArrayList<Agent>();
-        tmp = v.getActiveAgents();
-        for(Agent a : tmp)
+        if(v.getActiveAgents().contains(this))
         {
-            if(a.getName() == "ProtectorVaccine")
-            {
-                return;
-            }
+            v.getActiveAgents().remove(this);
         }
-        v.setActiveAgents(this);
         System.out.println("ChoreaVirus: Affect()");
     }
 

@@ -16,17 +16,7 @@ public class AmnesiaVirus extends Agent{
     @Override
     public void Affect(Virologist v)
     {
-        ArrayList<Agent> tmp = new ArrayList<Agent>();
-        tmp = v.getActiveAgents();
-        for(Agent a : tmp)
-        {
-            if(a.getName() == "ProtectorVaccine")
-            {
-                return;
-            }
-        }
         v.getGeneticCode().clear();
-        v.setActiveAgents(this);
         System.out.println("AmnesiaVirus: Affect()");
     }
 

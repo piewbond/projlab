@@ -15,17 +15,7 @@ public class ParalyzeVirus extends Agent{
     @Override
     public void Affect(Virologist v)
     {
-        ArrayList<Agent> tmp = new ArrayList<Agent>();
-        tmp = v.getActiveAgents();
-        for(Agent a : tmp)
-        {
-            if(a.getName() == "ProtectorVaccine")
-            {
-                return;
-            }
-        }
         v.getTurnable().EndTurn();
-        v.setActiveAgents(this);
         System.out.println("ParalyzeVirus: Affect()");
     }
 }

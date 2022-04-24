@@ -1,23 +1,33 @@
 package vilagtalanvirologusok;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class BearVirus extends Agent{
 
     @Override
     public void Affect(Virologist v)
     {
-        ArrayList<Agent> tmp = new ArrayList<Agent>();
-        tmp = v.getActiveAgents();
-        for(Agent a : tmp)
+        Center location = v.getLocation();
+        Center nextlocation;
+        List<Center> neighbours = v.getLocation().GetNeighbours();
+        int size = neighbours.size();
+        Random r = new Random();
+        int random = r.nextInt((size) + 1);
+        location.RemoveVirologist(v);
+        nextlocation = neighbours.get(random);
+        nextlocation.AddVirologist(v);
+        if(nextlocation.getName() == "Storage")
         {
-            if(a.getName() == "ProtectorVaccine")
-            {
-                return;
-            }
+            Storage st = (Storage) nextlocation;
+            st.RemoveMaterial(st.getMaterial().get(0));
         }
-        //TODO
-        v.setActiveAgents(this);
+        List<Virologist> virologists = nextlocation.getVirologists();
+        for(int i = 0; i < virologists.size(); i++)
+        {
+            virologists.get(i).GetTouched(virologists.get(i),new BearVirus());
+        }
         System.out.println("BearVirus: Affect()");
     }
 
