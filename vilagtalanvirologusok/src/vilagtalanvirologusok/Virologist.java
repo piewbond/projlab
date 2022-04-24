@@ -69,13 +69,21 @@ public class Virologist implements Steppable{
 
         }
 
+        boolean success=true;
+
         for (Equipment e : equipments)
         {
             if(e.accept(equipmentVisitor,v,a))
             {
+                success=false;
                 break;
             }
         }
+        if (success)
+        {
+            ApplyAgent(a);
+        }
+
 
 
     }
