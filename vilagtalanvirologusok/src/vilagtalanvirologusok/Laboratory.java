@@ -43,6 +43,7 @@ public class Laboratory extends Center{
         virologists.add(v);
         if (contiguous == true) 
             Infect();
+        v.LearnGeneticCode(gn);
         
     }
 
