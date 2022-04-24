@@ -7,7 +7,7 @@ public abstract class Equipment implements Visitable{
     /**
      * A játékban szereplő felszerelések absztrakt ősosztálya. Ezekből származnak le a különféle felszerelések.
      */
-
+    private boolean random;
     private String name;
     protected int durability;
     public int getDurability()
@@ -33,5 +33,7 @@ public abstract class Equipment implements Visitable{
                 "\n\tLocation: " + /* this.getLocation() + */
                 "\n\tDurability: " + this.getDurability() + "\n\n";
     }
-
+    public void setRandom(boolean r){
+        random = r;
+    }
 }

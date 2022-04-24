@@ -9,6 +9,7 @@ public class Shelter extends Center{
     private List<Equipment> equipments;
     private int cordx;
     private int cordy;
+    private boolean random;
     /**
      *  Letrehozza a sheltert es random maximum haromnszor letrehozza a benne levo itemeket
      *  minden esetben random sorsolja hogy melyik itemet helyezi el
@@ -42,6 +43,19 @@ public class Shelter extends Center{
             case 3:
                 equipments.add(new Bag());
                 break;
+        }
+    }
+    public void AddVirologist(Virologist v) {
+        //System.out.println("Center: AddVirologist()");
+        virologists.add(v);
+        if (random == true) {
+            Random r = new Random();
+            Equipment temp = equipments.get(r.nextInt(equipments.size()));
+            v.PickupEquipment(temp);
+            RemoveEquipment(equipments.get(0));
+        } else {
+            v.PickupEquipment(equipments.get(0));
+            RemoveEquipment(equipments.get(0));
         }
     }
 

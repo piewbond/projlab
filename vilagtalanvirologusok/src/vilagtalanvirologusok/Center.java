@@ -11,8 +11,10 @@ public class Center {
     private String name; // koordinatabol
     private int cordx;
     private int cordy;
+    private boolean random;
     List<Center> neighbours;
     List<Virologist> virologists;
+
 
     public Center(int x, int y) {
         cordx = x;
@@ -65,5 +67,8 @@ public class Center {
                 "\n\tConnections: " + this.GetNeighbours().toString() +
                 "\n\tVirologists: " + virologists +
                 "\n\tEntities: " + entities + "\n\n";
+    }
+    public void setRandom(boolean r){
+        random = r;
     }
 }
