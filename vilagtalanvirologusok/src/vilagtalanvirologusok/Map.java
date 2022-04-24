@@ -28,7 +28,7 @@ public class Map {
             /**
              * bekeri a file eleleresi utvonalat majd megprobalja beolvasni
              */
-            System.out.println("Adja meg a map file eleresi utvonalat: ");
+            System.out.println("Please type the map file's path: ");
             Scanner scanner = new Scanner(System.in);
             String inputString = scanner.nextLine();
             File file = new File(inputString + "map1.txt");

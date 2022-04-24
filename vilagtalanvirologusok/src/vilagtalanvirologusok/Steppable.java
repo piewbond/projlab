@@ -8,6 +8,6 @@ public interface Steppable {
      *  Lépteti a meghívott osztályt.
      */
     public default void Step(){
-        System.out.println("Steppable: Step()");
+        //System.out.println("Steppable: Step()");
     }
 }

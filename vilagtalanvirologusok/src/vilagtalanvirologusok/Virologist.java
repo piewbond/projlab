@@ -227,8 +227,18 @@ public class Virologist implements Steppable{
      * AddVirologist(v: Virologist) a mezőre amire lépni szeretne.
      */
     public void Move(){
-        //attól függ hogy van megcsinálva végül a map
-        System.out.println("Virologist: Move()");
+        //System.out.println("Virologist: Move()");
+        for (int i=0;i<location.GetNeighbours().size();i++) {
+            System.out.println(i + ": " + location.GetNeighbours().get(i).toString());
+        }
+        System.out.println("Which neighbour location do you want leave? Please give the number");
+        Scanner scanner = new Scanner(System.in);
+        String inputString = scanner.nextLine();
+
+        Center nextloc = location.neighbours.get(Integer.parseInt(inputString));
+        nextloc.AddVirologist(this);
+        location.RemoveVirologist(this);
+
     }
 
     /**
