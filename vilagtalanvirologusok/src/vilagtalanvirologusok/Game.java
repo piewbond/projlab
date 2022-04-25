@@ -121,14 +121,14 @@ public class Game implements Serializable {
                     }
                     break;
                 case "useAgent":
-                    map.findVirologist(parsed[1]).Kill(map.findVirologist(parsed[2]));
+                    map.findVirologist(parsed[1]).Kill(map.findVirologist(parsed[2])); // TODO
                     break;
                 case "add":
                     map.findVirologist(parsed[1]).LearnGeneticCode(new ProtectorCode());
                     map.findVirologist(parsed[1]).PickupMaterial(new Aminoacid());
                     map.findVirologist(parsed[1]).PickupMaterial(new Nucleotide());
                 case "useEquipment":
-                    map.findVirologist(parsed[1]);
+                    map.findVirologist(parsed[1]).Kill(map.findVirologist(parsed[2]));
                     break;
                 case "steal":
                     map.findVirologist(parsed[1]).StealEquipment(map.findVirologist(parsed[2]));
@@ -202,7 +202,7 @@ public class Game implements Serializable {
                 if (cmd.length == 3) {return true;}
                 break;
             case "useEquipment":
-                if (cmd.length == 4) {return true;}
+                if (cmd.length == 3) {return true;}
                 break;
             case "steal":
                 if (cmd.length == 4) {return true;}

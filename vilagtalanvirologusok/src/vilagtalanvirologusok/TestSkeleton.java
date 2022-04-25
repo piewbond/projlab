@@ -67,5 +67,21 @@ public class TestSkeleton {
         }
     }
 
+    public void learnGeneticCode() {
+        Laboratory lab = new Laboratory(1, 2);
+        Virologist v2 = new Virologist("v2", lab, 2);
+        lab.AddVirologist(v2);
+
+        GeneticCode gc = lab.getGC();
+        v2.LearnGeneticCode(gc);
+
+        if (v2.getGeneticCode().size() > 0) {
+            success++;
+        }
+        else {
+            fail++;
+        }
+    }
+
 }
 
