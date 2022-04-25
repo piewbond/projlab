@@ -1,12 +1,13 @@
 package vilagtalanvirologusok;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * A játékos és a számítógép által irányított karakterek ősosztálya,
  * amik a pályán mozognak és genetikai kódokat gyűjtenek.
  */
-public class Virologist implements Steppable{
+public class Virologist implements Steppable, Serializable {
 
     private boolean dead;
     private Center location;

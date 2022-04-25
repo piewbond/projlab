@@ -2,6 +2,7 @@ package vilagtalanvirologusok;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import org.w3c.dom.Document;
@@ -94,6 +95,7 @@ public class Game implements Serializable {
                     break;
                 case "addVirologist":
                     Virologist v = new Virologist(parsed[1], map.getCenter(parsed[2]));   // TODO position
+                    map.getCenter(parsed[2]).AddVirologist(v);
                     virologists.add(v);
                     break;
                 case "learnGC":
@@ -248,9 +250,10 @@ public class Game implements Serializable {
         }
         System.out.println("Virologists:\n");
 
-        if (this.virologists.size() > 0) {
-            for (Virologist virologist : virologists) {
-                System.out.println(virologist.toString());
+        for (Center center : map.centers) {
+            List<Virologist> vir = center.getVirologists();
+            for (Virologist v : vir) {
+                System.out.println(v.toString());
             }
         }
     }
@@ -270,38 +273,6 @@ public class Game implements Serializable {
             ex.printStackTrace();
         }
 
-        /*
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        DocumentBuilder db = dbf.newDocumentBuilder();
-        Document doc = db.newDocument();
-
-        Element root = doc.createElement("virologists");
-        doc.appendChild(root);
-
-        for (Virologist v : virologists) {
-            Element virologist = doc.createElement(v.getName());
-            root.appendChild(virologist);
-            virologist.setAttribute("name", v.getName());
-            virologist.setAttribute("equipments", v.getEquipments().toString());
-            virologist.setAttribute("agents", v.getActiveAgents().toString());
-            virologist.setAttribute("materials", v.getMaterials().toString());
-        }
-
-        Element entities = doc.createElement("entities");
-        doc.appendChild(entities);
-
-
-        TransformerFactory transformerFactory = TransformerFactory.newInstance();
-        Transformer transformer = transformerFactory.newTransformer();
-
-        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-
-        DOMSource source = new DOMSource(doc);
-        StreamResult result = new StreamResult(new FileOutputStream(fileName));
-        transformer.transform(source, result);
-
-         */
-
     }
 
 
@@ -318,16 +289,6 @@ public class Game implements Serializable {
             e.printStackTrace();
             return null;
         }
-
-        /*
-        File file = new File(fileName);
-
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        DocumentBuilder db = dbf.newDocumentBuilder();
-        Document doc = db.parse(file);
-
-         */
-
 
     }
 }
