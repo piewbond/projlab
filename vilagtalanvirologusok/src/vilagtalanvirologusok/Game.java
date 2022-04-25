@@ -118,7 +118,7 @@ public class Game implements Serializable {
                     findVirologist(parsed[1]).Touch(findVirologist(parsed[2]), null);
                     break;
                 case "load":
-                    readXML(parsed[1]);
+                    this.map = readXML(parsed[1]);
                     break;
                 case "move":
                     findVirologist(parsed[1]).Move();
@@ -315,12 +315,28 @@ public class Game implements Serializable {
     }
 
 
-    public void readXML(String fileName) throws ParserConfigurationException, IOException, SAXException {
+    public Map readXML(String fileName) throws ParserConfigurationException, IOException, SAXException {
+        try {
+            FileInputStream fis = new FileInputStream(fileName);
+            ObjectInputStream obj = new ObjectInputStream(fis);
+
+            Map loaded = (Map) obj.readObject();
+            obj.close();
+            return loaded;
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        /*
         File file = new File(fileName);
 
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         DocumentBuilder db = dbf.newDocumentBuilder();
         Document doc = db.parse(file);
+
+         */
 
 
     }
