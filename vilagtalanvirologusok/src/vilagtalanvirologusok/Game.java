@@ -89,7 +89,7 @@ public class Game implements Serializable {
                     map.GenerateGraph();
                     break;
                 case "removeVirologist":
-                    Virologist remove = findVirologist(parsed[1]);
+                    Virologist remove = map.findVirologist(parsed[1]);
                     virologists.remove(remove);
                     break;
                 case "addVirologist":
@@ -97,44 +97,44 @@ public class Game implements Serializable {
                     virologists.add(v);
                     break;
                 case "learnGC":
-                    Virologist learner = findVirologist(parsed[1]);
+                    Virologist learner = map.findVirologist(parsed[1]);
                     Laboratory loc = (Laboratory) learner.getLocation();
                     GeneticCode gc = loc.getGC();
-                    findVirologist(parsed[1]).LearnGeneticCode(gc);
+                    map.findVirologist(parsed[1]).LearnGeneticCode(gc);
                     break;
                 case "pickupMaterial":
-                    findVirologist(parsed[1]).PickupMaterial(null); // TODO material
+                    map.findVirologist(parsed[1]).PickupMaterial(null); // TODO material
                     break;
                 case "removeMaterial":
-                    findVirologist(parsed[1]).RemoveMaterial(null);
+                    map.findVirologist(parsed[1]).RemoveMaterial(null);
                     break;
                 case "pickupEquipment":
-                    findVirologist(parsed[1]).PickupEquipment(null);
+                    map.findVirologist(parsed[1]).PickupEquipment(null);
                     break;
                 case "removeEquipment":
-                    findVirologist(parsed[1]).RemoveEquipment(null);
+                    map.findVirologist(parsed[1]).RemoveEquipment(null);
                     break;
                 case "touch":
-                    findVirologist(parsed[1]).Touch(findVirologist(parsed[2]), null);
+                    map.findVirologist(parsed[1]).Touch(map.findVirologist(parsed[2]), null);
                     break;
                 case "load":
                     this.map = readXML(parsed[1]);
                     break;
                 case "move":
-                    findVirologist(parsed[1]).Move();
+                    map.findVirologist(parsed[1]).Move();
                     break;
                 case "craftAgent":
-                    GeneticCode geneticCode = (GeneticCode) findVirologist(parsed[1]).getGeneticCode();
-                    findVirologist(parsed[1]).CraftAgent(geneticCode);
+                    GeneticCode geneticCode = (GeneticCode) map.findVirologist(parsed[1]).getGeneticCode();
+                    map.findVirologist(parsed[1]).CraftAgent(geneticCode);
                     break;
                 case "useAgent":
-                    findVirologist(parsed[1]); // TODO
+                    map.findVirologist(parsed[1]); // TODO
                     break;
                 case "useEquipment":
-                    findVirologist(parsed[1]);
+                    map.findVirologist(parsed[1]);
                     break;
                 case "steal":
-                    findVirologist(parsed[1]).StealEquipment(findVirologist(parsed[2]));
+                    map.findVirologist(parsed[1]).StealEquipment(map.findVirologist(parsed[2]));
                     break;
                 case "nextTurn":
                     this.turnable.EndTurn();
@@ -146,7 +146,7 @@ public class Game implements Serializable {
                 case "list":
                     break;
                 case "setActive":
-                    this.activeVirologist = findVirologist(parsed[1]);
+                    this.activeVirologist = map.findVirologist(parsed[1]);
                     break;
                 case "rand":
                     if (parsed[1].equals("on")) {
@@ -253,16 +253,6 @@ public class Game implements Serializable {
                 System.out.println(virologist.toString());
             }
         }
-    }
-
-    public Virologist findVirologist(String name) {
-        Virologist res = null;
-        for (Virologist virologist : virologists) {
-            if (virologist.getName().equals(name)) {
-                res = virologist;
-            }
-        }
-        return res;
     }
 
 
