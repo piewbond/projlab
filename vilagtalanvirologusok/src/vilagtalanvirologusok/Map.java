@@ -114,4 +114,17 @@ public class Map implements Serializable {
         return res;
     }
 
+    public Virologist findVirologistByNum(int playerNumber) {
+        Virologist res = null;
+
+        for (Center center : centers) {
+            for (Virologist virologist : center.virologists) {
+                if (virologist.getNumber() == playerNumber) {
+                    res = virologist;
+                }
+            }
+        }
+        return res;
+    }
+
 }

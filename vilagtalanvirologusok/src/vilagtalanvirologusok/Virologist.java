@@ -419,6 +419,7 @@ public class Virologist implements Steppable, Serializable {
     }
     public ArrayList<Material> getMaterials() { return materials; }
     public String getName() { return name; }
+    public int getNumber() { return playerNumber; }
     public String getPos() {return location.getName();}
     public boolean infected()
     {

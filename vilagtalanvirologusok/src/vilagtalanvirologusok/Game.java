@@ -97,6 +97,7 @@ public class Game implements Serializable {
                 case "addVirologist":
                     Virologist v = new Virologist(parsed[1], map.getCenter(parsed[2]),playercount);   // TODO position
                     map.getCenter(parsed[2]).AddVirologist(v);
+                    this.activeVirologist = v;
                     virologists.add(v);
                     playercount++;
                     break;
@@ -152,6 +153,9 @@ public class Game implements Serializable {
                     break;
                 case "nextTurn":
                     this.turnable.EndTurn();
+                    if (playercount == 1) {playercount = 2;}
+                    else {playercount = 1;}
+                    this.activeVirologist = map.findVirologistByNum(playercount);
                     this.turnCount++;
                     break;
                 case "save":
