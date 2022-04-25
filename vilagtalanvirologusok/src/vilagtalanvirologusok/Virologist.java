@@ -66,7 +66,8 @@ public class Virologist implements Steppable{
         //le kell csekkolni van e protector vaccine
         for (Agent agent : activeAgents)
         {
-
+            if(agent.getName() == "ProtectorVaccine")
+                return;
         }
 
         boolean success=true;
@@ -179,7 +180,7 @@ public class Virologist implements Steppable{
         for (Agent agent:activeAgents)
         {
 
-            if(true)
+            if(agent.getName()=="ParalyzeVirus")
             {
                 int n = new Random().nextInt(equipments.size());
                 Equipment eq = equipments.get(n);
