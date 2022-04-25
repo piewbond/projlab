@@ -49,7 +49,7 @@ public class Center implements Serializable {
      * @return szomszedos mezok listaja
      */
     public List<Center> GetNeighbours() {
-        System.out.println("Center: GetNeighbours()");
+        // System.out.println("Center: GetNeighbours()");
         return neighbours;
     }
 
