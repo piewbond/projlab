@@ -1,11 +1,12 @@
 package vilagtalanvirologusok;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 /**
  * A játékban szereplő raktárakat reprezentálja, ezeken a helyszíneken tudnak a virológusok anyagokat gyűjteni.
  */
-public class Storage extends Center {
+public class Storage extends Center implements Serializable {
     private boolean random;
     private List<Material> materials;
 

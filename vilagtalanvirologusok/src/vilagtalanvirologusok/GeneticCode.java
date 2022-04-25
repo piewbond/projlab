@@ -1,12 +1,14 @@
 package vilagtalanvirologusok;
 
+import java.io.Serializable;
+
 /**
  * Ezek az objektumok a laboratóriumok falain jelennek meg. Ezeknek megtanulásához a virológusoknak el kell menniük oda.
  * Minden meglátogatott laboratórium után a virológus kap egy genetikai kódot és egy véletlenül kisorsolt hozzá tartozó,
  * elkészíthető ágenst.
  * Amennyiben egy virológus megszerzett 4 genetikai kódot nyert.
  */
-public abstract class GeneticCode {
+public abstract class GeneticCode implements Serializable {
     /**
      * Az ágens létrehozásáért felelős metódus.
      * Meghivja a useMaterial() függvényt az alapanyagokra, amennyiben rendelkezik a szükséges mennyiséggel,

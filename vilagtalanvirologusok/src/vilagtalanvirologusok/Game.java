@@ -1,8 +1,6 @@
 package vilagtalanvirologusok;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -21,7 +19,7 @@ import javax.xml.transform.stream.StreamResult;
  * A játékot kezeli. A játék indításakor létrehozza a pályát.
  * A körök végén ellenőrzi, hogy van-e olyan virológus aki megtanulta az összes genetikai kódot.
  */
-public class Game {
+public class Game implements Serializable {
     private Virologist activeVirologist = null;
     private ArrayList<Virologist> virologists = new ArrayList<Virologist>();
     private ArrayList<Material> materials = new ArrayList<Material>();
@@ -210,7 +208,7 @@ public class Game {
                 if (cmd.length == 2) {return true;}
                 break;
             case "move":
-                if (cmd.length == 3) {return true;}
+                if (cmd.length == 2) {return true;}
                 break;
             case "craftAgent":
                 if (cmd.length == 3) {return true;}
@@ -231,7 +229,7 @@ public class Game {
                 if (cmd.length == 2) {return true;}
                 break;
             case "list":
-                if (cmd.length == 2) {return true;}
+                if (cmd.length == 1) {return true;}
                 break;
             case "setActive":
                 if (cmd.length == 2) {return true;}
@@ -269,8 +267,20 @@ public class Game {
 
 
     public void writeXML(String fileName) throws ParserConfigurationException, IOException, SAXException, TransformerException {
-        File file = new File(fileName);
+        // File file = new File(fileName);
 
+        try {
+            FileOutputStream fos = new FileOutputStream(fileName);
+            ObjectOutputStream obj = new ObjectOutputStream(fos);
+
+            obj.writeObject(map);
+            obj.close();
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        /*
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         DocumentBuilder db = dbf.newDocumentBuilder();
         Document doc = db.newDocument();
@@ -299,6 +309,8 @@ public class Game {
         DOMSource source = new DOMSource(doc);
         StreamResult result = new StreamResult(new FileOutputStream(fileName));
         transformer.transform(source, result);
+
+         */
 
     }
 

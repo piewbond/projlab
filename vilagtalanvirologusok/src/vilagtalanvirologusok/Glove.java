@@ -1,10 +1,12 @@
 package vilagtalanvirologusok;
 
+import java.io.Serializable;
+
 /**
  * A játékban szereplő kesztyűt valósítja meg, ha egy kesztyűvel rendelkező virológusra kennek rá egy ágenst akkor,
  * az ágenst visszakeni a másik virológusra.
  */
-public class Glove extends Equipment implements Visitable{
+public class Glove extends Equipment implements Visitable, Serializable {
     /**
      * Amennyiben a virológuson van kesztyű, akkor az ágenst visszakeni a másik virológusra, akitől a virus származik.
      *  - Virológus, aki

@@ -1,11 +1,13 @@
 package vilagtalanvirologusok;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Random;
 
 /**
  *A Laboratórium helyiséget valósítja meg, a virológusok itt olvashatják le a győzelemhez szükséges genetikai kódokat.
  */
-public class Laboratory extends Center{
+public class Laboratory extends Center implements Serializable {
     private boolean contiguous;
     private GeneticCode gn;
     public Laboratory(int x, int y) {

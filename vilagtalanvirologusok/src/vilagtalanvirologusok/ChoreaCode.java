@@ -1,12 +1,13 @@
 package vilagtalanvirologusok;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Az egyik genetikai kód osztálya. Az vitustánc ágens létrehozása a felelőssége.
  * A játékos győzelméhez többek közt ennek a megszerzése a célja.
  */
-public class ChoreaCode extends GeneticCode{
+public class ChoreaCode extends GeneticCode implements Serializable {
     /**
      * Az ágens létrehozásáért felelős metódus.
      * Meghivja a useMaterial() függvényt az alapanyagokra, amennyiben rendelkezik a szükséges mennyiséggel

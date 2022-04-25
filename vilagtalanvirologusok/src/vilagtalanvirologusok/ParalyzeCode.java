@@ -1,5 +1,6 @@
 package vilagtalanvirologusok;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -7,7 +8,7 @@ import java.util.ArrayList;
  * Az paralzye ágens létrehozása a felelőssége.
  * A játékos győzelméhez többek közt ennek a megszerzése a célja.
  */
-public class ParalyzeCode extends GeneticCode{
+public class ParalyzeCode extends GeneticCode implements Serializable {
     /**
      * Az ágens létrehozásáért felelős metódus.
      * Meghivja a useMaterial() függvényt az alapanyagokra, amennyiben rendelkezik a szükséges mennyiséggel

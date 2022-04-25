@@ -1,12 +1,13 @@
 package vilagtalanvirologusok;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Azt a vakcinát valósítja meg amelyet a virológusok maguknak vagy másnak beadva,
  * immunisak lesznek a következő rájuk kent ágensre. A hatás 3 körig érvényes.
  */
-public class ProtectorVaccine extends Agent{
+public class ProtectorVaccine extends Agent implements Serializable {
 
     @Override
     public void Affect(Virologist v)

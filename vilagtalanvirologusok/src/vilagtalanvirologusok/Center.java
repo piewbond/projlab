@@ -1,4 +1,5 @@
 package vilagtalanvirologusok;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -6,7 +7,7 @@ import java.util.List;
  * Tárolja a rajta lévő virológusokat, illetve a pályán betöltött pozícióját. Az adatstruktúra alapja.
  * A pálya (felépülő gráf) struktúrájában a csúcsokat reprezentálja, ezeken tudnak a virológusok lépkedni.
  */
-public class Center {
+public class Center implements Serializable {
 
     private String name; // koordinatabol
     private int cordx;

@@ -1,9 +1,11 @@
 package vilagtalanvirologusok;
 
+import java.io.Serializable;
+
 /**
  * A játékban szereplő felszerelések absztrakt ősosztálya. Ezekből származnak le a különféle felszerelések.
  */
-public abstract class Equipment implements Visitable{
+public abstract class Equipment implements Visitable, Serializable {
     /**
      * A játékban szereplő felszerelések absztrakt ősosztálya. Ezekből származnak le a különféle felszerelések.
      */

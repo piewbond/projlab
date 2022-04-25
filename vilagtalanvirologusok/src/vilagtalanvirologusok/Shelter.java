@@ -1,11 +1,12 @@
 package vilagtalanvirologusok;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 /**
  *  A játékban szereplő óvóhelyeket reprezentálja, ezeken a helyszíneken tudnak a virológusok felszereléseket gyűjteni.
  */
-public class Shelter extends Center{
+public class Shelter extends Center implements Serializable {
     private List<Equipment> equipments;
     private int cordx;
     private int cordy;

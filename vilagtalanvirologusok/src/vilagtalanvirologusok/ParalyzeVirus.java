@@ -1,12 +1,13 @@
 package vilagtalanvirologusok;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Azt a vírust valósítja meg amelyet felkenve egy virológusra, az 3körig lebénul,
  * ez idő alatt nem tud semmilyen cselekvést folytatni és el lehet tőle venni felszereléseket.
  */
-public class ParalyzeVirus extends Agent{
+public class ParalyzeVirus extends Agent implements Serializable {
     /**
      * Az osztály az őséhez tartozó virtuális függvényt tartalmazza:
      * A virológus lebénul, nem képes mozogni a pályán, amíg a hatása tart.

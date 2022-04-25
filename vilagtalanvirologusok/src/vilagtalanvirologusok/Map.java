@@ -1,6 +1,7 @@
 package vilagtalanvirologusok;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,7 +12,7 @@ import java.util.Scanner;
  * A játék kezdetekor mindig új pályát generál, rajta tetszőleges, a játékos által választott számú virológussal.
  */
 
-public class Map {
+public class Map implements Serializable {
     List<Center> centers;
     /**
      * Generálja a pálya gráfját.

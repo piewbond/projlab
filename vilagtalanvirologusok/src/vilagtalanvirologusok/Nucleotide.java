@@ -1,9 +1,11 @@
 package vilagtalanvirologusok;
 
+import java.io.Serializable;
+
 /**
  * A játékban szereplő két anyag közül az egyik,
  * ennek és az aminosavnak a segítségével lehet a virológusok számára különböző ágenseket készíteni.
  * Raktárakban fellelhetőek.
  */
-public class Nucleotide extends Material{
+public class Nucleotide extends Material implements Serializable {
 }
