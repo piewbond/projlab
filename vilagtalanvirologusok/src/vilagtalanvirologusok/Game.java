@@ -29,6 +29,7 @@ public class Game implements Serializable {
     private boolean random = true;
     private int turnCount = 1;
     public Turnable turnable = new Turnable();
+    private int playercount=1;
     Map map = new Map();
     /**
      *  Inicializálja a játék kezdéséhez szükséges objektumokat.
@@ -94,9 +95,10 @@ public class Game implements Serializable {
                     virologists.remove(remove);
                     break;
                 case "addVirologist":
-                    Virologist v = new Virologist(parsed[1], map.getCenter(parsed[2]));   // TODO position
+                    Virologist v = new Virologist(parsed[1], map.getCenter(parsed[2]),playercount);   // TODO position
                     map.getCenter(parsed[2]).AddVirologist(v);
                     virologists.add(v);
+                    playercount++;
                     break;
                 case "learnGC":
                     Virologist learner = map.findVirologist(parsed[1]);

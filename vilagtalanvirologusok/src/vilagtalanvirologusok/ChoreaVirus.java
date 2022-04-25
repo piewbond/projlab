@@ -29,4 +29,10 @@ public class ChoreaVirus extends Agent implements Serializable {
         nextlocation.AddVirologist(v);
         System.out.println("ChoreaVirus: Affect()");
     }
+
+    @Override
+    public boolean acceptChorea(AgVisitor agVisitor, Virologist virologist)
+    {
+       return agVisitor.visit(this,virologist);
+    }
 }

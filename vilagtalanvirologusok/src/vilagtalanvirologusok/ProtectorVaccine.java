@@ -20,6 +20,7 @@ public class ProtectorVaccine extends Agent implements Serializable {
     }
 
 
+
     @Override
     public boolean acceptProtector(AgVisitor agVisitor,Virologist virologist)
     {

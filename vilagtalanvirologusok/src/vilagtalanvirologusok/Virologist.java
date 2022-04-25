@@ -11,18 +11,21 @@ public class Virologist implements Steppable, Serializable {
 
     private boolean dead;
     private Center location;
-    private Turnable turnable;
+    private boolean moved;
     private ArrayList<Material> materials;
     private ArrayList<GeneticCode> geneticCodes;
     private ArrayList<Equipment> equipments;
     private ArrayList<Agent> activeAgents;
     private ArrayList<Agent> knownAgents;
     private String name;
+    private int playerNumber;
 
 
 
-    Virologist(String name, Center location)
+
+    Virologist(String name, Center location,int playerNumber)
     {
+        this.playerNumber=playerNumber;
         dead=false;
         materials = new ArrayList<Material>();
         geneticCodes = new ArrayList<GeneticCode>();
@@ -52,6 +55,7 @@ public class Virologist implements Steppable, Serializable {
     public void Touch(Virologist v, Agent a)
     {
         v.GetTouched(this,a);
+        knownAgents.remove(a);
     }
 
     /**
@@ -59,7 +63,8 @@ public class Virologist implements Steppable, Serializable {
      *  ha nincs olyan felszerelése vagy a virológusra ható ágens ami ezt megakadályozza.
      * @param a - Ágens, amellyel megérintik a Virológust.
      */
-    public void GetTouched(Virologist v,Agent a){
+    public void GetTouched(Virologist v,Agent a)
+    {
 
         EquipmentVisitor equipmentVisitor = new EquipmentVisitor();
         AgentVisitor agentVisitor = new AgentVisitor();
@@ -73,7 +78,6 @@ public class Virologist implements Steppable, Serializable {
                break;
            }
         }
-
 
 
         for (Equipment e : equipments)
@@ -96,13 +100,30 @@ public class Virologist implements Steppable, Serializable {
     /**
      * Megvalósítja a Steppable interfészt.
      */
-    public void Step(){
+    public void Step()
+    {
+        moved=false;
+
+        AgentVisitor agentVisitor = new AgentVisitor();
 
         for (Agent a: activeAgents)
+        {
+            a.acceptChorea(agentVisitor,this);
+            a.acceptBear(agentVisitor,this  );
+            a.acceptParalyze(agentVisitor,this);
+            a.Step();
+        }
+        for (Agent a:knownAgents)
         {
             a.Step();
         }
         RemoveAgent();
+
+
+
+
+
+
     }
 
     /**
@@ -137,11 +158,6 @@ public class Virologist implements Steppable, Serializable {
         return geneticCodes;
     }
 
-    public Turnable getTurnable()
-    {
-        return this.turnable;
-    }
-
     public Center getLocation()
     {
         return this.location;
@@ -174,6 +190,16 @@ public class Virologist implements Steppable, Serializable {
     {
         AgentVisitor agentVisitor= new AgentVisitor();
         //csekkolni hogy le van e bénulva
+
+        if(this.dead)
+        {
+            int n = new Random().nextInt(equipments.size());
+            Equipment eq = equipments.get(n);
+            virologist.PickupEquipment(eq);
+            return;
+        }
+
+
         for (Agent agent:activeAgents)
         {
             if(agent.acceptParalyze(agentVisitor,this))
@@ -223,7 +249,17 @@ public class Virologist implements Steppable, Serializable {
                 i--;
             }
         }
+        for (int i=0;i<knownAgents.size();i++)
+        {
+            if (knownAgents.get(i).getLifetime()==0)
+            {
+                knownAgents.remove(i);
+                i--;
+            }
+        }
     }
+
+
 
     /**
      * a Virologist osztály mozgását valósítja meg.
@@ -233,18 +269,27 @@ public class Virologist implements Steppable, Serializable {
      */
     public void Move(){
         //System.out.println("Virologist: Move()");
-        for (int i=0;i<location.GetNeighbours().size();i++) {
-            System.out.println(i + ": " + location.GetNeighbours().get(i).toString());
+        if(!moved)
+        {
+            for (int i=0;i<location.GetNeighbours().size();i++) {
+                System.out.println(i + ": " + location.GetNeighbours().get(i).toString());
+            }
+            System.out.println("Which neighbour location do you want leave? Please give the number");
+            Scanner scanner = new Scanner(System.in);
+            String inputString = scanner.nextLine();
+
+            Center nextloc = location.neighbours.get(Integer.parseInt(inputString));
+            nextloc.AddVirologist(this);
+            location.RemoveVirologist(this);
+
+            this.location = nextloc;
+            moved=true;
         }
-        System.out.println("Which neighbour location do you want leave? Please give the number");
-        Scanner scanner = new Scanner(System.in);
-        String inputString = scanner.nextLine();
+        else
+        {
+            System.out.println("Mar lepett.");
+        }
 
-        Center nextloc = location.neighbours.get(Integer.parseInt(inputString));
-        nextloc.AddVirologist(this);
-        location.RemoveVirologist(this);
-
-        this.location = nextloc;
     }
 
     /**
@@ -340,6 +385,9 @@ public class Virologist implements Steppable, Serializable {
 
     }
 
+
+
+
     /**
      * Adott anyagot töröl.
      * @param m - Törölni kívánt anyag.
@@ -360,7 +408,10 @@ public class Virologist implements Steppable, Serializable {
     }
 
 
-
+    public boolean getDead()
+    {
+        return dead;
+    }
 
     public ArrayList<Agent> getActiveAgents()
     {
@@ -369,8 +420,26 @@ public class Virologist implements Steppable, Serializable {
     public ArrayList<Material> getMaterials() { return materials; }
     public String getName() { return name; }
     public String getPos() {return location.getName();}
-    public boolean infected() { return false; } // TODO visitor
+    public boolean infected()
+    {
+        AgVisitor agVisitor = new AgentVisitor();
+        for (Agent a: activeAgents)
+        {
+            if(a.acceptBear(agVisitor,this))
+            {
+                return true;
+            }
+        }
+        return false;
+
+
+    }
     public ArrayList<Agent> getKnownAgents() { return knownAgents; }
+
+    public void setMoved(boolean n)
+    {
+        moved=n;
+    }
 
     @Override
     public String toString() {

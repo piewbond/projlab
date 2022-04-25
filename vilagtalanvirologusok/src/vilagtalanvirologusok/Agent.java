@@ -47,4 +47,16 @@ public class Agent implements Steppable, AgentVisitable{
     {
         return false;
     }
+
+    @Override
+    public boolean acceptBear(AgVisitor agVisitor, Virologist virologist)
+    {
+        return false;
+    }
+
+    @Override
+    public boolean acceptChorea(AgVisitor agVisitor, Virologist virologist)
+    {
+        return false;
+    }
 }

@@ -13,11 +13,16 @@ public class ParalyzeVirus extends Agent implements Serializable {
      * A virológus lebénul, nem képes mozogni a pályán, amíg a hatása tart.
      * @param v - Virologus, akin kifejti a hatást.
      */
+
+
+
+
+
     @Override
     public void Affect(Virologist v)
     {
-        v.getTurnable().EndTurn();
-        System.out.println("ParalyzeVirus: Affect()");
+        v.setMoved(true);
+
     }
     @Override
     public boolean acceptParalyze(AgVisitor agentVisitor, Virologist v)

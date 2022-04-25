@@ -31,4 +31,11 @@ public class BearVirus extends Agent{
         System.out.println("BearVirus: Affect()");
     }
 
+
+    @Override
+    public boolean acceptBear(AgVisitor agVisitor, Virologist virologist)
+    {
+       return agVisitor.visit(this,virologist);
+    }
+
 }
