@@ -136,7 +136,7 @@ public class Game implements Serializable {
                     }
                     break;
                 case "useAgent":
-                    map.findVirologist(parsed[1]); // TODO
+                    map.findVirologist(parsed[1]).Kill(map.findVirologist(parsed[2])); 
                     break;
                 case "add":
                     map.findVirologist(parsed[1]).LearnGeneticCode(new ProtectorCode());
