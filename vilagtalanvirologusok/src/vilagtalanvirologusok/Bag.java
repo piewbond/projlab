@@ -36,20 +36,22 @@ public class Bag extends Equipment implements Visitable{
     }
 
     @Override
-    public boolean accept(Visitor visitor,Material m)
+    public boolean accept(EqVisitor visitor,Material m)
     {
         return visitor.visit(this, m);
     }
 
+
+
     @Override
-    public boolean accept(Visitor visitor, Virologist v, Agent a)
+    public boolean accept(EqVisitor visitor, Virologist v, Agent a)
     {
         return false;
     }
 
     @Override
-    public void accept(Visitor visitor ,Virologist v)
+    public void accept(EqVisitor visitor ,Virologist v)
     {
-        return;
+
     }
 }

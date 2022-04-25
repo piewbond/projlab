@@ -20,19 +20,21 @@ public class Axe extends Equipment implements Visitable
         DecreaseDurability();
     }
 
-    public boolean accept(Visitor visitor, Material m)
+    public boolean accept(EqVisitor visitor, Material m)
+    {
+        return false;
+    }
+
+
+
+    @Override
+    public boolean accept(EqVisitor visitor, Virologist v, Agent a)
     {
         return false;
     }
 
     @Override
-    public boolean accept(Visitor visitor, Virologist v, Agent a)
-    {
-        return false;
-    }
-
-    @Override
-    public void accept(Visitor visitor,Virologist virologist)
+    public void accept(EqVisitor visitor,Virologist virologist)
     {
         visitor.visit(this,virologist);
     }

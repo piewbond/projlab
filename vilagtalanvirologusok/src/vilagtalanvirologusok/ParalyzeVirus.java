@@ -18,4 +18,10 @@ public class ParalyzeVirus extends Agent{
         v.getTurnable().EndTurn();
         System.out.println("ParalyzeVirus: Affect()");
     }
+    @Override
+    public boolean acceptParalyze(AgVisitor agentVisitor, Virologist v)
+    {
+        return agentVisitor.visit(this,v);
+
+    }
 }

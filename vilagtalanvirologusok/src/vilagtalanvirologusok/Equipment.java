@@ -19,11 +19,12 @@ public abstract class Equipment implements Visitable{
     }
 
 
-    public abstract boolean accept(Visitor visitor, Material m);
+    public abstract boolean accept(EqVisitor visitor, Material m);
 
 
+    public abstract void accept(EqVisitor visitor,Virologist virologist);
 
-    public abstract boolean accept(Visitor visitor, Virologist v, Agent a);
+    public abstract boolean accept(EqVisitor visitor, Virologist v, Agent a);
 
     public String getName() { return name; }
 

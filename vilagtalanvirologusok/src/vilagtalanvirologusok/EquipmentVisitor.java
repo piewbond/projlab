@@ -2,7 +2,7 @@ package vilagtalanvirologusok;
 
 import java.util.ArrayList;
 
-public class EquipmentVisitor implements Visitor
+public class EquipmentVisitor implements EqVisitor
 {
 
     @Override
@@ -28,4 +28,5 @@ public class EquipmentVisitor implements Visitor
     {
         return cloak.Resist();
     }
+
 }

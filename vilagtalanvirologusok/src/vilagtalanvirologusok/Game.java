@@ -17,7 +17,6 @@ import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-
 /**
  * A játékot kezeli. A játék indításakor létrehozza a pályát.
  * A körök végén ellenőrzi, hogy van-e olyan virológus aki megtanulta az összes genetikai kódot.
@@ -92,41 +91,52 @@ public class Game {
                     map.GenerateGraph();
                     break;
                 case "removeVirologist":
-                    Virologist remove = map.findVirologist(parsed[1]);
+                    Virologist remove = findVirologist(parsed[1]);
                     virologists.remove(remove);
                     break;
                 case "addVirologist":
                     Virologist v = new Virologist(parsed[1], map.getCenter(parsed[2]));   // TODO position
-                    map.getCenter(parsed[2]).AddVirologist(v);
                     virologists.add(v);
                     break;
                 case "learnGC":
-                    Virologist learner = map.findVirologist(parsed[1]);
+                    Virologist learner = findVirologist(parsed[1]);
                     Laboratory loc = (Laboratory) learner.getLocation();
                     GeneticCode gc = loc.getGC();
-                    map.findVirologist(parsed[1]).LearnGeneticCode(gc);
+                    findVirologist(parsed[1]).LearnGeneticCode(gc);
+                    break;
+                case "pickupMaterial":
+                    findVirologist(parsed[1]).PickupMaterial(null); // TODO material
+                    break;
+                case "removeMaterial":
+                    findVirologist(parsed[1]).RemoveMaterial(null);
+                    break;
+                case "pickupEquipment":
+                    findVirologist(parsed[1]).PickupEquipment(null);
+                    break;
+                case "removeEquipment":
+                    findVirologist(parsed[1]).RemoveEquipment(null);
                     break;
                 case "touch":
-                    map.findVirologist(parsed[1]).Touch(map.findVirologist(parsed[2]), null);
+                    findVirologist(parsed[1]).Touch(findVirologist(parsed[2]), null);
                     break;
                 case "load":
                     readXML(parsed[1]);
                     break;
                 case "move":
-                    map.findVirologist(parsed[1]).Move();
+                    findVirologist(parsed[1]).Move();
                     break;
                 case "craftAgent":
-                    GeneticCode geneticCode = (GeneticCode) map.findVirologist(parsed[1]).getGeneticCode();
-                    map.findVirologist(parsed[1]).CraftAgent(geneticCode);
+                    GeneticCode geneticCode = (GeneticCode) findVirologist(parsed[1]).getGeneticCode();
+                    findVirologist(parsed[1]).CraftAgent(geneticCode);
                     break;
                 case "useAgent":
-                    map.findVirologist(parsed[1]); // TODO
+                    findVirologist(parsed[1]); // TODO
                     break;
                 case "useEquipment":
-                    map.findVirologist(parsed[1]);
+                    findVirologist(parsed[1]);
                     break;
                 case "steal":
-                    map.findVirologist(parsed[1]).StealEquipment(map.findVirologist(parsed[2]));
+                    findVirologist(parsed[1]).StealEquipment(findVirologist(parsed[2]));
                     break;
                 case "nextTurn":
                     this.turnable.EndTurn();
@@ -136,10 +146,9 @@ public class Game {
                     writeXML(parsed[1]);
                     break;
                 case "list":
-                    System.out.println("Listing...");
                     break;
                 case "setActive":
-                    this.activeVirologist = map.findVirologist(parsed[1]);
+                    this.activeVirologist = findVirologist(parsed[1]);
                     break;
                 case "rand":
                     if (parsed[1].equals("on")) {
@@ -182,6 +191,18 @@ public class Game {
             case "learnGC":
                 if (cmd.length == 2) {return true;}
                 break;
+            case "pickupMaterial":
+                if (cmd.length == 3) {return true;}
+                break;
+            case "removeMaterial":
+                if (cmd.length == 3) {return true;}
+                break;
+            case "pickupEquipment":
+                if (cmd.length == 3) {return true;}
+                break;
+            case "removeEquipment":
+                if (cmd.length == 3) {return true;}
+                break;
             case "touch":
                 if (cmd.length == 1) {return true;}
                 break;
@@ -210,7 +231,7 @@ public class Game {
                 if (cmd.length == 2) {return true;}
                 break;
             case "list":
-                if (cmd.length == 1) {return true;}
+                if (cmd.length == 2) {return true;}
                 break;
             case "setActive":
                 if (cmd.length == 2) {return true;}
@@ -236,7 +257,6 @@ public class Game {
         }
     }
 
-    /*
     public Virologist findVirologist(String name) {
         Virologist res = null;
         for (Virologist virologist : virologists) {
@@ -246,29 +266,29 @@ public class Game {
         }
         return res;
     }
-     */
 
 
     public void writeXML(String fileName) throws ParserConfigurationException, IOException, SAXException, TransformerException {
         File file = new File(fileName);
 
-        
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         DocumentBuilder db = dbf.newDocumentBuilder();
         Document doc = db.newDocument();
 
-        Element root = doc.createElement("centers");
+        Element root = doc.createElement("virologists");
         doc.appendChild(root);
 
-        int index = 0;
-        for (Center center : map.centers) {
-            Element c = doc.createElement("Center" + index);
-            root.appendChild(c);
-            c.setAttribute("position", center.getName());
-            c.setAttribute("virologists", center.getVirologists().toString());
-            c.setAttribute("neighbours", center.GetNeighbours().toString());
-            index++;
+        for (Virologist v : virologists) {
+            Element virologist = doc.createElement(v.getName());
+            root.appendChild(virologist);
+            virologist.setAttribute("name", v.getName());
+            virologist.setAttribute("equipments", v.getEquipments().toString());
+            virologist.setAttribute("agents", v.getActiveAgents().toString());
+            virologist.setAttribute("materials", v.getMaterials().toString());
         }
+
+        Element entities = doc.createElement("entities");
+        doc.appendChild(entities);
 
 
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -279,8 +299,6 @@ public class Game {
         DOMSource source = new DOMSource(doc);
         StreamResult result = new StreamResult(new FileOutputStream(fileName));
         transformer.transform(source, result);
-
-
 
     }
 

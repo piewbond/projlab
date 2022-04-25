@@ -37,20 +37,25 @@ public class Cloak extends Equipment implements Visitable{
     }
 
     @Override
-    public boolean accept(Visitor visitor, Material m)
+    public boolean accept(EqVisitor visitor, Material m)
     {
         return false;
     }
 
     @Override
-    public boolean accept(Visitor visitor, Virologist v, Agent a)
+    public void accept(EqVisitor visitor, Virologist virologist)
+    {
+
+    }
+
+    @Override
+    public boolean accept(EqVisitor visitor, Virologist v, Agent a)
     {
         return visitor.visit(this,v,a);
 
     }
 
-    @Override
-    public void accept(Visitor visitor, Virologist v) {
 
-    }
+
+
 }

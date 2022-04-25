@@ -18,6 +18,8 @@ public class Virologist implements Steppable{
     private ArrayList<Agent> knownAgents;
     private String name;
 
+
+
     Virologist(String name, Center location)
     {
         dead=false;
@@ -31,11 +33,6 @@ public class Virologist implements Steppable{
     }
 
 
-
-
-
-
-
     public void Kill(Virologist virologist)
     {
         EquipmentVisitor equipmentVisitor = new EquipmentVisitor();
@@ -44,6 +41,7 @@ public class Virologist implements Steppable{
             e.accept(equipmentVisitor,virologist);
         }
     }
+
 
     /**
      * A megérintést valósítja meg a játékban. Az adott virológus GetTouched() függvényét valósítja meg.
@@ -63,14 +61,19 @@ public class Virologist implements Steppable{
     public void GetTouched(Virologist v,Agent a){
 
         EquipmentVisitor equipmentVisitor = new EquipmentVisitor();
+        AgentVisitor agentVisitor = new AgentVisitor();
         //le kell csekkolni van e protector vaccine
+        boolean success=true;
         for (Agent agent : activeAgents)
         {
-            if(agent.getName() == "ProtectorVaccine")
-                return;
+           if(agent.acceptProtector(agentVisitor,v))
+           {
+               success=false;
+               break;
+           }
         }
 
-        boolean success=true;
+
 
         for (Equipment e : equipments)
         {
@@ -174,18 +177,20 @@ public class Virologist implements Steppable{
      * @param  - Eltávolítandó felszerelés.
      */
     public void RemoveEquipment(Virologist virologist)
-
     {
+        AgentVisitor agentVisitor= new AgentVisitor();
         //csekkolni hogy le van e bénulva
         for (Agent agent:activeAgents)
         {
-
-            if(agent.getName()=="ParalyzeVirus")
+            if(agent.acceptParalyze(agentVisitor,this))
             {
                 int n = new Random().nextInt(equipments.size());
                 Equipment eq = equipments.get(n);
                 virologist.PickupEquipment(eq);
             }
+
+
+
 
         }
     }
@@ -321,10 +326,7 @@ public class Virologist implements Steppable{
         knownAgents.add(agent);
     }
 
-    public void LearnAgent(Agent a)
-    {
-        knownAgents.add(a);
-    }
+
 
 
     public ArrayList<Agent> getActiveAgents()

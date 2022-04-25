@@ -18,4 +18,10 @@ public class ProtectorVaccine extends Agent{
         System.out.println("ChoreaVirus: Affect()");
     }
 
+
+    @Override
+    public boolean acceptProtector(AgVisitor agVisitor,Virologist virologist)
+    {
+        return agVisitor.visit(this,virologist);
+    }
 }

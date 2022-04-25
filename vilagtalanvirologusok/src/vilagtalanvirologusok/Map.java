@@ -10,11 +10,13 @@ import java.util.Scanner;
  * A Map osztály tartalmazza a játékteret.
  * A játék kezdetekor mindig új pályát generál, rajta tetszőleges, a játékos által választott számú virológussal.
  */
+
 public class Map {
     List<Center> centers;
     /**
      * Generálja a pálya gráfját.
      */
+
     public Map() {
         centers = new ArrayList<>();
     }

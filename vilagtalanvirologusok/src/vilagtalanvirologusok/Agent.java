@@ -3,7 +3,7 @@ package vilagtalanvirologusok;
 /**
  * Az ágensek megvalósításáért felelős absztrakt ősosztály, ebből származnak le a különböző ágens típusok.
  */
-public class Agent implements Steppable{
+public class Agent implements Steppable, AgentVisitable{
     /**
      * Csökkenti az adott ágens élettartamát.
      * Megvalósítja a Steppable interfészt.
@@ -34,5 +34,16 @@ public class Agent implements Steppable{
     }
     public void setRandom(boolean r){
         random = r;
+    }
+
+    @Override
+    public boolean acceptProtector(AgVisitor agVisitor, Virologist virologist)
+    {
+        return false;
+    }
+    @Override
+    public boolean acceptParalyze(AgVisitor agVisitor, Virologist virologist)
+    {
+        return false;
     }
 }

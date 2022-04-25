@@ -25,20 +25,22 @@ public class Glove extends Equipment implements Visitable{
     }
 
     @Override
-    public boolean accept(Visitor visitor, Material m)
+    public boolean accept(EqVisitor visitor, Material m)
     {
         return false;
     }
 
+
+
     @Override
-    public boolean accept(Visitor visitor, Virologist v, Agent a)
+    public boolean accept(EqVisitor visitor, Virologist v, Agent a)
     {
         visitor.visit(this,v,a);
         return true;
     }
 
     @Override
-    public void accept(Visitor visitor, Virologist v) {
+    public void accept(EqVisitor visitor, Virologist v) {
 
     }
 }
