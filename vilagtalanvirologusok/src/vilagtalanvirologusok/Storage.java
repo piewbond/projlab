@@ -36,8 +36,10 @@ public class Storage extends Center implements Serializable {
     public void AddVirologist(Virologist v) {
         //System.out.println("Center: AddVirologist()");
         virologists.add(v);
-        v.PickupMaterial(materials.get(0));
-        RemoveMaterial(materials.get(0));
+        if (materials.size() > 0) {
+            v.PickupMaterial(materials.get(0));
+            RemoveMaterial(materials.get(0));
+        }
     }
     /**
      * Kitorol egy kapott anyagot

@@ -51,12 +51,16 @@ public class Shelter extends Center implements Serializable {
         virologists.add(v);
         if (random == true) {
             Random r = new Random();
-            Equipment temp = equipments.get(r.nextInt(equipments.size()));
-            v.PickupEquipment(temp);
-            RemoveEquipment(equipments.get(0));
+            if (equipments.size() > 0) {
+                Equipment temp = equipments.get(r.nextInt(equipments.size()));
+                v.PickupEquipment(temp);
+                RemoveEquipment(equipments.get(0));
+            }
         } else {
-            v.PickupEquipment(equipments.get(0));
-            RemoveEquipment(equipments.get(0));
+            if (equipments.size() > 0) {
+                v.PickupEquipment(equipments.get(0));
+                RemoveEquipment(equipments.get(0));
+            }
         }
     }
 
