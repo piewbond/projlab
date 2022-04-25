@@ -13,7 +13,7 @@ public class Virologist implements Steppable, Serializable {
     private Center location;
     private Turnable turnable;
     private ArrayList<Material> materials;
-    private Set<GeneticCode> geneticCodes;
+    private ArrayList<GeneticCode> geneticCodes;
     private ArrayList<Equipment> equipments;
     private ArrayList<Agent> activeAgents;
     private ArrayList<Agent> knownAgents;
@@ -25,7 +25,7 @@ public class Virologist implements Steppable, Serializable {
     {
         dead=false;
         materials = new ArrayList<Material>();
-        geneticCodes = new HashSet<GeneticCode>();
+        geneticCodes = new ArrayList<GeneticCode>();
         equipments = new ArrayList<Equipment>();
         activeAgents = new ArrayList<Agent>();
         knownAgents = new ArrayList<Agent>();
@@ -132,19 +132,9 @@ public class Virologist implements Steppable, Serializable {
         return equipments;
     }
 
-    public Set<GeneticCode> getGeneticCode()
+    public ArrayList<GeneticCode> getGeneticCode()
     {
         return geneticCodes;
-    }
-
-    public void setGeneticCodes(Set<GeneticCode> gc)
-    {
-        this.geneticCodes = gc;
-    }
-
-    public void setActiveAgents(Agent a)
-    {
-        this.activeAgents.add(a);
     }
 
     public Turnable getTurnable()
@@ -254,6 +244,7 @@ public class Virologist implements Steppable, Serializable {
         nextloc.AddVirologist(this);
         location.RemoveVirologist(this);
 
+        this.location = nextloc;
     }
 
     /**
@@ -261,22 +252,60 @@ public class Virologist implements Steppable, Serializable {
      * @param m - Az anyagok listája.
      * @return
      */
-    public boolean UseMaterial(List<Material> m){
+    public boolean UseMaterial(ArrayList<Material> m){
 
-        if(materials.containsAll(m))
-        {
-            for (Material material: m)
-            {
-                this.RemoveMaterial(material);
+        int aminoacid = 0;
+        int nucleotide = 0;
+        int am = 0;
+        int nuc = 0;
+
+        for (Material mat : materials) {
+            if (mat.getClass().getName().compareTo("vilagtalanvirologusok.Nucleotide") == 0) {
+                nucleotide++;
+            }
+
+            if (mat.getClass().getName().compareTo("vilagtalanvirologusok.Aminoacid") == 0) {
+                aminoacid++;
+            }
+        }
+
+        for (Material mat : m) {
+            if (mat.getClass().getName().compareTo("vilagtalanvirologusok.Nucleotide") == 0) {
+                nuc++;
+            }
+
+            if (mat.getClass().getName().compareTo("vilagtalanvirologusok.Aminoacid") == 0) {
+                am++;
+            }
+        }
+
+
+        int nucdeleted = 0;
+        int amdeleted = 0;
+        if (nucleotide >= nuc && aminoacid >= am) {
+            for (int i = 0; i < nuc; i++) {
+                if (materials.get(i).getClass().getName().compareTo("vilagtalanvirologusok.Nucleotide") == 0) {
+                    materials.remove(i);
+                    i--;
+                    nucdeleted++;
+                    if (nucdeleted == nuc) {
+                        break;
+                    }
+                }
+            }
+            for (int j = 0; j < am; j++) {
+                if (materials.get(j).getClass().getName().compareTo("vilagtalanvirologusok.Aminoacid") == 0) {
+                    materials.remove(j);
+                    j--;
+                    amdeleted++;
+                    if (amdeleted == am) {
+                        break;
+                    }
+                }
             }
             return true;
         }
-        else
-        {
-            return false;
-        }
-
-
+        return false;
     }
 
     /**

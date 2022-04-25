@@ -31,10 +31,8 @@ public abstract class Equipment implements Visitable, Serializable {
     public String getName() { return name; }
 
     public String toString() {
-        return this.getName() +
-                "\n\tType: " + this.getClass().getName() +
-                "\n\tLocation: " + /* this.getLocation() + */
-                "\n\tDurability: " + this.getDurability() + "\n\n";
+        return  "Type: " + this.getClass().getName() +
+                ", Durability: " + this.getDurability();
     }
     public void setRandom(boolean r){
         random = r;

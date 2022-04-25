@@ -126,12 +126,22 @@ public class Game implements Serializable {
                     map.findVirologist(parsed[1]).Move();
                     break;
                 case "craftAgent":
-                    GeneticCode geneticCode = (GeneticCode) map.findVirologist(parsed[1]).getGeneticCode();
-                    map.findVirologist(parsed[1]).CraftAgent(geneticCode);
+
+                    ArrayList<GeneticCode> geneticCodes = map.findVirologist(parsed[1]).getGeneticCode();
+                    if (geneticCodes != null) {
+                        System.out.println(geneticCodes);
+                        Scanner sc = new Scanner(System.in);
+                        String ans = sc.nextLine();
+                        map.findVirologist(parsed[1]).CraftAgent(geneticCodes.get(Integer.parseInt(ans)));
+                    }
                     break;
                 case "useAgent":
                     map.findVirologist(parsed[1]); // TODO
                     break;
+                case "add":
+                    map.findVirologist(parsed[1]).LearnGeneticCode(new ProtectorCode());
+                    map.findVirologist(parsed[1]).PickupMaterial(new Aminoacid());
+                    map.findVirologist(parsed[1]).PickupMaterial(new Nucleotide());
                 case "useEquipment":
                     map.findVirologist(parsed[1]);
                     break;
@@ -213,7 +223,7 @@ public class Game implements Serializable {
                 if (cmd.length == 2) {return true;}
                 break;
             case "craftAgent":
-                if (cmd.length == 3) {return true;}
+                if (cmd.length == 2) {return true;}
                 break;
             case "useAgent":
                 if (cmd.length == 3) {return true;}
@@ -232,6 +242,9 @@ public class Game implements Serializable {
                 break;
             case "list":
                 if (cmd.length == 1) {return true;}
+                break;
+            case "add":
+                if (cmd.length == 2) {return true;}
                 break;
             case "setActive":
                 if (cmd.length == 2) {return true;}

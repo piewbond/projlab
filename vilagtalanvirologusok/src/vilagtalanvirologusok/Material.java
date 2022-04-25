@@ -12,8 +12,6 @@ public class Material implements Serializable {
     public String getName() { return name; }
 
     public String toString() {
-        return this.getName() +
-                "\n\tType: " + this.getClass().getName() +
-                "\n\tLocation: " /*+  this.getLocation()*/ + "\n\n";
+        return "Type: " + this.getClass().getName();
     }
 }
