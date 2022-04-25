@@ -101,24 +101,6 @@ public class Game implements Serializable {
                     virologists.add(v);
                     playercount++;
                     break;
-                case "learnGC":
-                    Virologist learner = map.findVirologist(parsed[1]);
-                    Laboratory loc = (Laboratory) learner.getLocation();
-                    GeneticCode gc = loc.getGC();
-                    map.findVirologist(parsed[1]).LearnGeneticCode(gc);
-                    break;
-                case "pickupMaterial":
-                    map.findVirologist(parsed[1]).PickupMaterial(null); // TODO material
-                    break;
-                case "removeMaterial":
-                    map.findVirologist(parsed[1]).RemoveMaterial(null);
-                    break;
-                case "pickupEquipment":
-                    map.findVirologist(parsed[1]).PickupEquipment(null);
-                    break;
-                case "removeEquipment":
-                    map.findVirologist(parsed[1]).RemoveEquipment(null);
-                    break;
                 case "touch":
                     map.findVirologist(parsed[1]).Touch(map.findVirologist(parsed[2]), null);
                     break;
@@ -202,21 +184,6 @@ public class Game implements Serializable {
                 if (cmd.length == 2) {return true;}
                 break;
             case "addVirologist":
-                if (cmd.length == 3) {return true;}
-                break;
-            case "learnGC":
-                if (cmd.length == 2) {return true;}
-                break;
-            case "pickupMaterial":
-                if (cmd.length == 3) {return true;}
-                break;
-            case "removeMaterial":
-                if (cmd.length == 3) {return true;}
-                break;
-            case "pickupEquipment":
-                if (cmd.length == 3) {return true;}
-                break;
-            case "removeEquipment":
                 if (cmd.length == 3) {return true;}
                 break;
             case "touch":
