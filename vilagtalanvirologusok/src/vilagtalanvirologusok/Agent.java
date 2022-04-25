@@ -30,10 +30,8 @@ public class Agent implements Steppable, AgentVisitable{
     public String getName() { return name; }
 
     public String toString() {
-        return this.getName() +
-                "\n\tType: " + this.getClass().getName() +
-                "\n\tLocation: " + /*this.getLocation() + */
-                "\n\tLifetime: " + this.getLifetime() + "\n\n";
+        return  "Type: " + this.getClass().getName() +
+                ", Lifetime: " + this.getLifetime();
     }
     public void setRandom(boolean r){
         random = r;

@@ -283,7 +283,7 @@ public class Virologist implements Steppable, Serializable {
         int nucdeleted = 0;
         int amdeleted = 0;
         if (nucleotide >= nuc && aminoacid >= am) {
-            for (int i = 0; i < nuc; i++) {
+            for (int i = 0; i < materials.size(); i++) {
                 if (materials.get(i).getClass().getName().compareTo("vilagtalanvirologusok.Nucleotide") == 0) {
                     materials.remove(i);
                     i--;
@@ -293,7 +293,7 @@ public class Virologist implements Steppable, Serializable {
                     }
                 }
             }
-            for (int j = 0; j < am; j++) {
+            for (int j = 0; j < materials.size(); j++) {
                 if (materials.get(j).getClass().getName().compareTo("vilagtalanvirologusok.Aminoacid") == 0) {
                     materials.remove(j);
                     j--;
@@ -369,15 +369,15 @@ public class Virologist implements Steppable, Serializable {
     public ArrayList<Material> getMaterials() { return materials; }
     public String getName() { return name; }
     public String getPos() {return location.getName();}
-    public boolean infected() { return false; } // TODO visitor 
+    public boolean infected() { return false; } // TODO visitor
+    public ArrayList<Agent> getKnownAgents() { return knownAgents; }
 
     @Override
     public String toString() {
         return this.getName() + "\n\tPosition: " + this.getPos() +
-                "\n\tActivity: " +
                 "\n\tInfected: " + this.infected() +
                 "\n\tEquipments: " + this.getEquipments().toString() +
-                "\n\tAgents: " + this.getActiveAgents().toString() +
+                "\n\tAgents: " + this.getKnownAgents().toString() +
                 "\n\tMaterials: " + this.getMaterials().toString() + "\n\n";
     }
 

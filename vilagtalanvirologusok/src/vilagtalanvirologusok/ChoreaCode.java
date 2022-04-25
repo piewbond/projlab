@@ -11,7 +11,7 @@ public class ChoreaCode extends GeneticCode implements Serializable {
     /**
      * Az ágens létrehozásáért felelős metódus.
      * Meghivja a useMaterial() függvényt az alapanyagokra, amennyiben rendelkezik a szükséges mennyiséggel
-     * @param v - A készitő virológus
+     * @param - A készitő virológus
      */
 
     public ChoreaCode()
@@ -34,7 +34,7 @@ public class ChoreaCode extends GeneticCode implements Serializable {
         }
         if(v.UseMaterial(costs))
         {
-            AmnesiaVirus virus = new AmnesiaVirus();
+            ChoreaVirus virus = new ChoreaVirus();
             // applyagent helyett az a fgv legyen meghívva amelyik a tanultakba rakja bele
             v.learnAgent(virus);
         }
