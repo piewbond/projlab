@@ -91,18 +91,22 @@ public class Game implements Serializable {
                     map.GenerateGraph();
                     break;
                 case "removeVirologist":
-                    Virologist remove = map.findVirologist(parsed[1]);
-                    virologists.remove(remove);
+                    map.findVirologist(parsed[1]).getLocation().RemoveVirologist(map.findVirologist(parsed[1]));
                     break;
                 case "addVirologist":
-                    Virologist v = new Virologist(parsed[1], map.getCenter(parsed[2]),playercount);   // TODO position
-                    map.getCenter(parsed[2]).AddVirologist(v);
-                    this.activeVirologist = v;
-                    virologists.add(v);
-                    playercount++;
+                    if (playercount <= 2) {
+                        Virologist v = new Virologist(parsed[1], map.getCenter(parsed[2]), playercount);
+                        map.getCenter(parsed[2]).AddVirologist(v);
+                        this.activeVirologist = v;
+                        virologists.add(v);
+                        playercount++;
+                    }
+                    else {
+                        System.out.println("You have reached maximum player number...");
+                    }
                     break;
                 case "touch":
-                    map.findVirologist(parsed[1]).Touch(map.findVirologist(parsed[2]), null);
+                    map.findVirologist(parsed[1]).Touch(map.findVirologist(parsed[2]), null); // TODO
                     break;
                 case "load":
                     this.map = readXML(parsed[1]);
