@@ -97,7 +97,10 @@ public class Virologist implements Steppable{
      */
     public void Step(){
 
-
+        for (Agent a: activeAgents)
+        {
+            a.Step();
+        }
         RemoveAgent();
     }
 

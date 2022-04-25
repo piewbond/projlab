@@ -11,7 +11,10 @@ public class Agent implements Steppable, AgentVisitable{
     private int lifetime;
     private String name;
     private boolean random;
-    public void Step(){}
+    public void Step()
+    {
+        lifetime--;
+    }
 
     /**\
      * Az ágensek hatását fejti ki a virológuson.
