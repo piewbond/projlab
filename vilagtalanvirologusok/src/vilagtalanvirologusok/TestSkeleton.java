@@ -14,6 +14,10 @@ public class TestSkeleton {
         testVirologistMoveStorage();
         testVirologistInfectedwithBearmovestoStorage();
         testVirologistInfectedwithBearmovestoVirologist();
+        PickupMaterialFullBag();
+        PickupMaterialnotFullBag();
+        PickupMaterialFullInventory();
+        PickupMaterialnotFullInventory();
         craftAgentWithoutEnoughMaterial();
         craftAgent();
         learnGeneticCode();
@@ -142,7 +146,72 @@ public class TestSkeleton {
             fail++;
         }
     }
+    public void PickupMaterialFullInventory(){
+        Street s1 = new Street(0,0);
+        Virologist v = new Virologist("jatekos",s1,1);
+        s1.AddVirologist(v);
 
+        for (int i=0; i<10;i++)
+            v.PickupMaterial(new Nucleotide());
+
+        v.PickupMaterial(new Nucleotide());
+
+        if (v.getMaterials().size() == 10) {
+            success++;
+        } else  {
+            fail++;
+        }
+    }
+    public void PickupMaterialnotFullInventory(){
+        Street s1 = new Street(0,0);
+        Virologist v = new Virologist("jatekos",s1,1);
+        s1.AddVirologist(v);
+
+        for (int i=0; i<5;i++)
+            v.PickupMaterial(new Nucleotide());
+
+        v.PickupMaterial(new Nucleotide());
+
+        if (v.getMaterials().size() == 6) {
+            success++;
+        } else  {
+            fail++;
+        }
+    }
+    public void PickupMaterialFullBag(){
+        Street s1 = new Street(0,0);
+        Virologist v = new Virologist("jatekos",s1,1);
+        s1.AddVirologist(v);
+        v.PickupEquipment(new Bag());
+
+        for (int i=0; i<20;i++)
+            v.PickupMaterial(new Nucleotide());
+
+        v.PickupMaterial(new Nucleotide());
+        Bag b = (Bag) v.getEquipments().get(0);
+        if (v.getMaterials().size() == 10 && b.getMaterials().size() == 10) {
+            success++;
+        } else  {
+            fail++;
+        }
+    }
+    public void PickupMaterialnotFullBag(){
+        Street s1 = new Street(0,0);
+        Virologist v = new Virologist("jatekos",s1,1);
+        s1.AddVirologist(v);
+        v.PickupEquipment(new Bag());
+
+        for (int i=0; i<15;i++)
+            v.PickupMaterial(new Nucleotide());
+
+        v.PickupMaterial(new Nucleotide());
+        Bag b = (Bag) v.getEquipments().get(0);
+        if (v.getMaterials().size() == 10 && b.getMaterials().size() == 6) {
+            success++;
+        } else  {
+            fail++;
+        }
+    }
     public void craftAgent() {
         methodName = "craftAgent";
         Center center = new Street(0, 0);
