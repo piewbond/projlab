@@ -41,7 +41,7 @@ public class Center implements Serializable {
      * @param v - Eltávolítandó virológus.
      */
     public void RemoveVirologist(Virologist v) {
-        System.out.println("Center: RemoveVirologist()");
+        //System.out.println("Center: RemoveVirologist()");
         virologists.remove(v);
     }
 

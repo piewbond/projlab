@@ -14,7 +14,7 @@ public class BearVirus extends Agent{
         List<Center> neighbours = v.getLocation().GetNeighbours();
         int size = neighbours.size();
         Random r = new Random();
-        int random = r.nextInt((size) + 1);
+        int random = r.nextInt((size));
         location.RemoveVirologist(v);
         nextlocation = neighbours.get(random);
         nextlocation.AddVirologist(v);
@@ -24,11 +24,11 @@ public class BearVirus extends Agent{
             st.RemoveMaterial(st.getMaterial().get(0));
         }
         List<Virologist> virologists = nextlocation.getVirologists();
-        for(int i = 0; i < virologists.size(); i++)
+        for(int i = 0; i < virologists.size()-1; i++)
         {
             virologists.get(i).GetTouched(virologists.get(i),new BearVirus());
         }
-        System.out.println("BearVirus: Affect()");
+        //System.out.println("BearVirus: Affect()");
     }
 
 

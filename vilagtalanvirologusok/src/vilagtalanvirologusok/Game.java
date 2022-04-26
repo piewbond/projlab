@@ -112,7 +112,7 @@ public class Game implements Serializable {
                     this.map = readXML(parsed[1]);
                     break;
                 case "move":
-                    map.findVirologist(parsed[1]).Move();
+                    map.findVirologist(parsed[1]).Move(false);
                     break;
                 case "craftAgent":
 

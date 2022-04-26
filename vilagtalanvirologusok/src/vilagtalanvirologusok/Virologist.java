@@ -267,22 +267,19 @@ public class Virologist implements Steppable, Serializable {
      * és meghívja a RemoveVirologist(v: Virologist) a mezőre amin áll majd a
      * AddVirologist(v: Virologist) a mezőre amire lépni szeretne.
      */
-    public void Move(){
+    public void Move(boolean console){
         //System.out.println("Virologist: Move()");
         if(!moved)
         {
-            for (int i=0;i<location.GetNeighbours().size();i++) {
-                System.out.println(i + ": " + location.GetNeighbours().get(i).toString());
+            int nextnmb;
+            if(console) {
+                nextnmb = moveForConsole();
+            } else {
+                nextnmb = 0;
             }
-            System.out.println("Which neighbour location do you want leave? Please give the number");
-            Scanner scanner = new Scanner(System.in);
-            String inputString = scanner.nextLine();
-
-            Center nextloc = location.neighbours.get(Integer.parseInt(inputString));
-            nextloc.AddVirologist(this);
+            location.neighbours.get(nextnmb).AddVirologist(this);
             location.RemoveVirologist(this);
-
-            this.location = nextloc;
+            this.location = location.neighbours.get(nextnmb);
             moved=true;
         }
         else
@@ -290,6 +287,15 @@ public class Virologist implements Steppable, Serializable {
             System.out.println("Mar lepett.");
         }
 
+    }
+    public int moveForConsole(){
+        for (int i=0;i<location.GetNeighbours().size();i++) {
+            System.out.println(i + ": " + location.GetNeighbours().get(i).toString());
+        }
+        System.out.println("Which neighbour location do you want leave? Please give the number");
+        Scanner scanner = new Scanner(System.in);
+        String inputString = scanner.nextLine();
+        return  Integer.parseInt(inputString);
     }
 
     /**

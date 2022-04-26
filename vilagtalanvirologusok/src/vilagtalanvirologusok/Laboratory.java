@@ -59,5 +59,6 @@ public class Laboratory extends Center implements Serializable {
     public GeneticCode getGC() {
         return this.gn;
     }
+    public void setContiguous(boolean c) { contiguous= c;}
 
 }

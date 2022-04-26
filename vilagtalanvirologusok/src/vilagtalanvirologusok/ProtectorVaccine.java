@@ -16,7 +16,7 @@ public class ProtectorVaccine extends Agent implements Serializable {
         {
             v.getActiveAgents().remove(this);
         }
-        System.out.println("ChoreaVirus: Affect()");
+       // System.out.println("ChoreaVirus: Affect()");
     }
 
 

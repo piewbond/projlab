@@ -27,7 +27,7 @@ public class ChoreaVirus extends Agent implements Serializable {
         location.RemoveVirologist(v);
         nextlocation = neighbours.get(random);
         nextlocation.AddVirologist(v);
-        System.out.println("ChoreaVirus: Affect()");
+        //System.out.println("ChoreaVirus: Affect()");
     }
 
     @Override

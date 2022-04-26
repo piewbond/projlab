@@ -6,22 +6,128 @@ public class TestSkeleton {
     int fail = 0;
 
     public TestSkeleton(){
-        new Game();
         testVirologistMoveStreet();
-        
+        testVirologistMoveLaboratory();
+        testVirologistMoveLaboratorywithBearVirus();
+        testVirologistMoveShelter();
+        testVirologistMoveStorage();
+        testVirologistInfectedwithBearmovestoStorage();
+        testVirologistInfectedwithBearmovestoVirologist();
+        craftAgentWithoutEnoughMaterial();
+        craftAgent();
+        learnGeneticCode();
 
         System.out.println("Test succeded: "+ success);
-        System.out.println("Test failed: "+ success);
+        System.out.println("Test failed: "+ fail);
     }
 
 
     public void testVirologistMoveStreet() {
-        Center s = new Street(0,0);
-        Center s1 = new Street(50,50);
-        Virologist v1 = new Virologist("alma",s);
-        s1.AddVirologist(v1);
-        s.RemoveVirologist(v1);
-        if (s.virologists == null && s1.virologists != null) {
+        Street s1 = new Street(0,0);
+        Street s2 = new Street(50,50);
+        Virologist v = new Virologist("jatekos",s1,1);
+        s1.AddVirologist(v);
+        s1.neighbours.add(s2);
+
+
+        v.Move(false);
+
+        if (v.getLocation().equals(s2)) {
+            success++;
+        } else  {
+            fail++;
+        }
+    }
+    public void testVirologistMoveLaboratory() {
+        Street s1 = new Street(0,0);
+        Laboratory s2 = new Laboratory(50,50);
+        Virologist v = new Virologist("jatekos",s1,1);
+        s1.AddVirologist(v);
+        s1.neighbours.add(s2);
+
+
+        v.Move(false);
+
+        if (v.getLocation().equals(s2) && v.getKnownAgents() != null) {
+            success++;
+        } else  {
+            fail++;
+        }
+    }
+    public void testVirologistMoveLaboratorywithBearVirus() {
+        Street s1 = new Street(0,0);
+        Laboratory s2 = new Laboratory(50,50);
+        s2.setContiguous(true);
+        Virologist v = new Virologist("jatekos",s1,1);
+        s1.AddVirologist(v);
+        s1.neighbours.add(s2);
+        v.ApplyAgent(new ProtectorVaccine());
+        v.Move(false);
+        if (v.getLocation().equals(s2) && v.getActiveAgents().size()==0) {
+            success++;
+        } else  {
+            fail++;
+        }
+    }
+    public void testVirologistMoveShelter() {
+        Street s1 = new Street(0,0);
+        Shelter s2 = new Shelter(50,50);
+        Virologist v = new Virologist("jatekos",s1,1);
+        s1.AddVirologist(v);
+        s1.neighbours.add(s2);
+
+        v.Move(false);
+
+        if (v.getLocation().equals(s2)) {
+            success++;
+        } else  {
+            fail++;
+        }
+    }
+    public void testVirologistMoveStorage() {
+        Street s1 = new Street(0,0);
+        Storage s2 = new Storage(50,50);
+        Virologist v = new Virologist("jatekos",s1,1);
+        s1.AddVirologist(v);
+        s1.neighbours.add(s2);
+
+
+        v.Move(false);
+
+        if (v.getLocation().equals(s2)) {
+            success++;
+        } else  {
+            fail++;
+        }
+    }
+    public void testVirologistInfectedwithBearmovestoStorage() {
+        Laboratory s1 = new Laboratory(0,0);
+        Storage s2 = new Storage(50,50);
+        Virologist v = new Virologist("jatekos",s1,1);
+        s1.AddVirologist(v);
+        s1.Infect();
+        s1.neighbours.add(s2);
+        s2.AddVirologist(v);
+        v.getActiveAgents().get(0).Affect(v);
+
+        if (s2.getMaterial().size() == 0) {
+            success++;
+        } else  {
+            fail++;
+        }
+    }
+    public void testVirologistInfectedwithBearmovestoVirologist() {
+        Laboratory s1 = new Laboratory(0,0);
+        Storage s2 = new Storage(50,50);
+        Virologist v = new Virologist("jatekos",s1,1);
+        Virologist v2 = new Virologist("jatekos2",s1,1);
+        s1.AddVirologist(v);
+        s1.AddVirologist(v2);
+        s1.Infect();
+        s1.neighbours.add(s2);
+        v.getActiveAgents().get(0).Affect(v);
+
+        if (v2.getActiveAgents().size()>0) {
             success++;
         } else  {
             fail++;
