@@ -22,8 +22,8 @@ public class TestSkeleton {
         craftAgent();
         learnGeneticCode();
 
-        System.out.println("Test succeded: "+ success);
-        System.out.println("Test failed: "+ fail);
+        System.out.println("\nTests succeeded overall: "+ success);
+        System.out.println("Tests failed overall: "+ fail);
     }
 
     public void printSuccess(String methodName) {
