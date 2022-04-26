@@ -26,6 +26,13 @@ public class TestSkeleton {
         System.out.println("Test failed: "+ fail);
     }
 
+    public void printSuccess(String methodName) {
+        System.out.println("Test succeeded: " + methodName);
+    }
+
+    public void printFail(String methodName) {
+        System.out.println("Test failed: " + methodName);
+    }
 
     public void testVirologistMoveStreet() {
         methodName = "testVirologistMoveStreet";
@@ -39,10 +46,11 @@ public class TestSkeleton {
         v.Move(false);
 
         if (v.getLocation().equals(s2)) {
-            System.out.println();
+            printSuccess(methodName);
             success++;
         } else  {
             fail++;
+            printFail(methodName);
         }
     }
     public void testVirologistMoveLaboratory() {
@@ -58,8 +66,10 @@ public class TestSkeleton {
 
         if (v.getLocation().equals(s2) && v.getKnownAgents() != null) {
             success++;
+            printSuccess(methodName);
         } else  {
             fail++;
+            printFail(methodName);
         }
     }
     public void testVirologistMoveLaboratorywithBearVirus() {
@@ -74,8 +84,10 @@ public class TestSkeleton {
         v.Move(false);
         if (v.getLocation().equals(s2) && v.getActiveAgents().size()==0) {
             success++;
+            printSuccess(methodName);
         } else  {
             fail++;
+            printFail(methodName);
         }
     }
     public void testVirologistMoveShelter() {
@@ -90,8 +102,10 @@ public class TestSkeleton {
 
         if (v.getLocation().equals(s2)) {
             success++;
+            printSuccess(methodName);
         } else  {
             fail++;
+            printFail(methodName);
         }
     }
     public void testVirologistMoveStorage() {
@@ -107,8 +121,10 @@ public class TestSkeleton {
 
         if (v.getLocation().equals(s2)) {
             success++;
+            printSuccess(methodName);
         } else  {
             fail++;
+            printFail(methodName);
         }
     }
     public void testVirologistInfectedwithBearmovestoStorage() {
@@ -124,8 +140,10 @@ public class TestSkeleton {
 
         if (s2.getMaterial().size() == 0) {
             success++;
+            printSuccess(methodName);
         } else  {
             fail++;
+            printFail(methodName);
         }
     }
     public void testVirologistInfectedwithBearmovestoVirologist() {
@@ -142,11 +160,14 @@ public class TestSkeleton {
 
         if (v2.getActiveAgents().size()>0) {
             success++;
+            printSuccess(methodName);
         } else  {
             fail++;
+            printFail(methodName);
         }
     }
     public void PickupMaterialFullInventory(){
+        methodName = "PickupMaterialFullInventory";
         Street s1 = new Street(0,0);
         Virologist v = new Virologist("jatekos",s1,1);
         s1.AddVirologist(v);
@@ -158,11 +179,14 @@ public class TestSkeleton {
 
         if (v.getMaterials().size() == 10) {
             success++;
+            printSuccess(methodName);
         } else  {
             fail++;
+            printFail(methodName);
         }
     }
     public void PickupMaterialnotFullInventory(){
+        methodName = "PickupMaterialnotFullInventory";
         Street s1 = new Street(0,0);
         Virologist v = new Virologist("jatekos",s1,1);
         s1.AddVirologist(v);
@@ -174,11 +198,14 @@ public class TestSkeleton {
 
         if (v.getMaterials().size() == 6) {
             success++;
+            printSuccess(methodName);
         } else  {
             fail++;
+            printFail(methodName);
         }
     }
     public void PickupMaterialFullBag(){
+        methodName = "PickupMaterialFullBag";
         Street s1 = new Street(0,0);
         Virologist v = new Virologist("jatekos",s1,1);
         s1.AddVirologist(v);
@@ -191,11 +218,14 @@ public class TestSkeleton {
         Bag b = (Bag) v.getEquipments().get(0);
         if (v.getMaterials().size() == 10 && b.getMaterials().size() == 10) {
             success++;
+            printSuccess(methodName);
         } else  {
             fail++;
+            printFail(methodName);
         }
     }
-    public void PickupMaterialnotFullBag(){
+    public void PickupMaterialnotFullBag() {
+        methodName = "PickupMaterialnotFullBag";
         Street s1 = new Street(0,0);
         Virologist v = new Virologist("jatekos",s1,1);
         s1.AddVirologist(v);
@@ -208,8 +238,10 @@ public class TestSkeleton {
         Bag b = (Bag) v.getEquipments().get(0);
         if (v.getMaterials().size() == 10 && b.getMaterials().size() == 6) {
             success++;
+            printSuccess(methodName);
         } else  {
             fail++;
+            printFail(methodName);
         }
     }
     public void craftAgent() {
@@ -227,9 +259,11 @@ public class TestSkeleton {
 
         if (v1.getKnownAgents().size() > 0) {
             success++;
+            printSuccess(methodName);
         }
         else {
             fail++;
+            printFail(methodName);
         }
     }
 
@@ -247,9 +281,11 @@ public class TestSkeleton {
 
         if (v1.getKnownAgents().size() == 0) {
             success++;
+            printSuccess(methodName);
         }
         else {
             fail++;
+            printFail(methodName);
         }
     }
 
@@ -264,9 +300,10 @@ public class TestSkeleton {
 
         if (v2.getGeneticCode().size() > 0) {
             success++;
+            printSuccess(methodName);
         }
         else {
-            fail++;
+            fail++;printFail(methodName);
         }
     }
 
