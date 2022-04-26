@@ -14,7 +14,10 @@ public class ParalyzeVirus extends Agent implements Serializable {
      * @param v - Virologus, akin kifejti a hatást.
      */
 
-
+ParalyzeVirus()
+{
+    lifetime=3;
+}
 
 
 

@@ -17,8 +17,17 @@ public class AmnesiaVirus extends Agent{
     public void Affect(Virologist v)
     {
         v.getGeneticCode().clear();
-        System.out.println("AmnesiaVirus: Affect()");
     }
 
+    @Override
+    public boolean acceptAmnesia(AgVisitor agVisitor,Virologist virologist)
+    {
+        return agVisitor.visit(this,virologist);
+    }
+
+    AmnesiaVirus()
+    {
+        lifetime=1;
+    }
 
 }

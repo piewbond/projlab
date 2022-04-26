@@ -27,6 +27,11 @@ public class TestSkeleton {
         testStealEquipment();
         testUseAxe();
         testChoreVirusAffect();
+        useGlove();
+        useProtector();
+        useParalyze();
+        useAmnesia();
+        useCloak();
 
         System.out.println("\nTests succeeded overall: "+ success);
         System.out.println("Tests failed overall: "+ fail);
@@ -309,7 +314,8 @@ public class TestSkeleton {
             printSuccess(methodName);
         }
         else {
-            fail++;printFail(methodName);
+            fail++;
+            printFail(methodName);
         }
     }
 
@@ -427,10 +433,118 @@ public class TestSkeleton {
         }
     }
 
-    public void testUseitemCloak()
+    public void useCloak()
     {
+        methodName = "useCloak";
+        Center c1= new Center(1,1);
+        Center c2 = new Center(2,2);
+        Virologist v1 = new Virologist("v1",c1,1);
+        Virologist v2 = new Virologist("v2",c1,2);
 
+
+        v1.PickupEquipment(new Cloak());
+        v2.Touch(v1,new AmnesiaVirus());
+
+
+
+
+        if (v1.getActiveAgents().size()==0) {
+            success++;
+            printSuccess(methodName);
+        }
+        else {
+            fail++;
+            printFail(methodName);
+        }
     }
 
+    public void useGlove()
+    {
+        methodName = "useGlove";
+        Center c1= new Center(1,1);
+        Center c2 = new Center(2,2);
+        Virologist v1 = new Virologist("v1",c1,1);
+        Virologist v2 = new Virologist("v2",c1,2);
+
+        v1.PickupEquipment(new Glove());
+        v2.Touch(v1,new AmnesiaVirus());
+        v2.Touch(v1,new AmnesiaVirus());
+        v2.Touch(v1,new AmnesiaVirus());
+
+
+        if (v1.getEquipments().get(0).getDurability()==0&&v2.getActiveAgents().size()==3) {
+            success++;
+            printSuccess(methodName);
+        }
+        else {
+            fail++;
+            printFail(methodName);
+        }
+    }
+
+    public  void useAmnesia()
+    {
+        methodName = "useAmnesia";
+        Center c1= new Center(1,1);
+        Center c2 = new Center(2,2);
+        Virologist v1 = new Virologist("v1",c1,1);
+        Virologist v2 = new Virologist("v2",c1,2);
+        v1.LearnGeneticCode(new ParalyzeCode());
+        v1.LearnGeneticCode(new AmnesiaCode());
+
+        v2.Touch(v1,new AmnesiaVirus());
+        v1.Step();
+
+        if (v1.getGeneticCode().size()==0) {
+            success++;
+            printSuccess(methodName);
+        }
+        else {
+            fail++;
+            printFail(methodName);
+        }
+    }
+
+    public void useProtector()
+    {
+        methodName = "useProtector";
+        Center c1= new Center(1,1);
+        Center c2 = new Center(2,2);
+        Virologist v1 = new Virologist("v1",c1,1);
+        Virologist v2 = new Virologist("v2",c1,2);
+        v1.ApplyAgent(new ProtectorVaccine());
+        v2.Touch(v1,new AmnesiaVirus());
+
+        if (v1.getActiveAgents().size()==1) {
+            success++;
+            printSuccess(methodName);
+        }
+        else {
+            fail++;
+            printFail(methodName);
+        }
+    }
+
+    public void useParalyze()
+    {
+        methodName = "useParalyze";
+        Center c1= new Center(1,1);
+        Center c2 = new Center(2,2);
+        Virologist v1 = new Virologist("v1",c1,1);
+        Virologist v2 = new Virologist("v2",c1,2);
+
+        v2.learnAgent(new ParalyzeVirus());
+        v2.Touch(v1,v2.getKnownAgents().get(0));
+
+
+        if (v2.getKnownAgents().size()==0&&v1.getActiveAgents().size()==1) {
+            success++;
+            printSuccess(methodName);
+        }
+        else {
+            fail++;
+            printFail(methodName);
+        }
+    }
 }
 

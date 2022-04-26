@@ -31,5 +31,12 @@ public class AgentVisitor implements AgVisitor
         return false;
     }
 
+    @Override
+    public boolean visit(AmnesiaVirus pc, Virologist virologist)
+    {
+         pc.Affect(virologist);
+         return false;
+    }
+
 
 }

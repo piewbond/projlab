@@ -33,6 +33,7 @@ public class Center implements Serializable {
     public void AddVirologist(Virologist v) {
         //System.out.println("Center: AddVirologist()");
         virologists.add(v);
+        //v.setLocation(this);
     }
 
     /**

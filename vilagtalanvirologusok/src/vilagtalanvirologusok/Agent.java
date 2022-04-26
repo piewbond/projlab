@@ -8,7 +8,7 @@ public class Agent implements Steppable, AgentVisitable{
      * Csökkenti az adott ágens élettartamát.
      * Megvalósítja a Steppable interfészt.
      */
-    private int lifetime;
+    protected int lifetime;
     private String name;
     private boolean random;
     public void Step()
@@ -56,6 +56,12 @@ public class Agent implements Steppable, AgentVisitable{
 
     @Override
     public boolean acceptChorea(AgVisitor agVisitor, Virologist virologist)
+    {
+        return false;
+    }
+
+    @Override
+    public boolean acceptAmnesia(AgVisitor agVisitor,Virologist virologist)
     {
         return false;
     }

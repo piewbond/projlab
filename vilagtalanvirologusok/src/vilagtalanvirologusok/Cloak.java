@@ -25,7 +25,7 @@ public class Cloak extends Equipment implements Visitable, Serializable {
         }
         Random rnd = new Random();
         int n = rnd.nextInt(101);
-        if (n<82)
+        if (n<101)
         {
             this.DecreaseDurability();
             return true;

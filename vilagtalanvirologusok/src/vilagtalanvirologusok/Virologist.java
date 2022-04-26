@@ -34,6 +34,7 @@ public class Virologist implements Steppable, Serializable {
         knownAgents = new ArrayList<Agent>();
         this.name = name;
         this.location = location;
+        location.AddVirologist(this);
     }
 
 
@@ -108,6 +109,7 @@ public class Virologist implements Steppable, Serializable {
 
         for (Agent a: activeAgents)
         {
+            a.acceptAmnesia(agentVisitor,this);
             a.acceptChorea(agentVisitor,this);
             a.acceptBear(agentVisitor,this  );
             a.acceptParalyze(agentVisitor,this);
@@ -449,6 +451,7 @@ public class Virologist implements Steppable, Serializable {
     {
         this.location = location;
     }
+
 
     @Override
     public String toString() {

@@ -19,7 +19,10 @@ public class ProtectorVaccine extends Agent implements Serializable {
        // System.out.println("ChoreaVirus: Affect()");
     }
 
-
+ProtectorVaccine()
+{
+    lifetime=3;
+}
 
     @Override
     public boolean acceptProtector(AgVisitor agVisitor,Virologist virologist)
