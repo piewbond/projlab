@@ -4,6 +4,7 @@ package vilagtalanvirologusok;
 public class TestSkeleton {
     int success = 0;
     int fail = 0;
+    String methodName;
 
     public TestSkeleton(){
         testVirologistMoveStreet();
@@ -23,6 +24,7 @@ public class TestSkeleton {
 
 
     public void testVirologistMoveStreet() {
+        methodName = "testVirologistMoveStreet";
         Street s1 = new Street(0,0);
         Street s2 = new Street(50,50);
         Virologist v = new Virologist("jatekos",s1,1);
@@ -33,12 +35,14 @@ public class TestSkeleton {
         v.Move(false);
 
         if (v.getLocation().equals(s2)) {
+            System.out.println();
             success++;
         } else  {
             fail++;
         }
     }
     public void testVirologistMoveLaboratory() {
+        methodName = "testVirologistMoveLaboratory";
         Street s1 = new Street(0,0);
         Laboratory s2 = new Laboratory(50,50);
         Virologist v = new Virologist("jatekos",s1,1);
@@ -55,6 +59,7 @@ public class TestSkeleton {
         }
     }
     public void testVirologistMoveLaboratorywithBearVirus() {
+        methodName = "testVirologistMoveLaboratorywithBearVirus";
         Street s1 = new Street(0,0);
         Laboratory s2 = new Laboratory(50,50);
         s2.setContiguous(true);
@@ -70,6 +75,7 @@ public class TestSkeleton {
         }
     }
     public void testVirologistMoveShelter() {
+        methodName = "testVirologistMoveShelter";
         Street s1 = new Street(0,0);
         Shelter s2 = new Shelter(50,50);
         Virologist v = new Virologist("jatekos",s1,1);
@@ -85,6 +91,7 @@ public class TestSkeleton {
         }
     }
     public void testVirologistMoveStorage() {
+        methodName = "testVirologistMoveStorage";
         Street s1 = new Street(0,0);
         Storage s2 = new Storage(50,50);
         Virologist v = new Virologist("jatekos",s1,1);
@@ -101,6 +108,7 @@ public class TestSkeleton {
         }
     }
     public void testVirologistInfectedwithBearmovestoStorage() {
+        methodName = "testVirologistInfectedwithBearmovestoStorage";
         Laboratory s1 = new Laboratory(0,0);
         Storage s2 = new Storage(50,50);
         Virologist v = new Virologist("jatekos",s1,1);
@@ -117,6 +125,7 @@ public class TestSkeleton {
         }
     }
     public void testVirologistInfectedwithBearmovestoVirologist() {
+        methodName = "testVirologistInfectedwithBearmovestoVirologist";
         Laboratory s1 = new Laboratory(0,0);
         Storage s2 = new Storage(50,50);
         Virologist v = new Virologist("jatekos",s1,1);
@@ -135,6 +144,7 @@ public class TestSkeleton {
     }
 
     public void craftAgent() {
+        methodName = "craftAgent";
         Center center = new Street(0, 0);
         Virologist v1 = new Virologist("v1", center, 1);
         center.AddVirologist(v1);
@@ -155,6 +165,7 @@ public class TestSkeleton {
     }
 
     public void craftAgentWithoutEnoughMaterial() {
+        methodName = "craftAgentWithoutEnoughMaterial";
         Center center = new Street(1, 0);
         Virologist v1 = new Virologist("v1", center, 1);
         center.AddVirologist(v1);
@@ -174,6 +185,7 @@ public class TestSkeleton {
     }
 
     public void learnGeneticCode() {
+        methodName = "learnGeneticCode";
         Laboratory lab = new Laboratory(1, 2);
         Virologist v2 = new Virologist("v2", lab, 2);
         lab.AddVirologist(v2);
