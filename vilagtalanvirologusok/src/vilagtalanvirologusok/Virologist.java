@@ -207,11 +207,8 @@ public class Virologist implements Steppable, Serializable {
                 int n = new Random().nextInt(equipments.size());
                 Equipment eq = equipments.get(n);
                 virologist.PickupEquipment(eq);
+                this.equipments.remove(eq);
             }
-
-
-
-
         }
     }
 
@@ -446,6 +443,11 @@ public class Virologist implements Steppable, Serializable {
     public void setMoved(boolean n)
     {
         moved=n;
+    }
+
+    public void setLocation(Center location)
+    {
+        this.location = location;
     }
 
     @Override

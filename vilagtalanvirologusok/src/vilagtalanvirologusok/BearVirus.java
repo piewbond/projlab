@@ -18,7 +18,8 @@ public class BearVirus extends Agent{
         location.RemoveVirologist(v);
         nextlocation = neighbours.get(random);
         nextlocation.AddVirologist(v);
-        if(nextlocation.getName() == "Storage")
+        v.setLocation(nextlocation);
+        if(nextlocation.getName().compareTo("Storage") == 0)
         {
             Storage st = (Storage) nextlocation;
             st.RemoveMaterial(st.getMaterial().get(0));

@@ -23,10 +23,11 @@ public class ChoreaVirus extends Agent implements Serializable {
         List<Center> neighbours = v.getLocation().GetNeighbours();
         int size = neighbours.size();
         Random r = new Random();
-        int random = r.nextInt((size) + 1);
+        int random = r.nextInt((size));
         location.RemoveVirologist(v);
         nextlocation = neighbours.get(random);
         nextlocation.AddVirologist(v);
+        v.setLocation(nextlocation);
         //System.out.println("ChoreaVirus: Affect()");
     }
 
