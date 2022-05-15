@@ -7,11 +7,13 @@ import javax.xml.transform.TransformerException;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameFrame
+public class GameFrame implements PolygonChecker
 {
     JFrame frame = new JFrame();
     JPanel menupanel = new JPanel();
@@ -19,8 +21,10 @@ public class GameFrame
     JPanel gamepanel = new JPanel();
     CardLayout cl = new CardLayout();
     Game game = new Game();
+    PolygonChecker polygonChecker;
 
-    GameFrame()
+
+    public GameFrame()
     {
 
         contentpanel.setLayout(cl);
@@ -76,7 +80,7 @@ public class GameFrame
 
         JButton endTurn= new JButton("End turn");
         endTurn.addActionListener(new EndTurnListener());
-        
+
         JPanel buttonpanel = new JPanel();
         JPanel mappanel= new JPanel();
 
@@ -112,10 +116,36 @@ public class GameFrame
 
 
     // TODO MapListener (mouselistener?)
-    class MapListener implements ActionListener {
+    class MapListener implements MouseListener {
 
         @Override
-        public void actionPerformed(ActionEvent e) {
+        public void mouseClicked(MouseEvent e) {
+            Point[] poly = {new Point(0, 0)};
+            int num = poly.length;
+
+            if (isInside(e.getX(), e.getY(), poly, num)) {
+                game.getActiveVirologist().Move(true);
+                // TODO virologus mozgatasa a klikkelt helyre
+            }
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
 
         }
     }
