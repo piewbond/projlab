@@ -281,4 +281,8 @@ public class Game implements Serializable {
         }
 
     }
+
+    public Virologist getActiveVirologist() {
+        return this.activeVirologist;
+    }
 }
