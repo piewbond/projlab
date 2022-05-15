@@ -1,6 +1,5 @@
 package vilagtalanvirologusok;
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -57,14 +56,7 @@ public class GameFrame
 
 
         JButton exit= new JButton("Exit");
-        exit.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                System.exit(0);
-            }
-        });
+        exit.addActionListener(new ExitListener());
         menupanel.add(start);
         menupanel.add(load);
         menupanel.add(exit);
@@ -109,16 +101,86 @@ public class GameFrame
         }
 
 
-        endTurn.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                cl.show(contentpanel,"menu");
-            }
-        });
-
+        endTurn.addActionListener(new EndTurnListener());
     }
 
+
+    class MapListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+        }
+    }
+
+
+    class CraftAgentListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+        }
+    }
+
+
+    class UseAgentListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+        }
+    }
+
+
+    class KillListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+        }
+    }
+
+
+    class DropEquipmentListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+        }
+    }
+
+
+    class StealEquipmentListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+        }
+    }
+
+
+    class SaveListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+        }
+    }
+
+
+    class EndTurnListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            cl.show(contentpanel,"menu");
+        }
+    }
+
+    class ExitListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.exit(0);
+        }
+    }
 
 }
