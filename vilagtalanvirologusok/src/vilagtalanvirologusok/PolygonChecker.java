@@ -2,6 +2,8 @@
 
 package vilagtalanvirologusok;
 
+import java.awt.*;
+
 public interface PolygonChecker {
     int inf = 1000000000;
 
@@ -72,6 +74,23 @@ public interface PolygonChecker {
             return true;
         }
         return false;
+    }
+
+
+    default Point[] polygonToArray(Polygon polygon) {
+        Point[] res = new Point[polygon.npoints];
+
+        int x, y;
+
+        if (polygon.npoints > 0) {
+            for (int i = 0; i < polygon.npoints; i++) {
+                x = polygon.xpoints[i];
+                y = polygon.ypoints[i];
+                res[i] = new Point(x, y);
+            }
+        }
+
+        return res;
     }
     
     

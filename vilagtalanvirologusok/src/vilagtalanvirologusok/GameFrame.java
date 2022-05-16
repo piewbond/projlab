@@ -166,7 +166,8 @@ public class GameFrame implements PolygonChecker
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            Point[] poly = {new Point(0, 0)};
+            Polygon polygon = new Polygon();
+            Point[] poly = polygonToArray(polygon);
             int num = poly.length;
 
             if (isInside(e.getX(), e.getY(), poly, num)) {
