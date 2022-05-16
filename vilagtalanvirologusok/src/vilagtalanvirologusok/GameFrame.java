@@ -222,16 +222,14 @@ public class GameFrame implements PolygonChecker
                 @Override
                 public void actionPerformed(ActionEvent e)
                 {
-                    int craft = Integer.parseInt(tx.getText());
-                    if(craft>0&&craft<=gcs.size())
-                    {
-                        if(!game.getActiveVirologist().CraftAgent(gcs.get(craft-1)))
-                        {
-                            p1.setText("Not enough material");
-                        }
-                        else
-                        {
-                            jd.setVisible(false);
+                    if (tx.getText().length() > 0) {
+                        int craft = Integer.parseInt(tx.getText());
+                        if (craft > 0 && craft <= gcs.size()) {
+                            if (!game.getActiveVirologist().CraftAgent(gcs.get(craft - 1))) {
+                                p1.setText("Not enough material");
+                            } else {
+                                jd.setVisible(false);
+                            }
                         }
                     }
                 }
@@ -316,18 +314,22 @@ public class GameFrame implements PolygonChecker
             String msg="Targets: ";
             int c=1;
 
-            JTextField tx2 = new JTextField("Target number:",6);
+            JTextField tx2 = new JTextField("Target number: ",12);
             JButton confirm = new JButton("confirm");
             confirm.addActionListener(new ActionListener()
             {
                 @Override
                 public void actionPerformed(ActionEvent e)
                 {
-                    int virnb = Integer.parseInt(tx2.getText());
-                    if(virnb>0&&virnb<=2)
-                    {
-                        game.getActiveVirologist().StealEquipment(virologists.get(virnb-1));
-                        jd.setVisible(false);
+                    String[] parsed = tx2.getText().split(" ");
+
+                    // 3 meretu lesz a parsed a prompt szokoze miatt
+                    if (parsed.length > 2) {
+                        int virnb = Integer.parseInt(parsed[2]);
+                        if (virnb > 0 && virnb <= 2) {
+                            game.getActiveVirologist().StealEquipment(virologists.get(virnb - 1));
+                            jd.setVisible(false);
+                        }
                     }
                 }
             });
@@ -357,18 +359,21 @@ public class GameFrame implements PolygonChecker
             String msg="Equipments: ";
             int c=1;
 
-            JTextField tx2 = new JTextField("Equipment number:",6);
+            JTextField tx2 = new JTextField("Equipment number: ",15);
             JButton confirm = new JButton("confirm");
             confirm.addActionListener(new ActionListener()
             {
                 @Override
                 public void actionPerformed(ActionEvent e)
                 {
-                    int eqnmb = Integer.parseInt(tx2.getText());
-                    if(eqnmb>0&&eqnmb<=equipmentList.size())
-                    {
-                        game.getActiveVirologist().DropEquipment(equipmentList.get(eqnmb-1));
-                        jd.setVisible(false);
+                    String[] parsed = tx2.getText().split(" ");
+
+                    if (parsed.length > 2) {
+                        int eqnmb = Integer.parseInt(parsed[2]);
+                        if (eqnmb > 0 && eqnmb <= equipmentList.size()) {
+                            game.getActiveVirologist().DropEquipment(equipmentList.get(eqnmb - 1));
+                            jd.setVisible(false);
+                        }
                     }
                 }
             });
@@ -396,20 +401,23 @@ public class GameFrame implements PolygonChecker
             JDialog jd = new JDialog(frame);
             List<Virologist> virologists = game.getActiveVirologist().getLocation().getVirologists();
             String msg="Targets: ";
-            int c=1;
+            int c=1; // TODO c-t nem 0-rol kell inditani?
 
-            JTextField tx2 = new JTextField("Target number:",6);
+            JTextField tx2 = new JTextField("Target number: ",12);
             JButton confirm = new JButton("confirm");
             confirm.addActionListener(new ActionListener()
             {
                 @Override
                 public void actionPerformed(ActionEvent e)
                 {
-                    int virnb = Integer.parseInt(tx2.getText());
-                    if(virnb>0&&virnb<=2)
-                    {
-                        game.getActiveVirologist().Kill(virologists.get(virnb));
-                        jd.setVisible(false);
+                    String[] parsed = tx2.getText().split(" ");
+
+                    if (parsed.length > 2) {
+                        int virnb = Integer.parseInt(parsed[2]);
+                        if (virnb > 0 && virnb <= 2) {
+                            game.getActiveVirologist().Kill(virologists.get(virnb));
+                            jd.setVisible(false);
+                        }
                     }
                 }
             });
