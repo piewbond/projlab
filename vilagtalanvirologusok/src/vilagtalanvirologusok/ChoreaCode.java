@@ -16,10 +16,11 @@ public class ChoreaCode extends GeneticCode implements Serializable {
 
     public ChoreaCode()
     {
+        name = "ChoreaCode";
         nucleotideCost=1;
         aminoAcidCost=1;
     }
-    public void Create(Virologist v){
+    public boolean Create(Virologist v){
 
         ArrayList<Material> costs = new ArrayList<Material>();
         for (int i=0;i<nucleotideCost;i++)
@@ -37,6 +38,11 @@ public class ChoreaCode extends GeneticCode implements Serializable {
             ChoreaVirus virus = new ChoreaVirus();
             // applyagent helyett az a fgv legyen meghívva amelyik a tanultakba rakja bele
             v.learnAgent(virus);
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

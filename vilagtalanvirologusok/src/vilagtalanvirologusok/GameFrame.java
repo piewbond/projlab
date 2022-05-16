@@ -26,6 +26,7 @@ public class GameFrame implements PolygonChecker
 
     public GameFrame()
     {
+        game.StartGame();
 
         contentpanel.setLayout(cl);
 
@@ -51,11 +52,23 @@ public class GameFrame implements PolygonChecker
         JButton load= new JButton("Load game");
         load.addActionListener(new LoadListener());
 
+        JButton test = new JButton("test");
+
         JButton exit= new JButton("Exit");
         exit.addActionListener(new ExitListener());
         menupanel.add(start);
         menupanel.add(load);
         menupanel.add(exit);
+        menupanel.add(test);
+        test.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                JDialog jd = new JDialog(frame);
+                makeDialog("test",jd);
+            }
+        });
     }
 
     private void createGame()
@@ -94,6 +107,7 @@ public class GameFrame implements PolygonChecker
         buttons.add(endTurn);
 
 
+
         mappanel.setBackground(Color.red);
         GridLayout gl = new GridLayout(1,2);
 
@@ -104,14 +118,34 @@ public class GameFrame implements PolygonChecker
 
 
         buttonpanel.setLayout(new BoxLayout(buttonpanel,BoxLayout.Y_AXIS));
-        for (int i=0;i< buttons.size();i++)
+        for (JButton button : buttons)
         {
-            buttonpanel.add(buttons.get(i));
-            buttonpanel.add(Box.createRigidArea(new Dimension(0,80)));
+            buttonpanel.add(button);
+            buttonpanel.add(Box.createRigidArea(new Dimension(0, 80)));
         }
 
 
         endTurn.addActionListener(new EndTurnListener());
+    }
+
+    private void makeDialog(String st,JDialog jd)
+    {
+        JLabel jLabel = new JLabel(st);
+        JButton close = new JButton("close");
+        close.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                jd.setVisible(false);
+            }
+        });
+        jd.setLayout(new FlowLayout());
+        jd.setVisible(true);
+        jd.setBounds(400,400,400,400);
+        jd.add(close);
+        jd.add(jLabel);
+
     }
 
     public void drawRectangle(Game game,Graphics g){
@@ -121,7 +155,7 @@ public class GameFrame implements PolygonChecker
         {
             if(tmp.get(i).getName().equals("Street"))
             {
-                g.draw;
+               // g.draw();
             }
         }
     }
@@ -166,8 +200,42 @@ public class GameFrame implements PolygonChecker
     class CraftAgentListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            game.getActiveVirologist().CraftAgent(null);
-            // TODO popup
+            JDialog jd = new JDialog(frame);
+            String msg="";
+            List<GeneticCode> gcs= game.getActiveVirologist().getGeneticCode();
+            int c=1;
+            for(GeneticCode gc : gcs)
+            {
+                msg = msg + c+". "+gc.getName();
+                c++;
+            }
+            JLabel p1 = new JLabel(msg);
+            JTextField tx = new JTextField(6);
+            JButton confirm = new JButton("confirm");
+            confirm.addActionListener(new ActionListener()
+            {
+                @Override
+                public void actionPerformed(ActionEvent e)
+                {
+                    int craft = Integer.parseInt(tx.getText());
+                    if(craft>0&&craft<=gcs.size())
+                    {
+                        if(!game.getActiveVirologist().CraftAgent(gcs.get(craft-1)))
+                        {
+                            p1.setText("Not enough material");
+                        }
+                        else
+                        {
+                            jd.setVisible(false);
+                        }
+                    }
+                }
+            });
+
+            makeDialog("Avalible Agents:",jd);
+            jd.add(p1);
+            jd.add(tx);
+            jd.add(confirm);
         }
     }
 
@@ -176,8 +244,51 @@ public class GameFrame implements PolygonChecker
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            game.getActiveVirologist().learnAgent(null);
-            // TODO popup
+
+            JDialog jd = new JDialog(frame);
+            String msg="";
+            List<Agent> agents= game.getActiveVirologist().getKnownAgents();
+            List<Virologist> virologists = game.getActiveVirologist().getLocation().getVirologists();
+            String msgVirologists="Avalible targets:";
+            int c=1;
+            for(Agent agent : agents)
+            {
+                msg = msg + c+". "+agent.getName();
+                c++;
+            }
+            int c2=1;
+            for (Virologist v :virologists)
+            {
+                msgVirologists=msgVirologists+ c2 +". "+v.getName();
+                c2++;
+            }
+            JLabel p1 = new JLabel(msg);
+            JLabel p2 = new JLabel(msgVirologists);
+            JTextField tx1 = new JTextField("Agent:",6);
+            JTextField tx2 = new JTextField("Target:",6);
+            JButton confirm = new JButton("confirm");
+            confirm.addActionListener(new ActionListener()
+            {
+                @Override
+                public void actionPerformed(ActionEvent e)
+                {
+                    int agentnb = Integer.parseInt(tx1.getText());
+                    int virnb = Integer.parseInt(tx2.getText());
+                    if(agentnb>0&&agentnb<=agents.size()&&virnb>0&&virnb<3)
+                    {
+                        game.getActiveVirologist().Touch(virologists.get(virnb),agents.get(agentnb));
+                        jd.setVisible(false);
+                    }
+                }
+            });
+
+            makeDialog("Crafted Agents:",jd);
+            jd.add(p1);
+            jd.add(p2);
+            jd.add(tx1);
+            jd.add(tx2);
+            jd.add(confirm);
+
         }
     }
 
@@ -186,8 +297,39 @@ public class GameFrame implements PolygonChecker
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            game.getActiveVirologist().Kill(null);
-            // TODO popup, kit oljon meg
+            JDialog jd = new JDialog(frame);
+            List<Virologist> virologists = game.getActiveVirologist().getLocation().getVirologists();
+            String msg="Targets: ";
+            int c=1;
+
+            JTextField tx2 = new JTextField("Target number:",6);
+            JButton confirm = new JButton("confirm");
+            confirm.addActionListener(new ActionListener()
+            {
+                @Override
+                public void actionPerformed(ActionEvent e)
+                {
+                    int virnb = Integer.parseInt(tx2.getText());
+                    if(virnb>0&&virnb<=2)
+                    {
+                        game.getActiveVirologist().StealEquipment(virologists.get(virnb-1));
+                        jd.setVisible(false);
+                    }
+                }
+            });
+
+            for (Virologist v: virologists)
+            {
+                msg = msg +c +". "+v.getName()+"  ";
+                c++;
+            }
+            makeDialog("StealEquipment",jd);
+            JLabel label = new JLabel(msg);
+            jd.add(tx2);
+            jd.add(label);
+            jd.add(confirm);
+
+
         }
     }
 
@@ -196,8 +338,39 @@ public class GameFrame implements PolygonChecker
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            game.getActiveVirologist().DropEquipment(null);
-            // TODO popup hogy mit dobjon el
+            JDialog jd = new JDialog(frame);
+            List<Equipment> equipmentList = game.getActiveVirologist().getEquipments();
+            String msg="Equipments: ";
+            int c=1;
+
+            JTextField tx2 = new JTextField("Equipment number:",6);
+            JButton confirm = new JButton("confirm");
+            confirm.addActionListener(new ActionListener()
+            {
+                @Override
+                public void actionPerformed(ActionEvent e)
+                {
+                    int eqnmb = Integer.parseInt(tx2.getText());
+                    if(eqnmb>0&&eqnmb<=equipmentList.size())
+                    {
+                        game.getActiveVirologist().DropEquipment(equipmentList.get(eqnmb-1));
+                        jd.setVisible(false);
+                    }
+                }
+            });
+
+            for (Equipment eq: equipmentList)
+            {
+                msg = msg +c +". "+eq.getName()+", durability:"+eq.getDurability()+" ";
+                c++;
+            }
+            makeDialog("DropEquipment",jd);
+            JLabel label = new JLabel(msg);
+            jd.add(tx2);
+            jd.add(label);
+            jd.add(confirm);
+
+
         }
     }
 
@@ -206,9 +379,39 @@ public class GameFrame implements PolygonChecker
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            Virologist v = game.getActiveVirologist();
-            v.StealEquipment(v.getLocation().virologists.get(1));
-            // TODO ez most kenyszermegoldas, ide kene a popup?
+            JDialog jd = new JDialog(frame);
+            List<Virologist> virologists = game.getActiveVirologist().getLocation().getVirologists();
+            String msg="Targets: ";
+            int c=1;
+
+            JTextField tx2 = new JTextField("Target number:",6);
+            JButton confirm = new JButton("confirm");
+            confirm.addActionListener(new ActionListener()
+            {
+                @Override
+                public void actionPerformed(ActionEvent e)
+                {
+                    int virnb = Integer.parseInt(tx2.getText());
+                    if(virnb>0&&virnb<=2)
+                    {
+                        game.getActiveVirologist().Kill(virologists.get(virnb));
+                        jd.setVisible(false);
+                    }
+                }
+            });
+
+            for (Virologist v: virologists)
+            {
+                msg = msg +c +". "+v.getName()+"  ";
+                c++;
+            }
+            makeDialog("StealEquipment",jd);
+            JLabel label = new JLabel(msg);
+            jd.add(tx2);
+            jd.add(label);
+            jd.add(confirm);
+
+
         }
     }
 

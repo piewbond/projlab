@@ -15,6 +15,7 @@ public class Glove extends Equipment implements Visitable, Serializable {
 
     Glove()
     {
+        name = "Glove";
         durability=3;
     }
     public void CastBack(Virologist v, Agent a)

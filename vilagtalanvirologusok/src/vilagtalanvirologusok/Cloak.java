@@ -15,6 +15,7 @@ public class Cloak extends Equipment implements Visitable, Serializable {
      */
     Cloak()
     {
+        name="Cloak";
         durability=3;
     }
     public boolean Resist(){

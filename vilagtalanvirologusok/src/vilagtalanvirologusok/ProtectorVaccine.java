@@ -21,6 +21,7 @@ public class ProtectorVaccine extends Agent implements Serializable {
 
 ProtectorVaccine()
 {
+    name="Protector Vaccine";
     lifetime=3;
 }
 

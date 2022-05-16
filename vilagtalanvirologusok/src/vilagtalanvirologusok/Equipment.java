@@ -10,7 +10,7 @@ public abstract class Equipment implements Visitable, Serializable {
      * A játékban szereplő felszerelések absztrakt ősosztálya. Ezekből származnak le a különféle felszerelések.
      */
     private boolean random;
-    private String name;
+    protected String name;
     protected int durability;
     public int getDurability()
     {

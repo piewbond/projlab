@@ -17,10 +17,11 @@ public class ParalyzeCode extends GeneticCode implements Serializable {
 
     public ParalyzeCode()
     {
+        name = "ParalyzeCode";
         nucleotideCost=3;
         aminoAcidCost=3;
     }
-    public void Create(Virologist v){
+    public boolean Create(Virologist v){
 
         ArrayList<Material> costs = new ArrayList<Material>();
         for (int i=0;i<nucleotideCost;i++)
@@ -38,6 +39,11 @@ public class ParalyzeCode extends GeneticCode implements Serializable {
             ParalyzeVirus virus = new ParalyzeVirus();
             // applyagent helyett az a fgv legyen meghívva amelyik a tanultakba rakja bele
             v.learnAgent(virus);
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

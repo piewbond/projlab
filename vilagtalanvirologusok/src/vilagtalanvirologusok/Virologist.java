@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.*;
 
 /**
- * A játékos és a számítógép által irányított karakterek ősosztálya,
+ * A játékos által irányított karakter ősosztálya,
  * amik a pályán mozognak és genetikai kódokat gyűjtenek.
  */
 public class Virologist implements Steppable, Serializable {
@@ -220,9 +220,9 @@ public class Virologist implements Steppable, Serializable {
      * áll-e megfelelő mennyiségű material, majd meghívja a removeMaterialt() megfelelő mennyiségre.
      * @param  - Ágens amivel létrehoz egy másikat.
      */
-    public void CraftAgent(GeneticCode geneticCode)
+    public boolean CraftAgent(GeneticCode geneticCode)
     {
-        geneticCode.Create(this);
+       return geneticCode.Create(this);
 
     }
 

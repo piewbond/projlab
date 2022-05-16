@@ -10,6 +10,11 @@ public class Bag extends Equipment implements Visitable{
 
     private ArrayList<Material> materials = new ArrayList<Material>();
 
+    Bag()
+    {
+        durability=3;
+        name="Bag";
+    }
     public boolean addMaterial(Material m)
     {
 

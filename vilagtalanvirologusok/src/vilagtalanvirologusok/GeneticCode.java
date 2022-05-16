@@ -14,12 +14,12 @@ public abstract class GeneticCode implements Serializable {
      * Meghivja a useMaterial() függvényt az alapanyagokra, amennyiben rendelkezik a szükséges mennyiséggel,
      * akkor hozzáadja a virológus tárolójához és igazzal tér vissza.
      */
-    private String name;
+    protected String name;
     protected int nucleotideCost;
     protected int aminoAcidCost;
 
 
-    public abstract void Create(Virologist virologist);
+    public abstract boolean Create(Virologist virologist);
 
 
     public String getName() { return name; }

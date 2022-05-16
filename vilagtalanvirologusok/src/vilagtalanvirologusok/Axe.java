@@ -6,6 +6,7 @@ public class Axe extends Equipment implements Visitable
 
     Axe()
     {
+        name ="Axe";
         durability=3;
     }
 

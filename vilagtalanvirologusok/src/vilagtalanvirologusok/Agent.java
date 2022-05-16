@@ -9,7 +9,7 @@ public class Agent implements Steppable, AgentVisitable{
      * Megvalósítja a Steppable interfészt.
      */
     protected int lifetime;
-    private String name;
+    protected String name;
     private boolean random;
     public void Step()
     {

@@ -11,11 +11,12 @@ public class ParalyzeVirus extends Agent implements Serializable {
     /**
      * Az osztály az őséhez tartozó virtuális függvényt tartalmazza:
      * A virológus lebénul, nem képes mozogni a pályán, amíg a hatása tart.
-     * @param v - Virologus, akin kifejti a hatást.
+     * - Virologus, akin kifejti a hatást.
      */
 
 ParalyzeVirus()
 {
+    name = "ParalyzeVirus";
     lifetime=3;
 }
 

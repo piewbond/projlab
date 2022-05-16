@@ -16,10 +16,11 @@ public class AmnesiaCode extends GeneticCode{
 
     public AmnesiaCode()
     {
+        name ="AmnesiaCode" ;
         nucleotideCost=5;
         aminoAcidCost=5;
     }
-    public void Create(Virologist v){
+    public boolean Create(Virologist v){
 
         ArrayList<Material> costs = new ArrayList<Material>();
         for (int i=0;i<5;i++)
@@ -37,6 +38,11 @@ public class AmnesiaCode extends GeneticCode{
             AmnesiaVirus virus = new AmnesiaVirus();
             // applyagent helyett az a fgv legyen meghívva amelyik a tanultakba rakja bele
             v.learnAgent(virus);
+            return  true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

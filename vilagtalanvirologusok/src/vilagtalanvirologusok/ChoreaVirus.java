@@ -30,6 +30,11 @@ public class ChoreaVirus extends Agent implements Serializable {
         v.setLocation(nextlocation);
         //System.out.println("ChoreaVirus: Affect()");
     }
+    ChoreaVirus()
+    {
+        lifetime=3;
+        name="ChoreaVirus";
+    }
 
     @Override
     public boolean acceptChorea(AgVisitor agVisitor, Virologist virologist)

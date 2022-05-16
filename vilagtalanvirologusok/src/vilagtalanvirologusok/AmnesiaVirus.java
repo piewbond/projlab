@@ -27,6 +27,7 @@ public class AmnesiaVirus extends Agent{
 
     AmnesiaVirus()
     {
+        name = "AmnesiaVirus";
         lifetime=1;
     }
 
