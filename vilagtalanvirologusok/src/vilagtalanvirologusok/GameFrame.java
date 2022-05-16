@@ -9,15 +9,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
-import java.awt.Graphics;
-import java.awt.Polygon;
-import javax.swing.JPanel;
 
 public class GameFrame implements PolygonChecker
 {
@@ -28,24 +22,10 @@ public class GameFrame implements PolygonChecker
     CardLayout cl = new CardLayout();
     Game game = new Game();
     PolygonChecker polygonChecker;
-    List<Polygon> mappolygon;
-    class PolygonsJPanel extends JPanel
-    {
-     // draw polygons and polylines
-     public void paintComponent( Graphics g )
-        {
-         super.paintComponent( g ); // call superclass's paintComponent
-         for (int i=0;i<mappolygon.size();i++)
-            g.drawPolygon( mappolygon.get(i));
 
-
-         }
-     }
 
     public GameFrame()
     {
-        mappolygon = new ArrayList<>();
-        readPolygons();
         game.StartGame();
 
         contentpanel.setLayout(cl);
@@ -57,7 +37,7 @@ public class GameFrame implements PolygonChecker
         cl.show(contentpanel,"menu");
         frame.add(contentpanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setPreferredSize(new Dimension(1500,1000));
+        frame.setPreferredSize(new Dimension(1000,1000));
         frame.setResizable(false);
         frame.setTitle("Vilvir");
         frame.pack();
@@ -125,12 +105,9 @@ public class GameFrame implements PolygonChecker
         buttons.add(stealEquipment);
         buttons.add(saveGame);
         buttons.add(endTurn);
-        
-        mappanel.setBackground(Color.gray);
-        GridLayout gl = new GridLayout(1,2);
 
-        mappanel = new PolygonsJPanel();
-        mappanel.setSize(1000,1000);
+        mappanel.setBackground(Color.red);
+        GridLayout gl = new GridLayout(1,2);
 
         gamepanel.setLayout(gl);
         gamepanel.add(mappanel);
@@ -245,16 +222,14 @@ public class GameFrame implements PolygonChecker
                 @Override
                 public void actionPerformed(ActionEvent e)
                 {
-                    int craft = Integer.parseInt(tx.getText());
-                    if(craft>0&&craft<=gcs.size())
-                    {
-                        if(!game.getActiveVirologist().CraftAgent(gcs.get(craft-1)))
-                        {
-                            p1.setText("Not enough material");
-                        }
-                        else
-                        {
-                            jd.setVisible(false);
+                    if (tx.getText().length() > 0) {
+                        int craft = Integer.parseInt(tx.getText());
+                        if (craft > 0 && craft <= gcs.size()) {
+                            if (!game.getActiveVirologist().CraftAgent(gcs.get(craft - 1))) {
+                                p1.setText("Not enough material");
+                            } else {
+                                jd.setVisible(false);
+                            }
                         }
                     }
                 }
@@ -292,20 +267,29 @@ public class GameFrame implements PolygonChecker
             }
             JLabel p1 = new JLabel(msg);
             JLabel p2 = new JLabel(msgVirologists);
-            JTextField tx1 = new JTextField("Agent:",6);
-            JTextField tx2 = new JTextField("Target:",6);
+            String agentstr = "Agent: ";
+            String targetstr = "Target: ";
+            JTextField tx1 = new JTextField(agentstr,6);
+            JTextField tx2 = new JTextField(targetstr,6);
             JButton confirm = new JButton("confirm");
             confirm.addActionListener(new ActionListener()
             {
                 @Override
                 public void actionPerformed(ActionEvent e)
                 {
-                    int agentnb = Integer.parseInt(tx1.getText());
-                    int virnb = Integer.parseInt(tx2.getText());
-                    if(agentnb>0&&agentnb<=agents.size()&&virnb>0&&virnb<3)
-                    {
-                        game.getActiveVirologist().Touch(virologists.get(virnb),agents.get(agentnb));
-                        jd.setVisible(false);
+                    String agent = tx1.getText();
+                    String target = tx2.getText();
+
+                    String[] parsedAgent = agent.split(" ");
+                    String[] parsedTarget = target.split(" ");
+
+                    if (parsedAgent.length > 1 && parsedTarget.length > 1) {
+                        int agentnb = Integer.parseInt(parsedAgent[1]);
+                        int virnb = Integer.parseInt(parsedTarget[1]);
+                        if (agentnb > 0 && agentnb <= agents.size() && virnb > 0 && virnb < 3) {
+                            game.getActiveVirologist().Touch(virologists.get(virnb), agents.get(agentnb));
+                            jd.setVisible(false);
+                        }
                     }
                 }
             });
@@ -330,18 +314,22 @@ public class GameFrame implements PolygonChecker
             String msg="Targets: ";
             int c=1;
 
-            JTextField tx2 = new JTextField("Target number:",6);
+            JTextField tx2 = new JTextField("Target number: ",12);
             JButton confirm = new JButton("confirm");
             confirm.addActionListener(new ActionListener()
             {
                 @Override
                 public void actionPerformed(ActionEvent e)
                 {
-                    int virnb = Integer.parseInt(tx2.getText());
-                    if(virnb>0&&virnb<=2)
-                    {
-                        game.getActiveVirologist().StealEquipment(virologists.get(virnb-1));
-                        jd.setVisible(false);
+                    String[] parsed = tx2.getText().split(" ");
+
+                    // 3 meretu lesz a parsed a prompt szokoze miatt
+                    if (parsed.length > 2) {
+                        int virnb = Integer.parseInt(parsed[2]);
+                        if (virnb > 0 && virnb <= 2) {
+                            game.getActiveVirologist().StealEquipment(virologists.get(virnb - 1));
+                            jd.setVisible(false);
+                        }
                     }
                 }
             });
@@ -371,18 +359,21 @@ public class GameFrame implements PolygonChecker
             String msg="Equipments: ";
             int c=1;
 
-            JTextField tx2 = new JTextField("Equipment number:",6);
+            JTextField tx2 = new JTextField("Equipment number: ",15);
             JButton confirm = new JButton("confirm");
             confirm.addActionListener(new ActionListener()
             {
                 @Override
                 public void actionPerformed(ActionEvent e)
                 {
-                    int eqnmb = Integer.parseInt(tx2.getText());
-                    if(eqnmb>0&&eqnmb<=equipmentList.size())
-                    {
-                        game.getActiveVirologist().DropEquipment(equipmentList.get(eqnmb-1));
-                        jd.setVisible(false);
+                    String[] parsed = tx2.getText().split(" ");
+
+                    if (parsed.length > 2) {
+                        int eqnmb = Integer.parseInt(parsed[2]);
+                        if (eqnmb > 0 && eqnmb <= equipmentList.size()) {
+                            game.getActiveVirologist().DropEquipment(equipmentList.get(eqnmb - 1));
+                            jd.setVisible(false);
+                        }
                     }
                 }
             });
@@ -410,20 +401,23 @@ public class GameFrame implements PolygonChecker
             JDialog jd = new JDialog(frame);
             List<Virologist> virologists = game.getActiveVirologist().getLocation().getVirologists();
             String msg="Targets: ";
-            int c=1;
+            int c=1; // TODO c-t nem 0-rol kell inditani?
 
-            JTextField tx2 = new JTextField("Target number:",6);
+            JTextField tx2 = new JTextField("Target number: ",12);
             JButton confirm = new JButton("confirm");
             confirm.addActionListener(new ActionListener()
             {
                 @Override
                 public void actionPerformed(ActionEvent e)
                 {
-                    int virnb = Integer.parseInt(tx2.getText());
-                    if(virnb>0&&virnb<=2)
-                    {
-                        game.getActiveVirologist().Kill(virologists.get(virnb));
-                        jd.setVisible(false);
+                    String[] parsed = tx2.getText().split(" ");
+
+                    if (parsed.length > 2) {
+                        int virnb = Integer.parseInt(parsed[2]);
+                        if (virnb > 0 && virnb <= 2) {
+                            game.getActiveVirologist().Kill(virologists.get(virnb));
+                            jd.setVisible(false);
+                        }
                     }
                 }
             });
@@ -504,41 +498,5 @@ public class GameFrame implements PolygonChecker
             }
         }
     }
-    public void readPolygons(){
-        try{
-            /**
-             * bekeri a file eleleresi utvonalat majd megprobalja beolvasni
-             */
-            System.out.println("Please type the map file's path( C:\\map1.txt ): ");
-            Scanner scanner = new Scanner(System.in);
-            String inputString = scanner.nextLine();
-            File file = new File(inputString);
 
-
-            scanner = new Scanner(file);
-            String line;
-            String points[];
-            Polygon temp;
-            while(scanner.hasNextLine()) {
-                line = scanner.nextLine();
-                points = line.split(" ");
-                temp = new Polygon();
-                for (int i=0; i < points.length ; i+=2)
-                    //TODO map ellenorzes
-                    temp.addPoint(Integer.parseInt(points[i]),Integer.parseInt(points[i+1]));
-                temp.addPoint(Integer.parseInt(points[0]),Integer.parseInt(points[1]));
-                mappolygon.add(temp);
-                Arrays.fill(points,null);
-            }
-
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        //
-    }
-    public void rePaint(){
-
-
-
-    }
 }
