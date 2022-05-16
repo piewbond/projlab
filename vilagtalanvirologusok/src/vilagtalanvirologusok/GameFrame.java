@@ -1,20 +1,30 @@
 package vilagtalanvirologusok;
+import org.xml.sax.SAXException;
+
 import javax.swing.*;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameFrame
+public class GameFrame implements PolygonChecker
 {
     JFrame frame = new JFrame();
     JPanel menupanel = new JPanel();
     JPanel contentpanel = new JPanel();
     JPanel gamepanel = new JPanel();
     CardLayout cl = new CardLayout();
+    Game game = new Game();
+    PolygonChecker polygonChecker;
 
-    GameFrame()
+
+    public GameFrame()
     {
 
         contentpanel.setLayout(cl);
@@ -36,24 +46,10 @@ public class GameFrame
     private void createMenu()
     {
         JButton start= new JButton("Start game");
-        start.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                cl.show(contentpanel,"game");
-            }
-        });
-        JButton load= new JButton("Load game");
-        load.addActionListener(new ActionListener()
-        {
-            @Override
-            public void actionPerformed(ActionEvent e)
-            {
-                //TODO -load megvalositas
-            }
-        });
+        start.addActionListener(new StartListener());
 
+        JButton load= new JButton("Load game");
+        load.addActionListener(new LoadListener());
 
         JButton exit= new JButton("Exit");
         exit.addActionListener(new ExitListener());
@@ -65,12 +61,26 @@ public class GameFrame
     private void createGame()
     {
         JButton craftAgent= new JButton("Craft Agent");
+        craftAgent.addActionListener(new CraftAgentListener());
+
         JButton useAgent= new JButton("Use Agent");
+        useAgent.addActionListener(new UseAgentListener());
+
         JButton kill= new JButton("Kill");
+        kill.addActionListener(new KillListener());
+
         JButton dropEquipment= new JButton("Drop Equipment");
+        dropEquipment.addActionListener(new DropEquipmentListener());
+
         JButton stealEquipment= new JButton("Steal Equipment");
+        stealEquipment.addActionListener(new StealEquipmentListener());
+
         JButton saveGame= new JButton("Save Game");
+        saveGame.addActionListener(new SaveListener());
+
         JButton endTurn= new JButton("End turn");
+        endTurn.addActionListener(new EndTurnListener());
+
         JPanel buttonpanel = new JPanel();
         JPanel mappanel= new JPanel();
 
@@ -117,10 +127,37 @@ public class GameFrame
     }
 
 
-    class MapListener implements ActionListener {
+    // TODO MapListener (mouselistener?)
+    class MapListener implements MouseListener {
 
         @Override
-        public void actionPerformed(ActionEvent e) {
+        public void mouseClicked(MouseEvent e) {
+            Point[] poly = {new Point(0, 0)};
+            int num = poly.length;
+
+            if (isInside(e.getX(), e.getY(), poly, num)) {
+                game.getActiveVirologist().Move(true);
+                // TODO virologus mozgatasa a klikkelt helyre
+            }
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
 
         }
     }
@@ -129,7 +166,8 @@ public class GameFrame
     class CraftAgentListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            game.getActiveVirologist().CraftAgent(null);
+            // TODO popup
         }
     }
 
@@ -138,7 +176,8 @@ public class GameFrame
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            game.getActiveVirologist().learnAgent(null);
+            // TODO popup
         }
     }
 
@@ -147,7 +186,8 @@ public class GameFrame
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            game.getActiveVirologist().Kill(null);
+            // TODO popup, kit oljon meg
         }
     }
 
@@ -156,7 +196,8 @@ public class GameFrame
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            game.getActiveVirologist().DropEquipment(null);
+            // TODO popup hogy mit dobjon el
         }
     }
 
@@ -165,7 +206,9 @@ public class GameFrame
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            Virologist v = game.getActiveVirologist();
+            v.StealEquipment(v.getLocation().virologists.get(1));
+            // TODO ez most kenyszermegoldas, ide kene a popup?
         }
     }
 
@@ -174,7 +217,17 @@ public class GameFrame
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            try {
+                game.writeXML("game.xml");
+            } catch (ParserConfigurationException ex) {
+                ex.printStackTrace();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            } catch (SAXException ex) {
+                ex.printStackTrace();
+            } catch (TransformerException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
@@ -184,14 +237,40 @@ public class GameFrame
         @Override
         public void actionPerformed(ActionEvent e) {
             cl.show(contentpanel,"menu");
+            game.turnable.EndTurn();
         }
     }
 
-    class ExitListener implements ActionListener {
+    static class ExitListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             System.exit(0);
+        }
+    }
+
+    class StartListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            cl.show(contentpanel,"game");
+            game.StartGame();
+        }
+    }
+
+    class LoadListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                game.readXML("game.xml");
+            } catch (ParserConfigurationException ex) {
+                ex.printStackTrace();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            } catch (SAXException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
