@@ -105,7 +105,7 @@ public class GameFrame implements PolygonChecker
         buttons.add(stealEquipment);
         buttons.add(saveGame);
         buttons.add(endTurn);
-        
+
         mappanel.setBackground(Color.red);
         GridLayout gl = new GridLayout(1,2);
 
@@ -269,20 +269,29 @@ public class GameFrame implements PolygonChecker
             }
             JLabel p1 = new JLabel(msg);
             JLabel p2 = new JLabel(msgVirologists);
-            JTextField tx1 = new JTextField("Agent:",6);
-            JTextField tx2 = new JTextField("Target:",6);
+            String agentstr = "Agent: ";
+            String targetstr = "Target: ";
+            JTextField tx1 = new JTextField(agentstr,6);
+            JTextField tx2 = new JTextField(targetstr,6);
             JButton confirm = new JButton("confirm");
             confirm.addActionListener(new ActionListener()
             {
                 @Override
                 public void actionPerformed(ActionEvent e)
                 {
-                    int agentnb = Integer.parseInt(tx1.getText());
-                    int virnb = Integer.parseInt(tx2.getText());
-                    if(agentnb>0&&agentnb<=agents.size()&&virnb>0&&virnb<3)
-                    {
-                        game.getActiveVirologist().Touch(virologists.get(virnb),agents.get(agentnb));
-                        jd.setVisible(false);
+                    String agent = tx1.getText();
+                    String target = tx2.getText();
+
+                    String[] parsedAgent = agent.split(" ");
+                    String[] parsedTarget = target.split(" ");
+
+                    if (parsedAgent.length > 1 && parsedTarget.length > 1) {
+                        int agentnb = Integer.parseInt(parsedAgent[1]);
+                        int virnb = Integer.parseInt(parsedTarget[1]);
+                        if (agentnb > 0 && agentnb <= agents.size() && virnb > 0 && virnb < 3) {
+                            game.getActiveVirologist().Touch(virologists.get(virnb), agents.get(agentnb));
+                            jd.setVisible(false);
+                        }
                     }
                 }
             });
