@@ -9,9 +9,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
+import java.awt.Graphics;
+import java.awt.Polygon;
+import javax.swing.JPanel;
 
 public class GameFrame implements PolygonChecker
 {
@@ -22,10 +28,24 @@ public class GameFrame implements PolygonChecker
     CardLayout cl = new CardLayout();
     Game game = new Game();
     PolygonChecker polygonChecker;
+    List<Polygon> mappolygon;
+    class PolygonsJPanel extends JPanel
+    {
+     // draw polygons and polylines
+     public void paintComponent( Graphics g )
+        {
+         super.paintComponent( g ); // call superclass's paintComponent
+         for (int i=0;i<mappolygon.size();i++)
+            g.drawPolygon( mappolygon.get(i));
 
+
+         }
+     }
 
     public GameFrame()
     {
+        mappolygon = new ArrayList<>();
+        readPolygons();
         game.StartGame();
 
         contentpanel.setLayout(cl);
@@ -37,7 +57,7 @@ public class GameFrame implements PolygonChecker
         cl.show(contentpanel,"menu");
         frame.add(contentpanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setPreferredSize(new Dimension(1000,1000));
+        frame.setPreferredSize(new Dimension(1500,1000));
         frame.setResizable(false);
         frame.setTitle("Vilvir");
         frame.pack();
@@ -106,8 +126,11 @@ public class GameFrame implements PolygonChecker
         buttons.add(saveGame);
         buttons.add(endTurn);
         
-        mappanel.setBackground(Color.red);
+        mappanel.setBackground(Color.gray);
         GridLayout gl = new GridLayout(1,2);
+
+        mappanel = new PolygonsJPanel();
+        mappanel.setSize(1000,1000);
 
         gamepanel.setLayout(gl);
         gamepanel.add(mappanel);
@@ -481,5 +504,41 @@ public class GameFrame implements PolygonChecker
             }
         }
     }
+    public void readPolygons(){
+        try{
+            /**
+             * bekeri a file eleleresi utvonalat majd megprobalja beolvasni
+             */
+            System.out.println("Please type the map file's path( C:\\map1.txt ): ");
+            Scanner scanner = new Scanner(System.in);
+            String inputString = scanner.nextLine();
+            File file = new File(inputString);
 
+
+            scanner = new Scanner(file);
+            String line;
+            String points[];
+            Polygon temp;
+            while(scanner.hasNextLine()) {
+                line = scanner.nextLine();
+                points = line.split(" ");
+                temp = new Polygon();
+                for (int i=0; i < points.length ; i+=2)
+                    //TODO map ellenorzes
+                    temp.addPoint(Integer.parseInt(points[i]),Integer.parseInt(points[i+1]));
+                temp.addPoint(Integer.parseInt(points[0]),Integer.parseInt(points[1]));
+                mappolygon.add(temp);
+                Arrays.fill(points,null);
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        //
+    }
+    public void rePaint(){
+
+
+
+    }
 }
