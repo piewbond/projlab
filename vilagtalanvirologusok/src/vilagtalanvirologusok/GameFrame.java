@@ -105,17 +105,14 @@ public class GameFrame implements PolygonChecker
         buttons.add(stealEquipment);
         buttons.add(saveGame);
         buttons.add(endTurn);
-
-
-
+        
         mappanel.setBackground(Color.red);
         GridLayout gl = new GridLayout(1,2);
 
         gamepanel.setLayout(gl);
         gamepanel.add(mappanel);
         gamepanel.add(buttonpanel);
-
-
+        gamepanel.addMouseListener(new MapListener());
 
         buttonpanel.setLayout(new BoxLayout(buttonpanel,BoxLayout.Y_AXIS));
         for (JButton button : buttons)
@@ -167,6 +164,7 @@ public class GameFrame implements PolygonChecker
         @Override
         public void mouseClicked(MouseEvent e) {
             Polygon polygon = new Polygon();
+            /*
             Point[] poly = polygonToArray(polygon);
             int num = poly.length;
 
@@ -174,6 +172,12 @@ public class GameFrame implements PolygonChecker
                 game.getActiveVirologist().Move(true);
                 // TODO virologus mozgatasa a klikkelt helyre
             }
+             */
+
+            if (polygon.contains(e.getX(), e.getY())) {
+                game.getActiveVirologist().Move(true);
+            }
+
         }
 
         @Override
