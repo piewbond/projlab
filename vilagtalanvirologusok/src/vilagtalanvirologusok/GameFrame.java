@@ -104,6 +104,18 @@ public class GameFrame
         endTurn.addActionListener(new EndTurnListener());
     }
 
+    public void drawRectangle(Game game,Graphics g){
+        Map map = game.getMap();
+        List<Center> tmp = map.getCenters();
+        for(int i = 0; i< map.centers.size();i++)
+        {
+            if(tmp.get(i).getName().equals("Street"))
+            {
+                g.draw;
+            }
+        }
+    }
+
 
     class MapListener implements ActionListener {
 

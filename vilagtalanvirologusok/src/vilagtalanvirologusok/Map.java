@@ -127,4 +127,14 @@ public class Map implements Serializable {
         return res;
     }
 
+    public List<Center> getCenters()
+    {
+        List<Center> newlist = new ArrayList<>();
+        for(Center tmp : this.centers)
+        {
+            newlist.add(tmp);
+        }
+        return newlist;
+    }
+
 }

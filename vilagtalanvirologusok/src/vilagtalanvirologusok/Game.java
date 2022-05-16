@@ -58,6 +58,11 @@ public class Game implements Serializable {
         return this.random;
     }
 
+    public Map getMap()
+    {
+        return this.map;
+    }
+
 
     public void readCommands() throws ParserConfigurationException, IOException, SAXException, TransformerException {
         for(;;) {
