@@ -561,7 +561,6 @@ public class GameFrame extends JFrame implements PolygonChecker
         @Override
         public void actionPerformed(ActionEvent e) {
             // cl.show(contentpanel,"menu");
-            game.turnable.EndTurn();
 
             // game.setActiveVirologist(game.map.findVirologistByNum(playerNumber));
 
@@ -578,6 +577,11 @@ public class GameFrame extends JFrame implements PolygonChecker
             }
             endTurnCount++;
             active.setText("Active virologist: " + game.getActiveVirologist().getName());
+            if (game.CheckEndGame()){
+                JOptionPane.showMessageDialog(frame,
+                        "GAME OVER");
+                System.exit(0);
+            }
         }
     }
 

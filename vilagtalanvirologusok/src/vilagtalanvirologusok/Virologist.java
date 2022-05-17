@@ -293,7 +293,7 @@ public class Virologist implements Steppable, Serializable {
     public void moveToCenter(Center destination) {
         int i;
 
-        if (!moved) {
+        if (!moved && !dead) {
             for (i = 0; i < this.getLocation().GetNeighbours().size(); i++) {
                 if (destination.getCordx() == this.getLocation().GetNeighbours().get(i).getCordx() && destination.getCordy() == this.getLocation().GetNeighbours().get(i).getCordy()) {
                     destination.AddVirologist(this);

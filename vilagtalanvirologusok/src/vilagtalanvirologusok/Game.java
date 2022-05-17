@@ -4,17 +4,10 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.*;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
+
 
 /**
  * A játékot kezeli. A játék indításakor létrehozza a pályát.
@@ -23,12 +16,8 @@ import javax.xml.transform.stream.StreamResult;
 public class Game implements Serializable {
     private Virologist activeVirologist = null;
     private ArrayList<Virologist> virologists = new ArrayList<Virologist>();
-    private ArrayList<Material> materials = new ArrayList<Material>();
-    private ArrayList<Equipment> equipments = new ArrayList<Equipment>();
-    private ArrayList<Agent> agents = new ArrayList<Agent>();
     private boolean random = true;
     private int turnCount = 1;
-    public Turnable turnable = new Turnable();
     private int playercount=1;
     Map map;
     /**
@@ -46,30 +35,19 @@ public class Game implements Serializable {
         v1.PickupEquipment(new Bag());
         v1.PickupEquipment(new Cloak());
         activeVirologist=v1;
-//        c.AddVirologist(v1);
-//        c.AddVirologist(v2);
         v2.ApplyAgent(new ParalyzeVirus());
         v2.PickupEquipment(new Axe());
         System.out.print(v1.getName());
     }
 
     /**
-     * Leállítja a játékot, nyereség vagy veszteség hatására hívódik meg.
-     */
-    public void EndGame(){
-        System.out.println("Game: EndGame()");
-    }
-
-    /**
      *  Minden körben ellenőrzi, hogy van-e olyan virológus aki megtanulta az összes genetikai kódot,
      *  és ha van, meghívja az +EndGame(): void metódust.
      */
-    public void CheckEndGame(){
-        System.out.println("Game: CheckEndGame()");
-    }
-
-    public boolean getRand() {
-        return this.random;
+    public boolean CheckEndGame(){
+        if (map.findVirologistByNum(1).getGeneticCode().size()==4 || map.findVirologistByNum(2).getGeneticCode().size()==4 || map.findVirologistByNum(2).getDead() || map.findVirologistByNum(2).getDead())
+            return true;
+        return false;
     }
 
     public Map getMap()
@@ -157,7 +135,7 @@ public class Game implements Serializable {
                     map.findVirologist(parsed[1]).StealEquipment(map.findVirologist(parsed[2]));
                     break;
                 case "nextTurn":
-                    this.turnable.EndTurn();
+                    //this.turnable.EndTurn();
                     if (playercount == 1) {playercount = 2;}
                     else {playercount = 1;}
                     this.activeVirologist = map.findVirologistByNum(playercount);
@@ -184,7 +162,7 @@ public class Game implements Serializable {
                     break;
                 default:
                     System.out.println("Wrong command");
-            };
+            }
             printState();
 
         }
@@ -248,7 +226,7 @@ public class Game implements Serializable {
             case "rand":
                 if (cmd.length == 2) {return true;}
                 break;
-        };
+        }
         return false;
     }
 
