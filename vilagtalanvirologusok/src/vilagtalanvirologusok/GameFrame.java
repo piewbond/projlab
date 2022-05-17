@@ -73,14 +73,27 @@ public class GameFrame extends JFrame implements PolygonChecker
                         if(c.getVirologists().get(k).getPlayerNumber() == 1)
                         {
                             v1 = c.getVirologists().get(k);
-                            g.setColor(Color.red);
+                            if (game.map.findVirologistByNum(1).getDead())
+                            {
+                                g.setColor(Color.BLACK);
+                            }
+                            else {
+                                g.setColor(Color.red);
+                            }
                             g.fillOval(v1.getLocation().getCordx(),v1.getLocation().getCordy(), 15,15);
                         }
 
                         else
                         {
                             v2 = c.getVirologists().get(k);
-                            g.setColor(Color.blue);
+
+                            if (game.map.findVirologistByNum(2).getDead())
+                            {
+                                g.setColor(Color.BLACK);
+                            }
+                            else {
+                                g.setColor(Color.blue);
+                            }
                             g.fillOval(v2.getLocation().getCordx(),v2.getLocation().getCordy(), 15,15);
                         }
                     }
@@ -91,9 +104,23 @@ public class GameFrame extends JFrame implements PolygonChecker
                 {
                     v1 = c.getVirologists().get(0);
                     v2 = c.getVirologists().get(1);
-                    g.setColor(Color.red);
+
+                    if (game.map.findVirologistByNum(1).getDead())
+                    {
+                        g.setColor(Color.BLACK);
+                    }
+                    else {
+                        g.setColor(Color.red);
+                    }
                     g.fillOval(v1.getLocation().getCordx(),v1.getLocation().getCordy(),15,15);
-                    g.setColor(Color.blue);
+
+                    if (game.map.findVirologistByNum(2).getDead())
+                    {
+                        g.setColor(Color.BLACK);
+                    }
+                    else {
+                        g.setColor(Color.blue);
+                    }
                     g.fillOval(v2.getLocation().getCordx(),v2.getLocation().getCordy() + 10,15,15);
                 }
             }
