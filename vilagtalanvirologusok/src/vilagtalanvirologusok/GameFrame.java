@@ -256,12 +256,12 @@ public class GameFrame extends JFrame implements PolygonChecker
                     game.getActiveVirologist().moveToCenter(game.map.centers.get(count));
                     System.out.println("Virologist moved to " + polygon.toString() + " " +
                             game.getActiveVirologist().getLocation());
-                    count++;
-                    Validate();
-                    rePaint();
                     // mappanel = new PolygonsJPanel();
                 }
+                count++;
             }
+            invalidate();
+            rePaint();
         }
 
         @Override
