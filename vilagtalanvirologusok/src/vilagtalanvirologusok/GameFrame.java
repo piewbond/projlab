@@ -426,7 +426,7 @@ public class GameFrame extends JFrame implements PolygonChecker
                     if (parsed.length > 2) {
                         int virnb = Integer.parseInt(parsed[2]);
                         if (virnb > 0 && virnb <= 2) {
-                            game.getActiveVirologist().StealEquipment(virologists.get(virnb - 1));
+                            game.getActiveVirologist().Kill(virologists.get(virnb - 1));
                             jd.setVisible(false);
                         }
                     }
@@ -500,7 +500,7 @@ public class GameFrame extends JFrame implements PolygonChecker
             JDialog jd = new JDialog(frame);
             List<Virologist> virologists = game.getActiveVirologist().getLocation().getVirologists();
             String msg="Targets: ";
-            int c=1; // TODO c-t nem 0-rol kell inditani?
+            int c=0; // TODO c-t nem 0-rol kell inditani?
 
             JTextField tx2 = new JTextField("Target number: ",12);
             JButton confirm = new JButton("confirm");
