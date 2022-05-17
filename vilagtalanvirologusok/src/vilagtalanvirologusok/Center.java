@@ -73,4 +73,12 @@ public class Center implements Serializable {
     public void setRandom(boolean r){
         random = r;
     }
+
+    public int getCordx(){
+        return cordx;
+    }
+
+    public int getCordy(){
+        return cordy;
+    }
 }

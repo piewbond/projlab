@@ -38,6 +38,8 @@ public class GameFrame implements PolygonChecker
             super.paintComponent( g ); // call superclass's paintComponent
             for (int i=0;i<mappolygon.size();i++) {
                 Center c = new Center(0,0);
+                Virologist v1 = new Virologist("v1",c,1);
+                Virologist v2 = new Virologist("v2,",c,2);
                 c = temp.centers.get(i);
                 Street str = new Street(0,0);
                 Storage sto = new Storage(0,0);
@@ -61,7 +63,28 @@ public class GameFrame implements PolygonChecker
                 }
 
                 g.fillPolygon( mappolygon.get(i));
+                if(c.getVirologists().size() != 0)
+                {
+                    for(int k = 0; k < c.getVirologists().size(); k++)
+                    {
+                        if(c.getVirologists().get(k).getPlayerNumber() == 1)
+                        {
+                            v1 = c.getVirologists().get(k);
+                            g.setColor(Color.red);
+                        }
+
+                        else
+                        {
+                            v2 = c.getVirologists().get(k);
+                            g.setColor(Color.blue);
+                        }
+                    }
+                }
+
+                g.fillOval(v1.getLocation().getCordx(),v1.getLocation().getCordy(), 5,5);
+                g.fillOval(v2.getLocation().getCordx(),v2.getLocation().getCordy(), 5,5);
             }
+
 
             g.setColor(Color.black);
             for (int i=0;i<mappolygon.size();i++)

@@ -37,18 +37,19 @@ public class Game implements Serializable {
     public void StartGame()
     {
         Center c = new Center(1,1);
-
-        Virologist v1 = new Virologist("a",c,1);
-        Virologist v2 = new Virologist("b",c,2);
+        map.GenerateGraph();
+        Virologist v1 = new Virologist("a",map.getCenter("3"),1);
+        Virologist v2 = new Virologist("b",map.getCenter("5"),2);
         v1.LearnGeneticCode(new AmnesiaCode());
         v1.LearnGeneticCode(new ProtectorCode());
         v1.PickupEquipment(new Bag());
         v1.PickupEquipment(new Cloak());
         activeVirologist=v1;
-        //c.AddVirologist(v1);
-        //c.AddVirologist(v2);
+//        c.AddVirologist(v1);
+//        c.AddVirologist(v2);
         v2.ApplyAgent(new ParalyzeVirus());
         v2.PickupEquipment(new Axe());
+        System.out.print(v1.getName());
     }
 
     /**

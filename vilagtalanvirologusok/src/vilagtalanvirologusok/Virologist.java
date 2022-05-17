@@ -462,5 +462,9 @@ public class Virologist implements Steppable, Serializable {
                 "\n\tMaterials: " + this.getMaterials().toString() + "\n\n";
     }
 
+    public int getPlayerNumber()
+    {
+        return playerNumber;
+    }
 
 }
