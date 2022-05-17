@@ -35,7 +35,6 @@ public class GameFrame extends JFrame implements PolygonChecker
         public void paintComponent( Graphics g )
         {
             Map temp = game.getMap();
-            temp.GenerateGraph();
             super.paintComponent( g ); // call superclass's paintComponent
             for (int i=0;i<mappolygon.size();i++) {
                 Center c = new Center(0,0);

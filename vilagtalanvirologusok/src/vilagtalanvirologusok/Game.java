@@ -30,13 +30,14 @@ public class Game implements Serializable {
     private int turnCount = 1;
     public Turnable turnable = new Turnable();
     private int playercount=1;
-    Map map = new Map();
+    Map map;
     /**
      *  Inicializálja a játék kezdéséhez szükséges objektumokat.
      */
     public void StartGame()
     {
         Center c = new Center(1,1);
+        map = new Map();
         map.GenerateGraph();
         Virologist v1 = new Virologist("a",map.getCenter("3"),1);
         Virologist v2 = new Virologist("b",map.getCenter("5"),2);

@@ -42,19 +42,22 @@ public class Map implements Serializable {
                 switch(loc[i]) {
                     case "0":
                         centers.add(new Street(i%10 *50,i/10*50));
+                        centernmb++;
                         break;
                     case "1":
                         centers.add(new Laboratory(i%10 *50,i/10*50));
+                        centernmb++;
                         break;
                     case "2":
                         centers.add(new Storage(i%10 *50,i/10*50));
+                        centernmb++;
                         break;
                     case "3":
                         centers.add(new Shelter(i%10 *50,i/10*50));
+                        centernmb++;
                         break;
 
                 }
-                centernmb++;
             }
             /**
              * letrehoz egy seged tombot ami a kapcsolatok fogja abrazolni a grafban
@@ -125,12 +128,7 @@ public class Map implements Serializable {
 
     public List<Center> getCenters()
     {
-        List<Center> newlist = new ArrayList<>();
-        for(Center tmp : this.centers)
-        {
-            newlist.add(tmp);
-        }
-        return newlist;
+        return centers;
     }
 
 }
