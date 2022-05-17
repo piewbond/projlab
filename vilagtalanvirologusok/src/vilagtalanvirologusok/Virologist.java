@@ -1,7 +1,9 @@
 package vilagtalanvirologusok;
 
+import java.awt.*;
 import java.io.Serializable;
 import java.util.*;
+import java.util.List;
 
 /**
  * A játékos által irányított karakter ősosztálya,
@@ -287,6 +289,13 @@ public class Virologist implements Steppable, Serializable {
         }
 
     }
+
+    public void moveToCenter(Center destination) {
+        this.location.RemoveVirologist(this);
+        this.location = destination;
+        this.moved = true;
+    }
+
     public int moveForConsole(){
         for (int i=0;i<location.GetNeighbours().size();i++) {
             System.out.println(i + ": " + location.GetNeighbours().get(i).toString());
