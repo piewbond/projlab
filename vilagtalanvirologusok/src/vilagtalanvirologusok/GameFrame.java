@@ -33,11 +33,39 @@ public class GameFrame implements PolygonChecker
         // draw polygons and polylines
         public void paintComponent( Graphics g )
         {
+            Map temp = game.getMap();
+            temp.GenerateGraph();
             super.paintComponent( g ); // call superclass's paintComponent
+            for (int i=0;i<mappolygon.size();i++) {
+                Center c = new Center(0,0);
+                c = temp.centers.get(i);
+                Street str = new Street(0,0);
+                Storage sto = new Storage(0,0);
+                Shelter she = new Shelter(0,0);
+                Laboratory lab = new Laboratory(0,0);
+                if(c.getClass() == sto.getClass())
+                {
+                    g.setColor(new Color(102, 51, 0));
+                }
+                if(c.getClass() == she.getClass())
+                {
+                    g.setColor(Color.magenta);
+                }
+                if(c.getClass() == lab.getClass())
+                {
+                    g.setColor(Color.ORANGE);
+                }
+                if(c.getClass() == str.getClass())
+                {
+                    g.setColor(Color.gray);
+                }
+
+                g.fillPolygon( mappolygon.get(i));
+            }
+
+            g.setColor(Color.black);
             for (int i=0;i<mappolygon.size();i++)
                 g.drawPolygon( mappolygon.get(i));
-
-
         }
     }
 
