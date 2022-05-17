@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class GameFrame implements PolygonChecker
+public class GameFrame extends JFrame implements PolygonChecker
 {
     JFrame frame = new JFrame();
     JPanel menupanel = new JPanel();
@@ -24,6 +24,7 @@ public class GameFrame implements PolygonChecker
     JPanel gamepanel = new JPanel();
     CardLayout cl = new CardLayout();
     Game game = new Game();
+    JPanel mappanel;
     // PolygonChecker polygonChecker;
 
     List<Polygon> mappolygon;
@@ -40,7 +41,7 @@ public class GameFrame implements PolygonChecker
                 Center c = new Center(0,0);
                 Virologist v1 = new Virologist("v1",c,1);
                 Virologist v2 = new Virologist("v2,",c,2);
-                c = temp.centers.get(i);
+                c = game.getMap().centers.get(i);
                 Street str = new Street(0,0);
                 Storage sto = new Storage(0,0);
                 Shelter she = new Shelter(0,0);
@@ -165,7 +166,7 @@ public class GameFrame implements PolygonChecker
         endTurn.addActionListener(new EndTurnListener());
 
         JPanel buttonpanel = new JPanel();
-        JPanel mappanel= new PolygonsJPanel();
+        mappanel= new PolygonsJPanel();
 
         List<JButton> buttons = new ArrayList<JButton>();
         buttons.add(craftAgent);
@@ -227,6 +228,10 @@ public class GameFrame implements PolygonChecker
         }
     }
 
+    public void Validate() {
+        this.validate();
+    }
+
 
     // TODO MapListener (mouselistener?)
     class MapListener implements MouseListener {
@@ -249,8 +254,12 @@ public class GameFrame implements PolygonChecker
                 if (polygon.contains(mouseX, mouseY)) {
                     // game.getActiveVirologist().Move(true);
                     game.getActiveVirologist().moveToCenter(game.map.centers.get(count));
-                    System.out.println("Virologist moved to " + polygon.toString());
+                    System.out.println("Virologist moved to " + polygon.toString() + " " +
+                            game.getActiveVirologist().getLocation());
                     count++;
+                    Validate();
+                    rePaint();
+                    // mappanel = new PolygonsJPanel();
                 }
             }
         }
