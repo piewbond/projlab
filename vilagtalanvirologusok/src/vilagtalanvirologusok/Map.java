@@ -41,19 +41,19 @@ public class Map implements Serializable {
             for (int i=0; i<loc.length;i++) {
                 switch(loc[i]) {
                     case "0":
-                        centers.add(new Street(i%10 *50,i/10*50));
+                        centers.add(new Street((i%10 + 1)*50,(i/10 + 1)*50));
                         centernmb++;
                         break;
                     case "1":
-                        centers.add(new Laboratory(i%10 *50,i/10*50));
+                        centers.add(new Laboratory((i%10 + 1)*50,(i/10 + 1)*50));
                         centernmb++;
                         break;
                     case "2":
-                        centers.add(new Storage(i%10 *50,i/10*50));
+                        centers.add(new Storage((i%10 + 1)*50,(i/10 + 1)*50));
                         centernmb++;
                         break;
                     case "3":
-                        centers.add(new Shelter(i%10 *50,i/10*50));
+                        centers.add(new Shelter((i%10 + 1)*50,(i/10 + 1)*50));
                         centernmb++;
                         break;
 
