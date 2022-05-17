@@ -304,4 +304,8 @@ public class Game implements Serializable {
     public Virologist getActiveVirologist() {
         return this.activeVirologist;
     }
+
+    public void setActiveVirologist(Virologist v) {
+        this.activeVirologist = v;
+    }
 }

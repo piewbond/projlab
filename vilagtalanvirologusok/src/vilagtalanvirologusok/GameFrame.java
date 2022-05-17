@@ -298,7 +298,7 @@ public class GameFrame extends JFrame implements PolygonChecker
             JDialog jd = new JDialog(frame);
             String msg="";
             List<GeneticCode> gcs= game.getActiveVirologist().getGeneticCode();
-            int c=1;
+            int c = 0;
             for(GeneticCode gc : gcs)
             {
                 msg = msg + c+". "+gc.getName();
