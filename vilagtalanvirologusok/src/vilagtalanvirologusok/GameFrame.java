@@ -260,7 +260,7 @@ public class GameFrame extends JFrame implements PolygonChecker
                 count++;
             }
             invalidate();
-            rePaint();
+            revalidate();
         }
 
         @Override
