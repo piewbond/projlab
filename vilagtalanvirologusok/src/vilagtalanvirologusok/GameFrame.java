@@ -34,8 +34,8 @@ public class GameFrame extends JFrame implements PolygonChecker
         // draw polygons and polylines
         public void paintComponent( Graphics g )
         {
-            Map temp = game.getMap();
             super.paintComponent( g ); // call superclass's paintComponent
+            Map temp = game.getMap();
             for (int i=0;i<mappolygon.size();i++) {
                 Center c = new Center(0,0);
                 Virologist v1 = new Virologist("v1",c,1);
@@ -81,6 +81,12 @@ public class GameFrame extends JFrame implements PolygonChecker
                     }
                 }
 
+                if(c.getVirologists().size() == 2)
+                {
+                    g.fillOval(v1.getLocation().getCordx(),v1.getLocation().getCordy(),15,15);
+                    g.fillOval(v2.getLocation().getCordx(),v2.getLocation().getCordy() + 20,15,15);
+                }
+
                 g.fillOval(v1.getLocation().getCordx(),v1.getLocation().getCordy(), 15,15);
                 g.fillOval(v2.getLocation().getCordx(),v2.getLocation().getCordy(), 15,15);
             }
@@ -89,8 +95,9 @@ public class GameFrame extends JFrame implements PolygonChecker
             g.setColor(Color.black);
             for (int i=0;i<mappolygon.size();i++)
                 g.drawPolygon( mappolygon.get(i));
-
+            repaint();
         }
+
     }
 
     public GameFrame()
@@ -261,6 +268,7 @@ public class GameFrame extends JFrame implements PolygonChecker
             }
             invalidate();
             revalidate();
+
         }
 
         @Override
