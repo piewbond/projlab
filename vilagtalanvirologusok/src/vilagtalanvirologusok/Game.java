@@ -39,8 +39,8 @@ public class Game implements Serializable {
         Center c = new Center(1,1);
         map = new Map();
         map.GenerateGraph();
-        Virologist v1 = new Virologist("a",map.getCenter("3"),1);
-        Virologist v2 = new Virologist("b",map.getCenter("5"),2);
+        Virologist v1 = new Virologist("Red",map.getCenter("3"),1);
+        Virologist v2 = new Virologist("Blue",map.getCenter("5"),2);
         v1.LearnGeneticCode(new AmnesiaCode());
         v1.LearnGeneticCode(new ProtectorCode());
         v1.PickupEquipment(new Bag());

@@ -22,6 +22,7 @@ public class GameFrame extends JFrame implements PolygonChecker
     JPanel menupanel = new JPanel();
     JPanel contentpanel = new JPanel();
     JPanel gamepanel = new JPanel();
+    JLabel active = new JLabel();
     CardLayout cl = new CardLayout();
     Game game = new Game();
     JPanel mappanel;
@@ -177,7 +178,7 @@ public class GameFrame extends JFrame implements PolygonChecker
         JButton endTurn= new JButton("End turn");
         endTurn.addActionListener(new EndTurnListener());
 
-        JLabel active = new JLabel("Active virologist: " + game.getActiveVirologist().getName());
+        active = new JLabel("Active virologist: " + game.getActiveVirologist().getName());
 
         JPanel buttonpanel = new JPanel();
         mappanel= new PolygonsJPanel();
@@ -576,6 +577,7 @@ public class GameFrame extends JFrame implements PolygonChecker
                 game.map.findVirologistByNum(2).setMoved(false);
             }
             endTurnCount++;
+            active.setText("Active virologist: " + game.getActiveVirologist().getName());
         }
     }
 
