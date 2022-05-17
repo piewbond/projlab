@@ -292,16 +292,17 @@ public class Virologist implements Steppable, Serializable {
 
     public void moveToCenter(Center destination) {
         int i;
-        for(i = 0;i < this.getLocation().GetNeighbours().size();i++)
-        {
-            if(destination.getCordx() == this.getLocation().GetNeighbours().get(i).getCordx() && destination.getCordy() == this.getLocation().GetNeighbours().get(i).getCordy())
-            {
-                destination.AddVirologist(this);
-                this.location.RemoveVirologist(this);
-                this.location = destination;
-                this.moved = true;
-            }
 
+        if (!moved) {
+            for (i = 0; i < this.getLocation().GetNeighbours().size(); i++) {
+                if (destination.getCordx() == this.getLocation().GetNeighbours().get(i).getCordx() && destination.getCordy() == this.getLocation().GetNeighbours().get(i).getCordy()) {
+                    destination.AddVirologist(this);
+                    this.location.RemoveVirologist(this);
+                    this.location = destination;
+                    this.moved = true;
+                }
+
+            }
         }
 
     }

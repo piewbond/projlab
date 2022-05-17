@@ -25,6 +25,8 @@ public class GameFrame extends JFrame implements PolygonChecker
     CardLayout cl = new CardLayout();
     Game game = new Game();
     JPanel mappanel;
+    int playerNumber = 1;
+    int endTurnCount = 0;
     // PolygonChecker polygonChecker;
 
     List<Polygon> mappolygon;
@@ -267,7 +269,6 @@ public class GameFrame extends JFrame implements PolygonChecker
                 count++;
             }
             gamepanel.revalidate();
-
         }
 
         @Override
@@ -551,8 +552,23 @@ public class GameFrame extends JFrame implements PolygonChecker
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            cl.show(contentpanel,"menu");
+            // cl.show(contentpanel,"menu");
             game.turnable.EndTurn();
+
+            // game.setActiveVirologist(game.map.findVirologistByNum(playerNumber));
+
+            if (playerNumber == 1)
+            {
+                playerNumber = 2;
+            }
+            else { playerNumber = 1; }
+            game.setActiveVirologist(game.map.findVirologistByNum(playerNumber));
+
+            if (endTurnCount % 2 == 0) {
+                game.map.findVirologistByNum(1).setMoved(false);
+                game.map.findVirologistByNum(2).setMoved(false);
+            }
+            endTurnCount++;
         }
     }
 
