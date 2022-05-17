@@ -173,6 +173,8 @@ public class GameFrame extends JFrame implements PolygonChecker
         JButton endTurn= new JButton("End turn");
         endTurn.addActionListener(new EndTurnListener());
 
+        JLabel active = new JLabel("Active virologist: " + game.getActiveVirologist().getName());
+
         JPanel buttonpanel = new JPanel();
         mappanel= new PolygonsJPanel();
 
@@ -199,6 +201,7 @@ public class GameFrame extends JFrame implements PolygonChecker
             buttonpanel.add(button);
             buttonpanel.add(Box.createRigidArea(new Dimension(0, 80)));
         }
+        buttonpanel.add(active);
 
 
         // endTurn.addActionListener(new EndTurnListener());
