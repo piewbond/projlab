@@ -549,13 +549,10 @@ public class GameFrame implements PolygonChecker
             /**
              * bekeri a file eleleresi utvonalat majd megprobalja beolvasni
              */
-            System.out.println("Please type the map file's path( C:\\map1.txt ): ");
-            Scanner scanner = new Scanner(System.in);
-            String inputString = scanner.nextLine();
-            File file = new File(inputString);
+            //File file = new File("G:\\Programozás\\projlab\\projlab\\out\\production\\projlab\\vilagtalanvirologusok\\mappolygon.txt");
+            File file = new File("mappolygon.txt");
 
-
-            scanner = new Scanner(file);
+            Scanner scanner = new Scanner(file);
             String line;
             String points[];
             Polygon temp;

@@ -1,6 +1,7 @@
 package vilagtalanvirologusok;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,18 +29,13 @@ public class Map implements Serializable {
     public void GenerateGraph(){
         int centernmb = 0;
         try{
-            /**
-             * bekeri a file eleleresi utvonalat majd megprobalja beolvasni
-             */
-            System.out.println("Please type the map file's path( C:\\map1.txt ): ");
-            Scanner scanner = new Scanner(System.in);
-            String inputString = scanner.nextLine();
-            File file = new File(inputString);
+
+            File file = new File("map1.txt");
 
             /**
              * eloszor beolvassa az elso sort es letrehozza a locationokat az alapjan
              */
-            scanner = new Scanner(file);
+            Scanner scanner = new Scanner(file);
             String line = scanner.nextLine();
             String[] loc = line.split(" ");
             for (int i=0; i<loc.length;i++) {
