@@ -18,6 +18,7 @@ public class Laboratory extends Center implements Serializable {
         } else {
             contiguous = false;
         }
+        SpawnGeneticCode();
     }
     /**
      * Genetikai kódot generál a laboratóriumba.

@@ -595,6 +595,7 @@ public class GameFrame extends JFrame implements PolygonChecker
         public void actionPerformed(ActionEvent e) {
             try {
                 game.readXML("game.xml");
+                cl.show(contentpanel,"game");
             } catch (ParserConfigurationException ex) {
                 ex.printStackTrace();
             } catch (IOException ex) {
