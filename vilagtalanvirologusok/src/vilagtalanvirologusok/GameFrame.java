@@ -24,7 +24,7 @@ public class GameFrame implements PolygonChecker
     JPanel gamepanel = new JPanel();
     CardLayout cl = new CardLayout();
     Game game = new Game();
-    PolygonChecker polygonChecker;
+    // PolygonChecker polygonChecker;
 
     List<Polygon> mappolygon;
 
@@ -209,7 +209,6 @@ public class GameFrame implements PolygonChecker
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            Polygon polygon = new Polygon();
             /*
             Point[] poly = polygonToArray(polygon);
             int num = poly.length;
@@ -219,11 +218,14 @@ public class GameFrame implements PolygonChecker
                 // TODO virologus mozgatasa a klikkelt helyre
             }
              */
-
-            if (polygon.contains(e.getX(), e.getY())) {
-                game.getActiveVirologist().Move(true);
+            int mouseX = e.getX();
+            int mouseY = e.getY();
+            for (Polygon polygon : mappolygon) {
+                if (polygon.contains(mouseX, mouseY)) {
+                    game.getActiveVirologist().Move(true);
+                    System.out.println("Virologist moved to " + polygon.toString());
+                }
             }
-
         }
 
         @Override
