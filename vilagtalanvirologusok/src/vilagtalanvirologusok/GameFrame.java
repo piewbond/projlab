@@ -65,7 +65,7 @@ public class GameFrame extends JFrame implements PolygonChecker
                 }
 
                 g.fillPolygon( mappolygon.get(i));
-                if(c.getVirologists().size() != 0)
+                if(c.getVirologists().size() == 1)
                 {
                     for(int k = 0; k < c.getVirologists().size(); k++)
                     {
@@ -73,24 +73,28 @@ public class GameFrame extends JFrame implements PolygonChecker
                         {
                             v1 = c.getVirologists().get(k);
                             g.setColor(Color.red);
+                            g.fillOval(v1.getLocation().getCordx(),v1.getLocation().getCordy(), 15,15);
                         }
 
                         else
                         {
                             v2 = c.getVirologists().get(k);
                             g.setColor(Color.blue);
+                            g.fillOval(v2.getLocation().getCordx(),v2.getLocation().getCordy(), 15,15);
                         }
                     }
+
                 }
 
                 if(c.getVirologists().size() == 2)
                 {
+                    v1 = c.getVirologists().get(0);
+                    v2 = c.getVirologists().get(1);
+                    g.setColor(Color.red);
                     g.fillOval(v1.getLocation().getCordx(),v1.getLocation().getCordy(),15,15);
-                    g.fillOval(v2.getLocation().getCordx(),v2.getLocation().getCordy() + 20,15,15);
+                    g.setColor(Color.blue);
+                    g.fillOval(v2.getLocation().getCordx(),v2.getLocation().getCordy() + 10,15,15);
                 }
-
-                g.fillOval(v1.getLocation().getCordx(),v1.getLocation().getCordy(), 15,15);
-                g.fillOval(v2.getLocation().getCordx(),v2.getLocation().getCordy(), 15,15);
             }
 
 
