@@ -81,14 +81,15 @@ public class GameFrame implements PolygonChecker
                     }
                 }
 
-                g.fillOval(v1.getLocation().getCordx(),v1.getLocation().getCordy(), 5,5);
-                g.fillOval(v2.getLocation().getCordx(),v2.getLocation().getCordy(), 5,5);
+                g.fillOval(v1.getLocation().getCordx(),v1.getLocation().getCordy(), 15,15);
+                g.fillOval(v2.getLocation().getCordx(),v2.getLocation().getCordy(), 15,15);
             }
 
 
             g.setColor(Color.black);
             for (int i=0;i<mappolygon.size();i++)
                 g.drawPolygon( mappolygon.get(i));
+
         }
     }
 

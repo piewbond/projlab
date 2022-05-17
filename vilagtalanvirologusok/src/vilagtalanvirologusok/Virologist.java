@@ -291,6 +291,7 @@ public class Virologist implements Steppable, Serializable {
     }
 
     public void moveToCenter(Center destination) {
+        destination.AddVirologist(this);
         this.location.RemoveVirologist(this);
         this.location = destination;
         this.moved = true;
