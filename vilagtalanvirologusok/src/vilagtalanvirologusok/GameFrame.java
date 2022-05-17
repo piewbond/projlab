@@ -220,10 +220,13 @@ public class GameFrame implements PolygonChecker
              */
             int mouseX = e.getX();
             int mouseY = e.getY();
+            int count = 0;
             for (Polygon polygon : mappolygon) {
                 if (polygon.contains(mouseX, mouseY)) {
-                    game.getActiveVirologist().Move(true);
+                    // game.getActiveVirologist().Move(true);
+                    game.getActiveVirologist().moveToCenter(game.map.centers.get(count));
                     System.out.println("Virologist moved to " + polygon.toString());
+                    count++;
                 }
             }
         }
