@@ -201,7 +201,7 @@ public class GameFrame extends JFrame implements PolygonChecker
         }
 
 
-        endTurn.addActionListener(new EndTurnListener());
+        // endTurn.addActionListener(new EndTurnListener());
     }
 
     private void makeDialog(String st,JDialog jd)
