@@ -351,7 +351,7 @@ public class GameFrame extends JFrame implements PolygonChecker
                     if (tx.getText().length() > 0) {
                         int craft = Integer.parseInt(tx.getText());
                         if (craft > 0 && craft <= gcs.size()) {
-                            if (!game.getActiveVirologist().CraftAgent(gcs.get(craft - 1))) {
+                            if (!game.getActiveVirologist().CraftAgent(gcs.get(craft))) {
                                 p1.setText("Not enough material");
                             } else {
                                 jd.setVisible(false);
