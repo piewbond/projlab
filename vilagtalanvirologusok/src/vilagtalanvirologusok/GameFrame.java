@@ -181,7 +181,7 @@ public class GameFrame extends JFrame implements PolygonChecker
                 makeDialog("test",jd);
             }
         });
-        
+
          */
     }
 
@@ -383,7 +383,7 @@ public class GameFrame extends JFrame implements PolygonChecker
             List<Agent> agents= game.getActiveVirologist().getKnownAgents();
             List<Virologist> virologists = game.getActiveVirologist().getLocation().getVirologists();
             String msgVirologists="Avalible targets:";
-            int c=1;
+            int c=0;
             for(Agent agent : agents)
             {
                 msg = msg + c+". "+agent.getName();
@@ -416,8 +416,8 @@ public class GameFrame extends JFrame implements PolygonChecker
                     if (parsedAgent.length > 1 && parsedTarget.length > 1) {
                         int agentnb = Integer.parseInt(parsedAgent[1]);
                         int virnb = Integer.parseInt(parsedTarget[1]);
-                        if (agentnb > 0 && agentnb <= agents.size() && virnb > 0 && virnb < 3) {
-                            game.getActiveVirologist().Touch(virologists.get(virnb), agents.get(agentnb));
+                        if (agentnb >= 0 && agentnb < agents.size() && virnb >= 0 && virnb < 3) {
+                            game.getActiveVirologist().Touch(game.map.findVirologist(virologists.get(virnb).getName()), agents.get(agentnb));
                             jd.setVisible(false);
                         }
                     }
