@@ -16,6 +16,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Kirajzolasert felelos osztaly
+ */
 public class GameFrame extends JFrame implements PolygonChecker
 {
     JFrame frame = new JFrame();
@@ -31,10 +34,15 @@ public class GameFrame extends JFrame implements PolygonChecker
     // PolygonChecker polygonChecker;
 
     List<Polygon> mappolygon;
-
+    /**
+    A mapot megvalosito jpanel osztaly ami felrajzolja a mapot es a rajta levo virologusokat
+     */
     class PolygonsJPanel extends JPanel
     {
-        // draw polygons and polylines
+        /**
+         * kirajzolja a poligonokat es a virologusokat a modellnek megfeleloen
+         * @param g
+         */
         public void paintComponent( Graphics g )
         {
             super.paintComponent( g ); // call superclass's paintComponent
@@ -65,6 +73,7 @@ public class GameFrame extends JFrame implements PolygonChecker
                 }
 
                 g.fillPolygon( mappolygon.get(i));
+                //virologusok kirajzolasa ha 1 van egy locationon
                 if(c.getVirologists().size() == 1)
                 {
                     for(int k = 0; k < c.getVirologists().size(); k++)
@@ -98,7 +107,7 @@ public class GameFrame extends JFrame implements PolygonChecker
                     }
 
                 }
-
+                //virologusok kirajzolasa ha 2 van egy locationon
                 if(c.getVirologists().size() == 2)
                 {
                     v1 = c.getVirologists().get(0);
@@ -124,7 +133,7 @@ public class GameFrame extends JFrame implements PolygonChecker
                 }
             }
 
-
+            //korvonalak kirajzolasa
             g.setColor(Color.black);
             for (Polygon polygon : mappolygon) g.drawPolygon(polygon);
             repaint();
@@ -132,6 +141,9 @@ public class GameFrame extends JFrame implements PolygonChecker
 
     }
 
+    /**
+     * Konstruktor letrehozza az elemeket es elinditja az inicializalast
+     */
     public GameFrame()
     {
         mappolygon = new ArrayList<>();
@@ -153,6 +165,10 @@ public class GameFrame extends JFrame implements PolygonChecker
         frame.setVisible(true);
     }
 
+    /**
+     * letrehozza a menu paneljet
+     * bekoti a listenereket
+     */
     private void createMenu()
     {
         JButton start= new JButton("Start game");
@@ -183,6 +199,10 @@ public class GameFrame extends JFrame implements PolygonChecker
          */
     }
 
+    /**
+     * letrehozza a jatek paneljet
+     * bekoti a listenereket
+     */
     private void createGame()
     {
         JButton craftAgent= new JButton("Craft Agent");
@@ -251,6 +271,11 @@ public class GameFrame extends JFrame implements PolygonChecker
         // endTurn.addActionListener(new EndTurnListener());
     }
 
+    /**
+     * letrehoz egy dialog ablakot
+     * @param st
+     * @param jd
+     */
     private void makeDialog(String st,JDialog jd)
     {
         JLabel jLabel = new JLabel(st);
@@ -271,7 +296,10 @@ public class GameFrame extends JFrame implements PolygonChecker
 
     }
 
-    // TODO MapListener (mouselistener?)
+    /**
+     * A mapon torteno egerkattintasokat figyeli es kattintasra
+     * vegrehajtja a mozgatast
+     */
     class MapListener implements MouseListener {
 
         @Override
@@ -282,7 +310,6 @@ public class GameFrame extends JFrame implements PolygonChecker
 
             if (isInside(e.getX(), e.getY(), poly, num)) {
                 game.getActiveVirologist().Move(true);
-                // TODO virologus mozgatasa a klikkelt helyre
             }
              */
             int mouseX = e.getX();
@@ -322,7 +349,11 @@ public class GameFrame extends JFrame implements PolygonChecker
         }
     }
 
-
+    /**
+     * A CraftAgent gomb megnyomosara vegrehajtja a hatast
+     * letrehozza a dialogus ablakkot ahol a jatekos meg tudja adni a valaszat
+     * ez alapjan vegrehajtja a modellen a valtoztatsokat
+     */
     class CraftAgentListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -364,7 +395,11 @@ public class GameFrame extends JFrame implements PolygonChecker
         }
     }
 
-
+    /**
+     * A UseAgent gomb megnyomosara vegrehajtja a hatast
+     * letrehozza a dialogus ablakkot ahol a jatekos meg tudja adni a valaszat
+     * ez alapjan vegrehajtja a modellen a valtoztatsokat
+     */
     class UseAgentListener implements ActionListener {
 
         @Override
@@ -432,7 +467,10 @@ public class GameFrame extends JFrame implements PolygonChecker
         }
     }
 
-
+    /**
+     * A Kill gomb megnyomosara vegrehajtja a hatast
+     * letrehozza a dialogus ablakkot ahol a jatekos meg tudja adni a valaszat
+     * ez alapjan vegrehajtja a modellen a valtoztatsokat    */
     class KillListener implements ActionListener {
 
         @Override
@@ -477,7 +515,10 @@ public class GameFrame extends JFrame implements PolygonChecker
         }
     }
 
-
+    /**
+     * A DropEquipment gomb megnyomosara vegrehajtja a hatast
+     * letrehozza a dialogus ablakkot ahol a jatekos meg tudja adni a valaszat
+     * ez alapjan vegrehajtja a modellen a valtoztatsokat   */
     class DropEquipmentListener implements ActionListener {
 
         @Override
@@ -521,7 +562,10 @@ public class GameFrame extends JFrame implements PolygonChecker
         }
     }
 
-
+    /**
+     * A StealEquipment gomb megnyomosara vegrehajtja a hatast
+     * letrehozza a dialogus ablakkot ahol a jatekos meg tudja adni a valaszat
+     * ez alapjan vegrehajtja a modellen a valtoztatsokat  */
     class StealEquipmentListener implements ActionListener {
 
         @Override
@@ -565,7 +609,9 @@ public class GameFrame extends JFrame implements PolygonChecker
         }
     }
 
-
+    /**
+     * A SaveListener gomb megnyomosara vegrehajtja a hatast
+     * elmenti a jatek allasat */
     class SaveListener implements ActionListener {
 
         @Override
@@ -584,7 +630,9 @@ public class GameFrame extends JFrame implements PolygonChecker
         }
     }
 
-
+    /**
+     * A EndTurn gomb megnyomosara vegrehajtja a hatast
+     * elinditja az uj kort valamint atadja a masik jatekosnak az iranyitast */
     class EndTurnListener implements ActionListener {
 
         @Override
@@ -616,7 +664,9 @@ public class GameFrame extends JFrame implements PolygonChecker
             gamepanel.revalidate();
         }
     }
-
+    /**
+     * A Exit gomb megnyomosara vegrehajtja a hatast
+     * */
     static class ExitListener implements ActionListener {
 
         @Override
@@ -624,7 +674,9 @@ public class GameFrame extends JFrame implements PolygonChecker
             System.exit(0);
         }
     }
-
+    /**
+     * A Start gomb megnyomosara vegrehajtja a hatast
+     * Elinditja a jatekot*/
     class StartListener implements ActionListener {
 
         @Override
@@ -633,7 +685,9 @@ public class GameFrame extends JFrame implements PolygonChecker
             game.StartGame();
         }
     }
-
+    /**
+     * A Load gomb megnyomosara vegrehajtja a hatast
+     * betolti a jatekot a korabbi allasbol*/
     class LoadListener implements ActionListener {
 
         @Override
@@ -650,12 +704,13 @@ public class GameFrame extends JFrame implements PolygonChecker
             }
         }
     }
+
+    /**
+     * Beolvassa a polignokat es eltarolja a mappolygon-ban
+     */
     public void readPolygons(){
         try{
-            /**
-             * bekeri a file eleleresi utvonalat majd megprobalja beolvasni
-             */
-            //File file = new File("G:\\Programozás\\projlab\\projlab\\out\\production\\projlab\\vilagtalanvirologusok\\mappolygon.txt");
+
             File file = new File("mappolygon.txt");
 
             Scanner scanner = new Scanner(file);
@@ -667,7 +722,6 @@ public class GameFrame extends JFrame implements PolygonChecker
                 points = line.split(" ");
                 temp = new Polygon();
                 for (int i=0; i < points.length ; i+=2)
-                    //TODO map ellenorzes
                     temp.addPoint(Integer.parseInt(points[i]),Integer.parseInt(points[i+1]));
                 temp.addPoint(Integer.parseInt(points[0]),Integer.parseInt(points[1]));
                 mappolygon.add(temp);

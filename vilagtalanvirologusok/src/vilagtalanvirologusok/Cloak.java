@@ -8,16 +8,17 @@ import java.util.Random;
  * akkor 82,3% eséllyel  kivédi a rákent ágenst. Ezt a hatást 3 szor tudja produkálni, ami után megsemmisül.
  */
 public class Cloak extends Equipment implements Visitable, Serializable {
-    /**
-     * Kiszámolja, majd visszaadja, hogy a játékos kivédte-e az ellenfele támadását a 82,3%-os faktor alapján.
-     * Amennyiben kivédte csökkenti a tartósságát eggyel.
-     * @return
-     */
+
     Cloak()
     {
         name="Cloak";
         durability=3;
     }
+    /**
+     * Kiszámolja, majd visszaadja, hogy a játékos kivédte-e az ellenfele támadását a 82,3%-os faktor alapján.
+     * Amennyiben kivédte csökkenti a tartósságát eggyel.
+     * @return
+     */
     public boolean Resist(){
 
         if (durability==0)
@@ -37,19 +38,25 @@ public class Cloak extends Equipment implements Visitable, Serializable {
         }
 
     }
-
+    /**
+     * A visitor minta megvalositashoz szukseges segedmetodus
+     */
     @Override
     public boolean accept(EqVisitor visitor, Material m)
     {
         return false;
     }
-
+    /**
+     * A visitor minta megvalositashoz szukseges segedmetodus
+     */
     @Override
     public void accept(EqVisitor visitor, Virologist virologist)
     {
 
     }
-
+    /**
+     * A visitor minta megvalositashoz szukseges segedmetodus
+     */
     @Override
     public boolean accept(EqVisitor visitor, Virologist v, Agent a)
     {

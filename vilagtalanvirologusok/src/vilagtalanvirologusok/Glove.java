@@ -18,6 +18,12 @@ public class Glove extends Equipment implements Visitable, Serializable {
         name = "Glove";
         durability=3;
     }
+
+    /**
+     * A visszakenest megvalosito metodus
+     * @param v
+     * @param a
+     */
     public void CastBack(Virologist v, Agent a)
     {
         if (durability>0)
@@ -26,7 +32,9 @@ public class Glove extends Equipment implements Visitable, Serializable {
             DecreaseDurability();
         }
     }
-
+    /**
+     * A visitor minta megvalositashoz szukseges seged metodus
+     */
     @Override
     public boolean accept(EqVisitor visitor, Material m)
     {
@@ -34,14 +42,18 @@ public class Glove extends Equipment implements Visitable, Serializable {
     }
 
 
-
+    /**
+     * A visitor minta megvalositashoz szukseges seged metodus
+     */
     @Override
     public boolean accept(EqVisitor visitor, Virologist v, Agent a)
     {
         visitor.visit(this,v,a);
         return true;
     }
-
+    /**
+     * A visitor minta megvalositashoz szukseges seged metodus
+     */
     @Override
     public void accept(EqVisitor visitor, Virologist v) {
 

@@ -1,5 +1,8 @@
 package vilagtalanvirologusok;
 
+/**
+ * A visitor minta megvalositashoz szukseges segedinterface
+ */
 public interface AgentVisitable
 {
     public boolean acceptProtector(AgVisitor agVisitor,Virologist virologist);

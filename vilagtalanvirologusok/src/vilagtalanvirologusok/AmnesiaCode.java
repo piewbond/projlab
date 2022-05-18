@@ -20,6 +20,12 @@ public class AmnesiaCode extends GeneticCode{
         nucleotideCost=5;
         aminoAcidCost=5;
     }
+
+    /**
+     * Letre hozza a virust es hozzaadja a virologus tarolojahoz
+     * @param v a keszito virologus
+     * @return elkeszult-e a virus
+     */
     public boolean Create(Virologist v){
 
         ArrayList<Material> costs = new ArrayList<>();

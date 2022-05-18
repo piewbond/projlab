@@ -23,7 +23,10 @@ public abstract class GeneticCode implements Serializable {
 
 
     public String getName() { return name; }
-
+    /**
+     * stringbe irja az objektum informacioit
+     * @return
+     */
     public String toString() {
         return this.getName() +
                 "\n\tType: " + this.getClass().getName() +

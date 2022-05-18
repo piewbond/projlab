@@ -63,6 +63,12 @@ public class Center implements Serializable {
         return name;
     }
 
+    /**
+     * stringbe irja az objektum informacioit
+     * @param virologists
+     * @param entities
+     * @return
+     */
     public String toString(String virologists, String entities) {
         return this.getName() +
                 "\n\tType: " + this.getClass().getName() +

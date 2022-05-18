@@ -9,11 +9,6 @@ import java.util.ArrayList;
  * A játékos győzelméhez többek közt ennek a megszerzése a célja.
  */
 public class ParalyzeCode extends GeneticCode implements Serializable {
-    /**
-     * Az ágens létrehozásáért felelős metódus.
-     * Meghivja a useMaterial() függvényt az alapanyagokra, amennyiben rendelkezik a szükséges mennyiséggel
-     * @param  - A készitő virológus.
-     */
 
     public ParalyzeCode()
     {
@@ -21,6 +16,11 @@ public class ParalyzeCode extends GeneticCode implements Serializable {
         nucleotideCost=3;
         aminoAcidCost=3;
     }
+    /**
+     * Az ágens létrehozásáért felelős metódus.
+     * Meghivja a useMaterial() függvényt az alapanyagokra, amennyiben rendelkezik a szükséges mennyiséggel
+     * @param  - A készitő virológus.
+     */
     public boolean Create(Virologist v){
 
         ArrayList<Material> costs = new ArrayList<>();

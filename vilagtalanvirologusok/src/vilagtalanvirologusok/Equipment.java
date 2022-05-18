@@ -29,7 +29,12 @@ public abstract class Equipment implements Visitable, Serializable {
     public abstract boolean accept(EqVisitor visitor, Virologist v, Agent a);
 
     public String getName() { return name; }
-
+    /**
+     * stringbe irja az objektum informacioit
+     * @param virologists
+     * @param entities
+     * @return
+     */
     public String toString() {
         return  "Type: " + this.getClass().getName() +
                 ", Durability: " + this.getDurability();

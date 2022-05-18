@@ -1,7 +1,8 @@
 package vilagtalanvirologusok;
 
-import java.util.ArrayList;
-
+/**
+ * A visitor minta megvalositashoz szukseges segedinterface
+ */
 public interface EqVisitor
 {
 

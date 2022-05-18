@@ -35,7 +35,9 @@ public class ChoreaVirus extends Agent implements Serializable {
         lifetime=3;
         name="ChoreaVirus";
     }
-
+    /**
+     * A visitor minta megvalositashoz szukseges segedmetodus
+     */
     @Override
     public boolean acceptChorea(AgVisitor agVisitor, Virologist virologist)
     {

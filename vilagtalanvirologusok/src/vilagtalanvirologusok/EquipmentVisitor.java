@@ -1,7 +1,9 @@
 package vilagtalanvirologusok;
 
 import java.util.ArrayList;
-
+/**
+ * A visitor minta megvalositashoz szukseges segedosztaly
+ */
 public class EquipmentVisitor implements EqVisitor
 {
 

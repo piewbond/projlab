@@ -10,11 +10,20 @@ public class Bag extends Equipment implements Visitable{
 
     private ArrayList<Material> materials = new ArrayList<>();
 
+    /**
+     * letrehozza az objektumot es inicilizalja
+     */
     Bag()
     {
         durability=3;
         name="Bag";
     }
+
+    /**
+     * Hozzaad a taskahoz egy alapanyagot
+     * @param m
+     * @return
+     */
     public boolean addMaterial(Material m)
     {
 
@@ -31,15 +40,25 @@ public class Bag extends Equipment implements Visitable{
 
     }
 
-
+    /**
+     * visszaadja a materialjait
+     * @return
+     */
     public ArrayList<Material> getMaterials()
     {
         return materials;
     }
+
+    /**
+     * Eltavolit egy alapanyagot a helyrol
+     * @param m
+     */
     public void removeMaterial(Material m){
         materials.remove(m);
     }
-
+    /**
+     * A visitor minta megvalositashoz szukseges segedmetodus
+     */
     @Override
     public boolean accept(EqVisitor visitor,Material m)
     {
@@ -47,13 +66,17 @@ public class Bag extends Equipment implements Visitable{
     }
 
 
-
+    /**
+     * A visitor minta megvalositashoz szukseges segedmetodus
+     */
     @Override
     public boolean accept(EqVisitor visitor, Virologist v, Agent a)
     {
         return false;
     }
-
+    /**
+     * A visitor minta megvalositashoz szukseges segedmetodus
+     */
     @Override
     public void accept(EqVisitor visitor ,Virologist v)
     {

@@ -70,6 +70,14 @@ public class Game implements Serializable {
 
     }
 
+    /**
+     * parancs kezeleseert felelos metodus
+     * @param cmd
+     * @throws ParserConfigurationException
+     * @throws IOException
+     * @throws SAXException
+     * @throws TransformerException
+     */
     public void parsecmd(String cmd) throws ParserConfigurationException, IOException, SAXException, TransformerException {
         String[] parsed = cmd.split(" ");
 
@@ -97,7 +105,7 @@ public class Game implements Serializable {
                     }
                     break;
                 case "touch":
-                    map.findVirologist(parsed[1]).Touch(map.findVirologist(parsed[2]), null); // TODO
+                    map.findVirologist(parsed[1]).Touch(map.findVirologist(parsed[2]), null);
                     break;
                 case "load":
                     this.map = readXML(parsed[1]);
@@ -116,7 +124,7 @@ public class Game implements Serializable {
                     }
                     break;
                 case "useAgent":
-                    map.findVirologist(parsed[1]).Kill(map.findVirologist(parsed[2])); // TODO
+                    map.findVirologist(parsed[1]).Kill(map.findVirologist(parsed[2]));
                     break;
                 case "add":
                     map.findVirologist(parsed[1]).LearnGeneticCode(new ProtectorCode());
@@ -224,6 +232,9 @@ public class Game implements Serializable {
         return false;
     }
 
+    /**
+     * aktulis allapot kiirasa
+     */
     public void printState() {
         System.out.println("Evaluation of Turn " + turnCount + "\n");
         if (this.activeVirologist != null) {
@@ -239,7 +250,14 @@ public class Game implements Serializable {
         }
     }
 
-
+    /**
+     * XML file letrehozasa a game adatainak elmenteset vegzi
+     * @param fileName
+     * @throws ParserConfigurationException
+     * @throws IOException
+     * @throws SAXException
+     * @throws TransformerException
+     */
     public void writeXML(String fileName) throws ParserConfigurationException, IOException, SAXException, TransformerException {
         // File file = new File(fileName);
 
@@ -256,7 +274,14 @@ public class Game implements Serializable {
 
     }
 
-
+    /**
+     *      * XML file beolvasasa a game adatokert
+     * @param fileName
+     * @return
+     * @throws ParserConfigurationException
+     * @throws IOException
+     * @throws SAXException
+     */
     public Map readXML(String fileName) throws ParserConfigurationException, IOException, SAXException {
         try {
             FileInputStream fis = new FileInputStream(fileName);
@@ -273,10 +298,18 @@ public class Game implements Serializable {
 
     }
 
+    /**
+     * aktualis jatekos kivalsztasa
+     * @return
+     */
     public Virologist getActiveVirologist() {
         return this.activeVirologist;
     }
 
+    /**
+     * aktualis jatekos beallitasa
+     * @param v
+     */
     public void setActiveVirologist(Virologist v) {
         this.activeVirologist = v;
     }

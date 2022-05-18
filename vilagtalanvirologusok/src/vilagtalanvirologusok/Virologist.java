@@ -39,7 +39,10 @@ public class Virologist implements Steppable, Serializable {
         location.AddVirologist(this);
     }
 
-
+    /**
+     * Az ellenfel jatekos megoleseert felelos metodus
+     * @param virologist
+     */
     public void Kill(Virologist virologist)
     {
         EquipmentVisitor equipmentVisitor = new EquipmentVisitor();
@@ -122,11 +125,6 @@ public class Virologist implements Steppable, Serializable {
             a.Step();
         }
         RemoveAgent();
-
-
-
-
-
 
     }
 
@@ -298,7 +296,12 @@ public class Virologist implements Steppable, Serializable {
         }
 
     }
-
+    /**
+     * a Virologist osztály mozgását valósítja meg.
+     * a kapott mezore mozgatja a jatekost
+     * és meghívja a RemoveVirologist(v: Virologist) a mezőre amin áll majd a
+     * AddVirologist(v: Virologist) a mezőre amire lépni szeretne.
+     */
     public void moveToCenter(Center destination) {
         int i;
 
@@ -316,6 +319,10 @@ public class Virologist implements Steppable, Serializable {
 
     }
 
+    /**
+     * konzolos mozgatast segito metodus
+     * @return
+     */
     public int moveForConsole(){
         for (int i=0;i<location.GetNeighbours().size();i++) {
             System.out.println(i + ": " + location.GetNeighbours().get(i).toString());

@@ -1,9 +1,15 @@
-// import java.awt.Polygon;
+
 
 package vilagtalanvirologusok;
 
 import java.awt.*;
 
+/**
+ * Az osztaly vetitessel meghatarozza hogy az adott pontot tartalmazza-e a kapott poligon
+ * (mivel a java tartalmazza ezt a funkciot csak ezt implementalas kozben fedeztuk fel
+ * igy vegul nem kerult felhasznalasra, de az elkeszitett kodot megtartottuk
+ * mert nem szerettunk volna elterni a tervtol ilyen mertekben )
+ */
 public interface PolygonChecker {
     int inf = 1000000000;
 

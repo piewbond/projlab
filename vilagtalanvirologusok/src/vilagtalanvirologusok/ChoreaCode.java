@@ -20,6 +20,11 @@ public class ChoreaCode extends GeneticCode implements Serializable {
         nucleotideCost=1;
         aminoAcidCost=1;
     }
+    /**
+     * Letre hozza a virust es hozzaadja a virologus tarolojahoz
+     * @param v a keszito virologus
+     * @return elkeszult-e a virus
+     */
     public boolean Create(Virologist v){
 
         ArrayList<Material> costs = new ArrayList<Material>();

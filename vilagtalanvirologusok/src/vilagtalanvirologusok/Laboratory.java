@@ -37,6 +37,11 @@ public class Laboratory extends Center implements Serializable {
         }
 
     }
+
+    /**
+     * hozzaad egy virologust a mezohoz ha fertozoa labor megfertozi
+     * @param v - Az új virológus.
+     */
     public void AddVirologist(Virologist v) {
         virologists.add(v);
         if (contiguous)
@@ -45,6 +50,9 @@ public class Laboratory extends Center implements Serializable {
         
     }
 
+    /**
+     * A virologusok megfertozeset vegzo metodus
+     */
     public void Infect(){
         for (Virologist v: virologists
              ) {

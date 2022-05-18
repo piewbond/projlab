@@ -98,7 +98,10 @@ public class Map implements Serializable {
     public Center getCenter(String coord) {
         return centers.get(Integer.parseInt(coord));
     }
-
+    /**
+     * neve alapjan megkeresi es visszaadja a virologust
+     * @return
+     */
     public Virologist findVirologist(String name) {
         Virologist res = null;
 
@@ -112,6 +115,11 @@ public class Map implements Serializable {
         return res;
     }
 
+    /**
+     * szama alapjan megkeresi es visszaadja a virologust
+     * @param playerNumber
+     * @return
+     */
     public Virologist findVirologistByNum(int playerNumber) {
         Virologist res = null;
 

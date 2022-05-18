@@ -46,6 +46,10 @@ public class Shelter extends Center implements Serializable {
                 break;
         }
     }
+    /**
+     * Hozzaadja a jatekost majd elvegzi a targy felvetelt
+     * @param v - Az új virológus.
+     */
     public void AddVirologist(Virologist v) {
         //System.out.println("Center: AddVirologist()");
         virologists.add(v);

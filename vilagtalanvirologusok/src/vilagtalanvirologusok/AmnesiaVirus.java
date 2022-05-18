@@ -15,13 +15,18 @@ public class AmnesiaVirus extends Agent{
     {
         v.getGeneticCode().clear();
     }
-
+    /**
+     * A visitor minta megvalositashoz szukseges metodus
+     */
     @Override
     public boolean acceptAmnesia(AgVisitor agVisitor,Virologist virologist)
     {
         return agVisitor.visit(this,virologist);
     }
 
+    /**
+     * Letrehozza a virust es inicilizalja az adatait
+     */
     AmnesiaVirus()
     {
         name = "AmnesiaVirus";

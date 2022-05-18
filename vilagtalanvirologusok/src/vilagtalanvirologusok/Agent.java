@@ -4,13 +4,14 @@ package vilagtalanvirologusok;
  * Az ágensek megvalósításáért felelős absztrakt ősosztály, ebből származnak le a különböző ágens típusok.
  */
 public class Agent implements Steppable, AgentVisitable{
+
+    protected int lifetime;
+    protected String name;
+    private boolean random;
     /**
      * Csökkenti az adott ágens élettartamát.
      * Megvalósítja a Steppable interfészt.
      */
-    protected int lifetime;
-    protected String name;
-    private boolean random;
     public void Step()
     {
         lifetime--;
@@ -29,6 +30,10 @@ public class Agent implements Steppable, AgentVisitable{
     }
     public String getName() { return name; }
 
+    /**
+     * visszaadja az agens adatait stringben
+     * @return agens adatai stringben
+     */
     public String toString() {
         return  "Type: " + this.getClass().getName() +
                 ", Lifetime: " + this.getLifetime();
@@ -36,30 +41,41 @@ public class Agent implements Steppable, AgentVisitable{
     public void setRandom(boolean r){
         random = r;
     }
-
+    /**
+     * A visitor minta megvalositashoz szukseges segedmetodus
+     */
     @Override
     public boolean acceptProtector(AgVisitor agVisitor, Virologist virologist)
     {
         return false;
     }
+    /**
+     * A visitor minta megvalositashoz szukseges segedmetodus
+     */
     @Override
     public boolean acceptParalyze(AgVisitor agVisitor, Virologist virologist)
     {
         return false;
     }
-
+    /**
+     * A visitor minta megvalositashoz szukseges segedmetodus
+     */
     @Override
     public boolean acceptBear(AgVisitor agVisitor, Virologist virologist)
     {
         return false;
     }
-
+    /**
+     * A visitor minta megvalositashoz szukseges segedmetodus
+     */
     @Override
     public boolean acceptChorea(AgVisitor agVisitor, Virologist virologist)
     {
         return false;
     }
-
+    /**
+     * A visitor minta megvalositashoz szukseges segedmetodus
+     */
     @Override
     public boolean acceptAmnesia(AgVisitor agVisitor,Virologist virologist)
     {
