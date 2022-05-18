@@ -553,7 +553,7 @@ public class GameFrame extends JFrame implements PolygonChecker
                     if (parsed.length > 2) {
                         int virnb = Integer.parseInt(parsed[2]);
                         if (virnb > 0 && virnb <= 2) {
-                            game.getActiveVirologist().Kill(virologists.get(virnb));
+                            game.getActiveVirologist().StealEquipment(game.map.findVirologist(virologists.get(virnb).getName()));
                             jd.setVisible(false);
                         }
                     }
