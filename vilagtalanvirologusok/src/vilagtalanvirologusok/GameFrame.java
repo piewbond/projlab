@@ -601,6 +601,8 @@ public class GameFrame extends JFrame implements PolygonChecker
             if (endTurnCount % 2 == 0) {
                 game.map.findVirologistByNum(1).setMoved(false);
                 game.map.findVirologistByNum(2).setMoved(false);
+                game.map.findVirologistByNum(1).Step();
+                game.map.findVirologistByNum(2).Step();
             }
             endTurnCount++;
             active.setText("Active virologist: " + game.getActiveVirologist().getName());
@@ -609,6 +611,7 @@ public class GameFrame extends JFrame implements PolygonChecker
                         "GAME OVER");
                 System.exit(0);
             }
+            gamepanel.revalidate();
         }
     }
 

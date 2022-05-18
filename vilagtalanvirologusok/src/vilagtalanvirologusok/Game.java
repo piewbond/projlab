@@ -45,7 +45,7 @@ public class Game implements Serializable {
      *  és ha van, meghívja az +EndGame(): void metódust.
      */
     public boolean CheckEndGame(){
-        if (map.findVirologistByNum(1).getGeneticCode().size()==4 || map.findVirologistByNum(2).getGeneticCode().size()==4 || map.findVirologistByNum(2).getDead() || map.findVirologistByNum(2).getDead())
+        if (map.findVirologistByNum(1).getGeneticCode().size()==4 || map.findVirologistByNum(2).getGeneticCode().size()==4 || map.findVirologistByNum(1).getDead() || map.findVirologistByNum(2).getDead())
             return true;
         return false;
     }
