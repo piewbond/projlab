@@ -205,6 +205,14 @@ public class GameFrame extends JFrame implements PolygonChecker
         JButton saveGame= new JButton("Save Game");
         saveGame.addActionListener(new SaveListener());
 
+        JButton menu = new JButton("Back to Menu");
+        menu.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cl.show(contentpanel, "menu");
+            }
+        });
+
         JButton endTurn= new JButton("End turn");
         endTurn.setBackground(Color.red);
         endTurn.setForeground(Color.white);
@@ -222,6 +230,7 @@ public class GameFrame extends JFrame implements PolygonChecker
         buttons.add(dropEquipment);
         buttons.add(stealEquipment);
         buttons.add(saveGame);
+        buttons.add(menu);
         buttons.add(endTurn);
 
         mappanel.setBackground(Color.gray);
@@ -552,7 +561,7 @@ public class GameFrame extends JFrame implements PolygonChecker
 
                     if (parsed.length > 2) {
                         int virnb = Integer.parseInt(parsed[2]);
-                        if (virnb > 0 && virnb <= 2) {
+                        if (virnb >= 0 && virnb < 2) {
                             game.getActiveVirologist().StealEquipment(game.map.findVirologist(virologists.get(virnb).getName()));
                             jd.setVisible(false);
                         }
