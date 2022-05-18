@@ -206,6 +206,8 @@ public class GameFrame extends JFrame implements PolygonChecker
         saveGame.addActionListener(new SaveListener());
 
         JButton endTurn= new JButton("End turn");
+        endTurn.setBackground(Color.red);
+        endTurn.setForeground(Color.white);
         endTurn.addActionListener(new EndTurnListener());
 
         active = new JLabel("Active virologist: " + game.getActiveVirologist().getName());
@@ -365,7 +367,7 @@ public class GameFrame extends JFrame implements PolygonChecker
                 }
             });
 
-            makeDialog("Avalible Agents:",jd);
+            makeDialog("Available Agents:",jd);
             jd.add(p1);
             jd.add(tx);
             jd.add(confirm);
@@ -382,7 +384,7 @@ public class GameFrame extends JFrame implements PolygonChecker
             String msg="";
             List<Agent> agents= game.getActiveVirologist().getKnownAgents();
             List<Virologist> virologists = game.getActiveVirologist().getLocation().getVirologists();
-            String msgVirologists="Avalible targets:";
+            String msgVirologists="Available targets:";
             int c=0;
             for(Agent agent : agents)
             {
