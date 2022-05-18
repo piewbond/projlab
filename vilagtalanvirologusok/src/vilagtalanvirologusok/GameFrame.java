@@ -163,14 +163,15 @@ public class GameFrame extends JFrame implements PolygonChecker
         JButton load= new JButton("Load game");
         load.addActionListener(new LoadListener());
 
-        JButton test = new JButton("test");
+        // JButton test = new JButton("test");
 
         JButton exit= new JButton("Exit");
         exit.addActionListener(new ExitListener());
         menupanel.add(start);
         menupanel.add(load);
         menupanel.add(exit);
-        menupanel.add(test);
+        // menupanel.add(test);
+        /*
         test.addActionListener(new ActionListener()
         {
             @Override
@@ -180,6 +181,8 @@ public class GameFrame extends JFrame implements PolygonChecker
                 makeDialog("test",jd);
             }
         });
+        
+         */
     }
 
     private void createGame()

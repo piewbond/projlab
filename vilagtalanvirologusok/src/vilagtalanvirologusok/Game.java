@@ -38,6 +38,9 @@ public class Game implements Serializable {
         v2.ApplyAgent(new ParalyzeVirus());
         v2.PickupEquipment(new Axe());
         System.out.print(v1.getName());
+
+        // v1.PickupMaterial(new Aminoacid());
+        // v1.PickupMaterial(new Nucleotide());
     }
 
     /**
