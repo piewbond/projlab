@@ -419,7 +419,13 @@ public class GameFrame extends JFrame implements PolygonChecker
                         int agentnb = Integer.parseInt(parsedAgent[1]);
                         int virnb = Integer.parseInt(parsedTarget[1]);
                         if (agentnb >= 0 && agentnb < agents.size() && virnb >= 0 && virnb < 3) {
-                            game.getActiveVirologist().Touch(game.map.findVirologist(virologists.get(virnb).getName()), agents.get(agentnb));
+                            ProtectorVaccine pv = new ProtectorVaccine();
+                            if (agents.get(agentnb).getClass() == pv.getClass()) {
+                                game.getActiveVirologist().ApplyAgent(agents.get(agentnb));
+                            }
+                                else{
+                                game.getActiveVirologist().Touch(game.map.findVirologist(virologists.get(virnb).getName()), agents.get(agentnb));
+                            }
                             jd.setVisible(false);
                         }
                     }
