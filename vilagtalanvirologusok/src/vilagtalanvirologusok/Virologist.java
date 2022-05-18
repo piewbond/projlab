@@ -138,7 +138,16 @@ public class Virologist implements Steppable, Serializable {
      */
     public void LearnGeneticCode(GeneticCode g)
     {
-        geneticCodes.add(g);
+        boolean cont = false;
+        for (GeneticCode gc: geneticCodes
+             ) {
+            if (g.getClass() ==  gc.getClass()){
+                cont = true;
+            }
+        }
+        if (!cont) {
+            geneticCodes.add(g);
+        }
     }
 
     /**
