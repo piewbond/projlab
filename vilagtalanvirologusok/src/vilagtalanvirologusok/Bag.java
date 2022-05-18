@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public class Bag extends Equipment implements Visitable{
 
-    private ArrayList<Material> materials = new ArrayList<Material>();
+    private ArrayList<Material> materials = new ArrayList<>();
 
     Bag()
     {

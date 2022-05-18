@@ -38,7 +38,6 @@ public class GameFrame extends JFrame implements PolygonChecker
         public void paintComponent( Graphics g )
         {
             super.paintComponent( g ); // call superclass's paintComponent
-            Map temp = game.getMap();
             for (int i=0;i<mappolygon.size();i++) {
                 Center c = new Center(0,0);
                 Virologist v1 = new Virologist("v1",c,1);
@@ -127,8 +126,7 @@ public class GameFrame extends JFrame implements PolygonChecker
 
 
             g.setColor(Color.black);
-            for (int i=0;i<mappolygon.size();i++)
-                g.drawPolygon( mappolygon.get(i));
+            for (Polygon polygon : mappolygon) g.drawPolygon(polygon);
             repaint();
         }
 
@@ -272,23 +270,6 @@ public class GameFrame extends JFrame implements PolygonChecker
         jd.add(jLabel);
 
     }
-
-    public void drawRectangle(Game game,Graphics g){
-        Map map = game.getMap();
-        List<Center> tmp = map.getCenters();
-        for(int i = 0; i< map.centers.size();i++)
-        {
-            if(tmp.get(i).getName().equals("Street"))
-            {
-               // g.draw();
-            }
-        }
-    }
-
-    public void Validate() {
-        this.validate();
-    }
-
 
     // TODO MapListener (mouselistener?)
     class MapListener implements MouseListener {
@@ -697,10 +678,5 @@ public class GameFrame extends JFrame implements PolygonChecker
             e.printStackTrace();
         }
         //
-    }
-    public void rePaint(){
-
-
-
     }
 }

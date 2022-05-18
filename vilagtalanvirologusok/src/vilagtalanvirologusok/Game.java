@@ -15,7 +15,7 @@ import javax.xml.transform.*;
  */
 public class Game implements Serializable {
     private Virologist activeVirologist = null;
-    private ArrayList<Virologist> virologists = new ArrayList<Virologist>();
+    private ArrayList<Virologist> virologists = new ArrayList<>();
     private boolean random = true;
     private int turnCount = 1;
     private int playercount=1;
@@ -25,22 +25,13 @@ public class Game implements Serializable {
      */
     public void StartGame()
     {
-        Center c = new Center(1,1);
         map = new Map();
         map.GenerateGraph();
         Virologist v1 = new Virologist("Red",map.getCenter("3"),1);
         Virologist v2 = new Virologist("Blue",map.getCenter("5"),2);
-        v1.LearnGeneticCode(new AmnesiaCode());
-        v1.LearnGeneticCode(new ProtectorCode());
-        v1.PickupEquipment(new Bag());
-        v1.PickupEquipment(new Cloak());
-        activeVirologist=v1;
-        v2.ApplyAgent(new ParalyzeVirus());
-        v2.PickupEquipment(new Axe());
-        System.out.print(v1.getName());
 
-        v1.PickupMaterial(new Aminoacid());
-        v1.PickupMaterial(new Nucleotide());
+        activeVirologist=v1;
+
     }
 
     /**

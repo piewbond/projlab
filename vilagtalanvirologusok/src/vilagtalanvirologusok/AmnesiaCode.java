@@ -22,7 +22,7 @@ public class AmnesiaCode extends GeneticCode{
     }
     public boolean Create(Virologist v){
 
-        ArrayList<Material> costs = new ArrayList<Material>();
+        ArrayList<Material> costs = new ArrayList<>();
         for (int i=0;i<5;i++)
         {
             Nucleotide n = new Nucleotide();

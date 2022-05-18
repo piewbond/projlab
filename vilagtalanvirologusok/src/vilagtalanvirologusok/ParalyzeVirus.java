@@ -1,7 +1,6 @@
 package vilagtalanvirologusok;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 /**
  * Azt a vírust valósítja meg amelyet felkenve egy virológusra, az 3körig lebénul,

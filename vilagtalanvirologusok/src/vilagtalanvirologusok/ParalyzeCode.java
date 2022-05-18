@@ -23,7 +23,7 @@ public class ParalyzeCode extends GeneticCode implements Serializable {
     }
     public boolean Create(Virologist v){
 
-        ArrayList<Material> costs = new ArrayList<Material>();
+        ArrayList<Material> costs = new ArrayList<>();
         for (int i=0;i<nucleotideCost;i++)
         {
             Nucleotide n = new Nucleotide();

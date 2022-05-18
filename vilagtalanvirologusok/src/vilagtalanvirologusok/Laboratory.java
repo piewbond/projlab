@@ -1,6 +1,5 @@
 package vilagtalanvirologusok;
 
-import java.io.Serial;
 import java.io.Serializable;
 import java.util.Random;
 
@@ -13,11 +12,7 @@ public class Laboratory extends Center implements Serializable {
     public Laboratory(int x, int y) {
         super(x, y);
         Random r = new Random();
-        if (r.nextInt(100) > 80) {
-            contiguous = true;
-        } else {
-            contiguous = false;
-        }
+        contiguous = r.nextInt(100) > 80;
         SpawnGeneticCode();
     }
     /**
@@ -44,7 +39,7 @@ public class Laboratory extends Center implements Serializable {
     }
     public void AddVirologist(Virologist v) {
         virologists.add(v);
-        if (contiguous == true) 
+        if (contiguous)
             Infect();
         v.LearnGeneticCode(gn);
         

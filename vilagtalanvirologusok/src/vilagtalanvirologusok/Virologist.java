@@ -1,9 +1,9 @@
 package vilagtalanvirologusok;
 
-import java.awt.*;
 import java.io.Serializable;
-import java.util.*;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
 
 /**
  * A játékos által irányított karakter ősosztálya,
@@ -29,11 +29,11 @@ public class Virologist implements Steppable, Serializable {
     {
         this.playerNumber=playerNumber;
         dead=false;
-        materials = new ArrayList<Material>();
-        geneticCodes = new ArrayList<GeneticCode>();
-        equipments = new ArrayList<Equipment>();
-        activeAgents = new ArrayList<Agent>();
-        knownAgents = new ArrayList<Agent>();
+        materials = new ArrayList<>();
+        geneticCodes = new ArrayList<>();
+        equipments = new ArrayList<>();
+        activeAgents = new ArrayList<>();
+        knownAgents = new ArrayList<>();
         this.name = name;
         this.location = location;
         location.AddVirologist(this);
